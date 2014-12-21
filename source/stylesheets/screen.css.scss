@@ -369,25 +369,49 @@ header {
 }
 
 .lang-selector {
-  background-color: $lang-select-bg;
+  background: linear-gradient(#3e4145,#292e33);
+  box-shadow: rgba(0,0,0,0.45) 0 1px 2px;
+  background-color: #3e4145;
+  border-bottom: 1px solid #14161a !important;
+  padding: 9px 20px;
+  z-index: 75;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  margin: 0;
+  font-family: "HelveticaNeue",Helvetica,Arial,sans-serif;
+
+  //background-color: $lang-select-bg;
   width: 100%;
-  font-weight: bold;
   a {
+
+    border-radius: 18px;
+    color: #ccd8e8;
     display: block;
-    float:left;
-    color: $lang-select-text;
-    text-decoration: none;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 18px;
+    line-height: 18px;
     padding: 0 10px;
-    line-height: 30px;
+    text-shadow: rgba(0,0,0,0.7) 0 1px 0;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
 
     &:active {
-      background-color: $lang-select-pressed-bg;
+      background: linear-gradient(#14171a,#2a2f34);
+      //background-color: $lang-select-pressed-bg;
       color: $lang-select-pressed-text;
     }
 
     &.active {
-      background-color: $lang-select-active-bg;
+      background: linear-gradient(#14171a,#2a2f34);
+      //background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
+    }
+
+    &:hover{
+      text-decoration: underline;
     }
   }
 
