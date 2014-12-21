@@ -1,168 +1,164 @@
 ---
-title: API Reference
+title: dOctobat
 
 language_tabs:
-  - shell
   - ruby
   - python
+  - php
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  
 
-search: true
+search: false
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome blablabla... [Octobat](https://www.octobat.com/)
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Environment
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
+> Example B2B current_user object
 
 ```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+#<User:0xaa48a8> {
+  :id => 1,
+  :email => "contact@octobat.com",
+  :business_type => "B2B", # or B2C but business_name will be blank
+  :business_name => "Octobat",
+  :first_name => "Nicolas",
+  :last_name => "Guillemain",
+  :address => "151 rue Montmartre",
+  :zip_code => "75002",
+  :city => "Paris",
+  :country => "France",
+  :vat_number => "FR60528551658",
+  :customer_stripe_id => "cus_5ApnZITyBNjwQ8"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+<aside class="notice">
+`current_user` is your customer.
+</aside>
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+# Requirements
 
-### HTTP Request
+Blabla obligafions...
 
-`GET http://example.com/kittens/<ID>`
 
-### URL Parameters
+## Customers & Cards
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+> Create a new Stripe customer
 
+```ruby
+if customer.nil?
+  customer = Stripe::Customer.create(
+    :email => current_user.email,
+    :description => current_user.business_name, # For B2B
+    :description => current_user.first_name+" "+current_user.last_name, # For B2C
+    :metadata => {
+      :business_type => current_user.business_type
+    }
+  )
+  card = customer.cards.create(card: params[:stripeToken])
+  current_user.update_attribute(:customer_stripe_id, customer.id)
+end
+```
+> Or retrieve the existing customer from Stripe
+
+```ruby
+unless current_user.customer_stripe_id.nil?
+  customer = Stripe::Customer.retrieve(current_user.customer_stripe_id)
+  card = customer.cards.create(card: params[:stripeToken])
+end
+```
+
+> Then fill the card data
+
+```ruby
+# for B2B
+card.name = current_user.business_name  if !current_user.business_name.blank?
+
+ # for B2C
+card.name = current_user.first_name+" "+current_user.last_name  if !current_user.first_name.blank? && !current_user.last_name.blank?
+
+card.address_line1 = current_user.address if !current_user.address.blank?
+card.address_city = current_user.city if !current_user.city.blank?
+card.address_zip = current_user.zip_code if !current_user.zip_code.blank?
+card.address_country = current_user.country if !current_user.country.blank?
+card.save
+```
+
+Blabla customers...
+
+<aside class="notice">
+`params[:stripeToken]` obtained with Stripe.js.
+</aside>
+
+<aside class="success">
+After do it, you can create any charge or subscription with the `customer` object
+</aside>
+
+### Arguments
+
+Parameter | Default | Description
+--------- | ------- | -----------
+business_type **optional** | Your setting value in Octobat | "B2C" or "B2B" possible value. This field helps Octobat to calculate the VAT rate of the charge.
+
+
+## Charges
+
+```ruby
+charge = Stripe::Charge.create(
+  :amount      => 400,
+  :currency    => "eur",
+  :card        => card,
+  :customer    => current_user.customer_stripe_id, # or customer.id
+  :description => 'The charge will appear on the invoice',
+  :metadata => {
+    :vat_rate => 21,
+    :eservice => false
+  }
+)
+```
+
+Blabla charges...
+
+<aside class="notice">
+If you want to calculate your own VAT rate, you can put it on the metadata field `:vat_rate`. Thus, you don't have to fill the customer `:business_type` and the charge `:eservice` metadata.
+</aside>
+
+### Arguments
+
+Parameter | Default | Description
+--------- | ------- | -----------
+vat_rate **optional** | Your setting value in Octobat | The VAT rate of this charge.
+eservice **optional** | Your setting value in Octobat | Will be treated if `:business_type` is filled to "B2C". This field helps Octobat to calculate the VAT rate of the charge.
+
+
+## Subscriptions
+
+```ruby
+plan = Stripe::Plan.retrieve("octobat")
+    
+if plan.nil?
+  plan = Stripe::Plan.create(
+    :amount => 0,
+    :interval => 'month',
+    :name => 'Amazing Octobat Plan',
+    :currency => 'eur',
+    :id => 'octobat'
+  )
+end
+
+customer.subscriptions.create(
+  :plan => "octobat",
+  :metadata => {
+    :eservice => true
+  }
+)
+```
+
+Blabla subscriptions...

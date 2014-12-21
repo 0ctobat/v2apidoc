@@ -41,6 +41,28 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>">
+    <header style="z-index:1000;">
+      <div class="container">
+        <span id="brand-logo">
+          <%= link_to image_tag("logo.png", height: "64px"), "https://www.octobat.com/" %>
+        </span>
+        <ul id="lp-menu">
+          <li>
+            <%= link_to "How it works", "https://www.octobat.com/how_it_works" %>
+          </li>
+          <li>
+            <%= link_to "Our team", "https://www.octobat.com/team" %>
+          </li>
+          <li>
+            <%= link_to "Pricing", "https://www.octobat.com/pricing" %>
+          </li>
+          <li>
+            <%= link_to "Blog", "http://blog.octobat.com" %>
+          </li>
+        </ul>
+
+      </div>
+    </header>
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -48,7 +70,6 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>

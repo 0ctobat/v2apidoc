@@ -41,6 +41,65 @@ html, body {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
+
+header {
+  position: absolute;
+  z-index: 1000;
+  background-color: #FFFFFF;
+  top: 0;
+  left: 0;
+  width: 90%;
+  padding: 0 5%;
+  line-height: 75px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+  span#brand-logo {
+    display: inline-block;
+    img {
+      vertical-align: -30px;
+    }
+  }
+
+  ul#lp-menu {
+    float: right;
+    margin-bottom: 0;
+    margin-top: 10px;
+    
+    li {
+      display: inline-block;
+      text-transform: uppercase;
+      list-style-type: none;
+      margin-left: 40px;
+      
+      a {
+        font-family: "Raleway", 'Lato', 'Helvetica Neue', Helvetica;
+        font-size: 16px;
+        font-weight: 400;
+        color: #545066;
+        line-height: 75px;
+        text-decoration: none;
+        
+        &:hover, &:active {
+          color: rgb(236, 186, 16);
+        }
+          
+        &#lp-menu-signup-link {
+          color: rgb(44, 62, 80);
+ 
+          &:hover, &:active {
+            color: rgb(236, 186, 16);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
 #toc > ul > li > a > span {
   float: right;
   background-color: #2484FF;
@@ -67,10 +126,12 @@ html, body {
 }
 
 .tocify-wrapper {
+  border-right: 1px solid #dadfe5;
+  margin-top: 87px;
   @include transition(left ease-in-out 0.3s);
   overflow-y: auto;
   overflow-x: hidden;
-  position: fixed;
+  position: absolute;
   z-index: 30;
   top: 0;
   left: 0;
@@ -92,6 +153,7 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
+    margin-bottom: $logo-margin;
   }
 
   &>.search {
@@ -182,9 +244,17 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    @include box-shadow(0px 1px 0px $nav-active-shadow);
     background-color: $nav-active-bg;
     color: $nav-active-text;
+    background: linear-gradient(#4f9fef,#3577d0);
+    border-bottom-color: #2357aa;
+    border-top-color: #3b89e9;
+    font-weight: bold;
+    border-right-color: #008cdd;
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.45);
+
+
   }
 
   // Subheaders are the submenus that slide open
@@ -192,6 +262,7 @@ html, body {
   .tocify-subheader {
     display: none; // tocify will override this when needed
     background-color: $nav-subitem-bg;
+    background: none !important;
     font-weight: 500;
     .tocify-item>a {
       padding-left: $nav-padding + $nav-indent;
@@ -267,6 +338,7 @@ html, body {
 ////////////////////////////////////////////////////////////////////////////////
 
 .page-wrapper {
+  margin-top: 87px;
   margin-left: $nav-width;
   position: relative;
   z-index: 10;
@@ -290,7 +362,7 @@ html, body {
   }
 
   .lang-selector {
-    position: fixed;
+    position: absolute;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;
   }
