@@ -3,8 +3,6 @@ title: dOctobat
 
 language_tabs:
   - ruby
-  - python
-  - php
 
 toc_footers:
 
@@ -16,7 +14,9 @@ search: false
 
 # Introduction
 
-Welcome blablabla... [Octobat](https://www.octobat.com/)
+Welcome to the documentation of the service [Octobat](https://www.octobat.com/). 
+
+We advice you to follow this documentation before to subscribe to Octobat.
 
 # Environment
 
@@ -39,13 +39,15 @@ Welcome blablabla... [Octobat](https://www.octobat.com/)
 }
 ```
 
+Will be very helpful that you have these fields in your own database.
+
 <aside class="notice">
 `current_user` is your customer.
 </aside>
 
 # Requirements
 
-Blabla obligafions...
+To ensure that all your invoices are correctly generated, we recommend to use your calls to Stripe like these.
 
 
 ## Customers & Cards
@@ -91,7 +93,6 @@ card.address_country = current_user.country if !current_user.country.blank?
 card.save
 ```
 
-Blabla customers...
 
 <aside class="notice">
 `params[:stripeToken]` obtained with Stripe.js.
@@ -123,8 +124,6 @@ charge = Stripe::Charge.create(
   }
 )
 ```
-
-Blabla charges...
 
 <aside class="notice">
 If you want to calculate your own VAT rate, you can put it on the metadata field `:vat_rate`. Thus, you don't have to fill the customer `:business_type` and the charge `:eservice` metadata.
@@ -161,4 +160,3 @@ customer.subscriptions.create(
 )
 ```
 
-Blabla subscriptions...
