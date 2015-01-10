@@ -69,7 +69,8 @@ if customer.nil?
       :email => current_user.email,
       :description => current_user.first_name+" "+current_user.last_name,
       :metadata => {
-        :business_type => current_user.business_type
+        :business_type => current_user.business_type,
+        :ip_address => "87.176.10.2"
       }
     )
   end
