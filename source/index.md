@@ -61,7 +61,8 @@ if customer.nil?
       :email => current_user.email,
       :description => current_user.business_name,
       :metadata => {
-        :business_type => current_user.business_type
+        :business_type => current_user.business_type,
+        :vat_number => current_user.vat_number
       }
     )
   else # for B2C
