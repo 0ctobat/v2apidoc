@@ -524,6 +524,7 @@ header {
     }
 
     th {
+      display: none;
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
@@ -532,9 +533,17 @@ header {
     td {
       padding: 10px;
     }
+    
+    td strong {
+      display: block;
+    }
+    
+    tr td:first-child {
+      text-align: right;
+    }
 
     tr:last-child {
-      border-bottom: 1px solid #ccc;
+      /* border-bottom: 1px solid #ccc;*/
     }
 
     tr:nth-child(odd)>td {
@@ -570,6 +579,16 @@ header {
     @extend %break-words;
     @extend %code-font;
   }
+  
+  code span.c:first-child {
+    text-transform: uppercase;
+  }
+  
+  
+  code span.c::first-letter {
+    display: none;
+  }
+  
 
   pre>code {
     background-color: transparent;
