@@ -554,7 +554,6 @@ A hash with a data property that contains an array of customers. Each entry in t
   "id": "oc_in_14234251141rdhb20d40fe",
   "object": "invoice",
   "livemode": true,
-  "description": "Web development",
   "state": "paid",
   "numbering_sequence_id": "oc_ns_14213467384iwj86515b55",
   "invoice_number": "SP2015-200",
@@ -621,8 +620,10 @@ A hash with a data property that contains an array of customers. Each entry in t
       "id": "oc_pm_14235210139j06befa616a",
       "object": "payment_mode",
       "name": "Bank name",
-      "gateway_type": "transfer",
-      "details": "Transfer to IBAN: FR61 39849 20000 18293000192 88"
+      "payment_mode_type": "transfer",
+      "details": {
+        "iban": "FR90 17216 18009 17038133245 88"
+      }
     }
   }
 }
@@ -652,7 +653,6 @@ Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::Invoice.create(
   livemode: true,
-  description: "Web development",
   state: "confirmed",
   currency: "eur",
   numbering_sequence_id: "oc_ns_14213467384iwj86515b55",
@@ -696,7 +696,6 @@ Octobat::Invoice.create(
   "id": "oc_in_14234251141rdhb20d40fe",
   "object": "invoice",
   "livemode": true,
-  "description": "Web development",
   "state": "confirmed",
   "numbering_sequence_id": "oc_ns_14213467384iwj86515b55",
   "invoice_number": "OC-2015-100",
@@ -781,7 +780,6 @@ Octobat::Invoice.create(
 Attribute | Description
 --------- | ------- | -----------
 **livemode:** | **boolean required** 
-**description:** | **string required**
 **state:** | **string required** can be `confirmed` or `paid`, according to the paid status of the invoice
 **currency:** | **string required** ISO code of the currency (eur, usd, gbp...)
 **customer_id:** | **string optional** Customer identifier. Mandatory if no nested customer object is present
@@ -829,7 +827,6 @@ invoice.pay(
   "id": "oc_in_14234251141rdhb20d40fe",
   "object": "invoice",
   "livemode": true,
-  "description": "Web development",
   "state": "paid",
   "numbering_sequence_id": "oc_ns_14213467384iwj86515b55",
   "invoice_number": "OC-2015-100",
@@ -915,8 +912,10 @@ invoice.pay(
       "id": "oc_pm_14235210139j06befa616a",
       "object": "payment_mode",
       "name": "Bank name",
-      "gateway_type": "transfer",
-      "details": "Transfer to IBAN: FR61 39849 20000 18293000192 88"
+      "payment_mode_type": "transfer",
+      "details": {
+        "iban": "FR90 17216 18009 17038133245 88"
+      }
     }
   }
 }
@@ -977,8 +976,10 @@ Attribute | Type
   "id": "oc_pm_14235210139j06befa616a",
   "object": "payment_mode",
   "name": "Bank name",
-  "gateway_type": "transfer",
-  "details": "Transfer to IBAN: FR61 39849 20000 18293000192 88"
+  "payment_mode_type": "transfer",
+  "details": {
+    "iban": "FR90 17216 18009 17038133245 88"
+  }
 }
 ```
 
@@ -988,8 +989,8 @@ Attribute | Type
 **id:** | **string**
 **object:** | **string** equals to payment_mode
 **name:** | **string required** Name or description of the payment mode
-**gateway_type:** | **string** Can be transfer, cheque, stripe or other
-**details:** | **string** Details addressed to the customer, to recieve the payment (IBAN, cheque destination...)
+**payment_mode_type:** | **string** Can be `transfer`, `check`, `stripe`
+**details:** | **json** Details addressed to the customer, to recieve the payment (IBAN, check recipient...)
 
 
 ## Listing payment modes
@@ -1010,8 +1011,10 @@ $ curl https://api.octobat.com/payment_modes \
       "id": "oc_pm_14235210139j06befa616a",
       "object": "payment_mode",
       "name": "Bank name",
-      "gateway_type": "transfer",
-      "details": "Transfer to IBAN: FR61 39849 20000 18293000192 88"
+      "payment_mode_type": "transfer",
+      "details": {
+        "iban": "FR90 17216 18009 17038133245 88"
+      }
     },
     {...},
     {...}
@@ -1037,8 +1040,10 @@ Octobat::PaymentMode.all
       "id": "oc_pm_14235210139j06befa616a",
       "object": "payment_mode",
       "name": "Bank name",
-      "gateway_type": "transfer",
-      "details": "Transfer to IBAN: FR61 39849 20000 18293000192 88"
+      "payment_mode_type": "transfer",
+      "details": {
+        "iban": "FR90 17216 18009 17038133245 88"
+      }
     },
     #<Octobat::PaymentMode[...] ...>,
     #<Octobat::PaymentMode[...] ...>
