@@ -611,6 +611,17 @@ A hash with a data property that contains an array of customers. Each entry in t
       {...}
     ]
   },
+  "payable_by": [
+    {
+      "id": "oc_pm_14235210139j06befa616a",
+      "object": "payment_mode",
+      "name": "Bank name",
+      "payment_mode_type": "transfer",
+      "details": {
+        "iban": "FR90 17216 18009 17038133245 88"
+      }
+    }
+  ],
   "payment": {
     "id":"oc_pa_14234412027lw37c15a717",
     "object":"payment",
@@ -660,14 +671,14 @@ Octobat::Invoice.create(
     name: "My customer",
     email: "contact@octobat.com",
     phone_number: "+33 9 52 54 03 70",
-    billing_address_line1: null,
-    billing_address_line2: null,
+    billing_address_line1: nil,
+    billing_address_line2: nil,
     billing_address_city: "Paris",
     billing_address_zip: "75004",
-    billing_address_state: null,
+    billing_address_state: nil,
     billing_address_country: "France",
     business_type: "B2C",
-    vat_number: null
+    vat_number: nil
   },
   invoice_items: [
     {
@@ -688,7 +699,8 @@ Octobat::Invoice.create(
   ],
   evidence: {
     customer_ip_address: "137.194.15.1"
-  }
+  },
+  payable_by: ["oc_pm_14235210139j06befa616a"]
 )
 
 # Example response
@@ -771,6 +783,17 @@ Octobat::Invoice.create(
       }
     ]
   },
+  "payable_by" : [
+    {
+      "id": "oc_pm_14235210139j06befa616a",
+      "object": "payment_mode",
+      "name": "Bank name",
+      "payment_mode_type": "transfer",
+      "details": {
+        "iban": "FR90 17216 18009 17038133245 88"
+      }
+    }
+  ]
   "payment": null
 }
 ```
@@ -786,6 +809,7 @@ Attribute | Description
 **customer:** | **object required** Directly creates a new customer and attachs current invoice to him. See the customer#create function to know more about customer fields
 **evidence:** | **hash optional** Nested Evidence Hash. Fill it in the following way: `{"customer_ip_address":"137.194.15.1"}` to fill the customer ip address for VATMOSS evidence
 **invoice_items:** | **array required** List of invoice items, see the corresponding section to have details on how to fill this section.
+**payable_by:** | **array optional** List of payment modes ids. Mandatory if the invoice state is not equal to `paid`.
 **payment:** | **object optional** A nested payment object. Mandatory if the invoice state equals to `paid`. See the corresponding section to have details on how to fill this object.
 
 ### Returns
@@ -902,6 +926,17 @@ invoice.pay(
       }
     ]
   },
+  "payable_by": [
+    {
+      "id": "oc_pm_14235210139j06befa616a",
+      "object": "payment_mode",
+      "name": "Bank name",
+      "payment_mode_type": "transfer",
+      "details": {
+        "iban": "FR90 17216 18009 17038133245 88"
+      }
+    }
+  ],
   "payment": {
     "id": "oc_pa_14234412027lw37c15a717",
     "object": "payment",
