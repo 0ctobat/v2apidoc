@@ -793,7 +793,7 @@ Octobat::Invoice.create(
         "iban": "FR90 17216 18009 17038133245 88"
       }
     }
-  ]
+  ],
   "payment": null
 }
 ```
