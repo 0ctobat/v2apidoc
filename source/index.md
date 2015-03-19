@@ -84,6 +84,27 @@ HTTP status codes summary
 Octobat uses conventional HTTP response codes to indicate success or failure of an API request. In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g. a required parameter was missing, a charge failed, etc.), and codes in the 5xx range indicate an error with Octobat's servers.
 
 
+# Nested objects
+
+```shell
+# Example request
+$ curl https://api.octobat.com/customers?include[]=invoices \
+   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+```
+
+```ruby
+# Example request
+require "octobat"
+Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat::Customer.all(include: ['invoices'])
+```
+
+Many objects can be nested into their parent object in their response properties. Those objects can be expanded inline with the include request parameter. Objects that can be expanded are noted in this documentation.
+This parameter is available on all API requests, and applies to the response of that request only. For example, requesting invoices on a customer will add the customer's invoices list as a property into a full customer object, and will then expand the invoices properties on that customer into a full list object.
+
+
+
+
 # Numbering sequences
 ## The numbering sequence object
 
@@ -994,8 +1015,8 @@ Attribute | Type
 **id:** | **string**
 **object:** | **string** equals to invoice_item
 **description:** | **string required** Description of the invoice line
-**extratax_cents:** | **string optional** The extratax amount of the line in cents. Currency applied is the invoice's currency. Mandatory if the `payment_cents` field is blank.
-**payment_cents:** | **string optional** The all tax included amount of the line in cents. Currency applied is the invoice's currency. Mandatory if the `extratax_cents` field is blank.
+**extratax_cents:** | **integer optional** The extratax amount of the line in cents. Currency applied is the invoice's currency. Mandatory if the `payment_cents` field is blank.
+**payment_cents:** | **integer optional** The all tax included amount of the line in cents. Currency applied is the invoice's currency. Mandatory if the `extratax_cents` field is blank.
 **vat_rate:** | **float optional** The VAT rate of the transaction. Each time you create an invoice item, we try to compute the rate automatically in function of customer (B2B, B2C), transaction type (goods, services, eservices), and location (EU country, non-EU, ...). Fill this field, only if you want to override our automatic calculation, if you have a specific rate for instance.
 **eservice:** | **boolean optional** Indicates if it's an online-sold service, without any manual intervention, as indicated in the 2015-EU VAT laws. Defaults to your account default value if not filled.
 
