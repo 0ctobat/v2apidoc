@@ -210,7 +210,8 @@ A hash with a data property that contains an array of numbering sequences. Each 
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null ,
+  "vat_number": null,
+  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -234,6 +235,7 @@ Attribute | Type
 **vat_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
 **created_at:** | **datetime** ISO8601 format
 **updated_at:** | **datetime** ISO8601 format
+**octobat_billing_page** | **string** The url of a page listing all customer's invoices
 
 ## Create a customer
 
@@ -270,6 +272,7 @@ $ curl https://api.octobat.com/customers \
   "billing_address_country": "France",
   "business_type": "B2B",
   "vat_number": null,
+  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -308,7 +311,8 @@ Octobat::Customer.create(
  "billing_address_state": null,
  "billing_address_country": "France",
  "business_type": "B2B",
- "vat_number": null ,
+ "vat_number": null,
+ "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
  "created_at": "2015-07-12T11:22:29Z",
  "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -358,6 +362,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_country": "France",
   "business_type": "B2B",
   "vat_number": null,
+  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -388,6 +393,7 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
  "billing_address_country": "France",
  "business_type": "B2B",
  "vat_number": null,
+ "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
  "created_at": "2015-07-12T11:22:29Z",
  "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -433,6 +439,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_country": "France",
   "business_type": "B2B",
   "vat_number": null,
+  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -469,6 +476,7 @@ customer.save
  "billing_address_country": "France",
  "business_type": "B2B",
  "vat_number": null,
+ "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
  "created_at": "2015-07-12T11:22:29Z",
  "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -525,6 +533,7 @@ $ curl https://api.octobat.com/customers \
       "billing_address_country": "France",
       "business_type": "B2B",
       "vat_number": null,
+      "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
       "created_at": "2015-07-12T11:22:29Z",
       "updated_at": "2015-07-12T11:22:29Z"
     },
@@ -562,6 +571,7 @@ Octobat::Customer.all
      "billing_address_country": "France",
      "business_type": "B2B",
      "vat_number": null,
+     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
      "created_at": "2015-07-12T11:22:29Z",
      "updated_at": "2015-07-12T11:22:29Z"
     },
@@ -614,6 +624,7 @@ A hash with a data property that contains an array of customers. Each entry in t
    "billing_address_country": "France",
    "business_type": "B2C",
    "vat_number": null,
+   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
    "created_at": "2015-07-12T11:22:29Z",
    "updated_at": "2015-07-12T11:22:29Z"
   },
@@ -776,6 +787,7 @@ Octobat::Invoice.create(
     "billing_address_country": "France",
     "business_type": "B2C",
     "vat_number": null,
+    "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
   },
@@ -929,6 +941,7 @@ invoice.pay(
     "billing_address_country": "France",
     "business_type": "B2C",
     "vat_number": null,
+    "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
   },
