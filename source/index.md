@@ -210,7 +210,9 @@ A hash with a data property that contains an array of numbering sequences. Each 
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null 
+  "vat_number": null ,
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -230,7 +232,8 @@ Attribute | Type
 **billing_address_country:** | **string**
 **business_type:** | **string** Possible values are `B2B` and `B2C`. An individual must be tagged as `B2C` while a business must be tagged as `B2B`
 **vat_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
-
+**created_at:** | **datetime** ISO8601 format
+**updated_at:** | **datetime** ISO8601 format
 
 ## Create a customer
 
@@ -266,7 +269,9 @@ $ curl https://api.octobat.com/customers \
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null 
+  "vat_number": null,
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -303,7 +308,9 @@ Octobat::Customer.create(
  "billing_address_state": null,
  "billing_address_country": "France",
  "business_type": "B2B",
- "vat_number": null 
+ "vat_number": null ,
+ "created_at": "2015-07-12T11:22:29Z",
+ "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -350,7 +357,9 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null
+  "vat_number": null,
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -378,7 +387,9 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
  "billing_address_state": null,
  "billing_address_country": "France",
  "business_type": "B2B",
- "vat_number": null 
+ "vat_number": null,
+ "created_at": "2015-07-12T11:22:29Z",
+ "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -421,7 +432,9 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null 
+  "vat_number": null,
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -455,7 +468,9 @@ customer.save
  "billing_address_state": null,
  "billing_address_country": "France",
  "business_type": "B2B",
- "vat_number": null 
+ "vat_number": null,
+ "created_at": "2015-07-12T11:22:29Z",
+ "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -509,7 +524,9 @@ $ curl https://api.octobat.com/customers \
       "billing_address_state": null,
       "billing_address_country": "France",
       "business_type": "B2B",
-      "vat_number": null 
+      "vat_number": null,
+      "created_at": "2015-07-12T11:22:29Z",
+      "updated_at": "2015-07-12T11:22:29Z"
     },
     {...},
     {...}
@@ -544,7 +561,9 @@ Octobat::Customer.all
      "billing_address_state": null,
      "billing_address_country": "France",
      "business_type": "B2B",
-     "vat_number": null 
+     "vat_number": null,
+     "created_at": "2015-07-12T11:22:29Z",
+     "updated_at": "2015-07-12T11:22:29Z"
     },
     #<Octobat::Customer[...] ...>,
     #<Octobat::Customer[...] ...>
@@ -626,7 +645,9 @@ A hash with a data property that contains an array of customers. Each entry in t
         "quantity":1,
         "vat_rate":20.0,
         "payment_cents":1000,
-        "eservice":true
+        "eservice":true,
+        "created_at": "2015-07-12T11:22:29Z",
+        "updated_at": "2015-07-12T11:22:29Z"
       },
       {...},
       {...}
@@ -656,8 +677,12 @@ A hash with a data property that contains an array of customers. Each entry in t
       "details": {
         "iban": "FR90 17216 18009 17038133245 88"
       }
-    }
-  }
+    },
+    "created_at": "2015-07-12T11:22:29Z",
+    "updated_at": "2015-07-12T11:22:29Z"
+  },
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -748,7 +773,9 @@ Octobat::Invoice.create(
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null
+    "vat_number": null,
+    "created_at": "2015-07-12T11:22:29Z",
+    "updated_at": "2015-07-12T11:22:29Z"
   }
   "customer_id": "oc_cu_1421878635hksc26e4de79",
   "customer_name": "My Customer",
@@ -780,7 +807,9 @@ Octobat::Invoice.create(
         "quantity":1,
         "vat_rate":20.0,
         "payment_cents":1000,
-        "eservice":true
+        "eservice":true,
+        "created_at": "2015-07-12T11:22:29Z",
+        "updated_at": "2015-07-12T11:22:29Z"
       },
       #<Octobat::InvoiceItem id=oc_ii_14234251155z6y590f99f9 0x00000a> JSON: {
         "id":"oc_ii_14234251155z6y590f99f9",
@@ -790,7 +819,9 @@ Octobat::Invoice.create(
         "quantity":1,
         "vat_rate":10.0,
         "payment_cents":2000,
-        "eservice":true
+        "eservice":true,
+        "created_at": "2015-07-12T11:22:29Z",
+        "updated_at": "2015-07-12T11:22:29Z"
       },
        #<Octobat::InvoiceItem id=oc_ii_14234271095z6y590f59fb 0x00000a> JSON: {
         "id":"oc_ii_14234271095z6y590f59fb",
@@ -800,7 +831,9 @@ Octobat::Invoice.create(
         "quantity":1,
         "vat_rate":20.0,
         "payment_cents":4800,
-        "eservice":false
+        "eservice":false,
+        "created_at": "2015-07-12T11:22:29Z",
+        "updated_at": "2015-07-12T11:22:29Z"
       }
     ]
   },
@@ -815,7 +848,9 @@ Octobat::Invoice.create(
       }
     }
   ],
-  "payment": null
+  "payment": null,
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -891,7 +926,9 @@ invoice.pay(
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null
+    "vat_number": null,
+    "created_at": "2015-07-12T11:22:29Z",
+    "updated_at": "2015-07-12T11:22:29Z"
   }
   "customer_id": "oc_cu_1421878635hksc26e4de79",
   "customer_name": "My Customer",
@@ -923,7 +960,9 @@ invoice.pay(
         "quantity":1,
         "vat_rate":20.0,
         "payment_cents":1000,
-        "eservice":true
+        "eservice":true,
+        "created_at": "2015-07-12T11:22:29Z",
+        "updated_at": "2015-07-12T11:22:29Z"
       },
       #<Octobat::InvoiceItem id=oc_ii_14234251155z6y590f99f9 0x00000a> JSON: {
         "id":"oc_ii_14234251155z6y590f99f9",
@@ -933,7 +972,9 @@ invoice.pay(
         "quantity":1,
         "vat_rate":10.0,
         "payment_cents":2000,
-        "eservice":true
+        "eservice":true,
+        "created_at": "2015-07-12T11:22:29Z",
+        "updated_at": "2015-07-12T11:22:29Z"
       },
        #<Octobat::InvoiceItem id=oc_ii_14234271095z6y590f59fb 0x00000a> JSON: {
         "id":"oc_ii_14234271095z6y590f59fb",
@@ -943,7 +984,9 @@ invoice.pay(
         "quantity":1,
         "vat_rate":20.0,
         "payment_cents":4800,
-        "eservice":false
+        "eservice":false,
+        "created_at": "2015-07-12T11:22:29Z",
+        "updated_at": "2015-07-12T11:22:29Z"
       }
     ]
   },
@@ -972,8 +1015,12 @@ invoice.pay(
       "details": {
         "iban": "FR90 17216 18009 17038133245 88"
       }
-    }
-  }
+    },
+    "created_at": "2015-07-12T11:22:29Z",
+    "updated_at": "2015-07-12T11:22:29Z"
+  },
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -1003,7 +1050,9 @@ Invoice items are the line items in an invoice, You cannot interact directly wit
   "quantity":1,
   "vat_rate":20.0,
   "payment_cents":1000,
-  "eservice":true
+  "eservice":true,
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -1019,7 +1068,8 @@ Attribute | Type
 **payment_cents:** | **integer optional** The all tax included amount of the line in cents. Currency applied is the invoice's currency. Mandatory if the `extratax_cents` field is blank.
 **vat_rate:** | **float optional** The VAT rate of the transaction. Each time you create an invoice item, we try to compute the rate automatically in function of customer (B2B, B2C), transaction type (goods, services, eservices), and location (EU country, non-EU, ...). Fill this field, only if you want to override our automatic calculation, if you have a specific rate for instance.
 **eservice:** | **boolean optional** Indicates if it's an online-sold service, without any manual intervention, as indicated in the 2015-EU VAT laws. Defaults to your account default value if not filled.
-
+**created_at** | **datetime**
+**updated_at** | **datetime**
 
 
 # Payment modes
@@ -1035,7 +1085,9 @@ Attribute | Type
   "payment_mode_type": "transfer",
   "details": {
     "iban": "FR90 17216 18009 17038133245 88"
-  }
+  },
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -1047,6 +1099,9 @@ Attribute | Type
 **name:** | **string required** Name or description of the payment mode
 **payment_mode_type:** | **string** Can be `transfer`, `check`, `stripe`
 **details:** | **json** Details addressed to the customer, to recieve the payment (IBAN, check recipient...)
+**created_at** | **datetime**
+**updated_at** | **datetime**
+
 
 
 ## Listing payment modes
@@ -1128,7 +1183,9 @@ When an invoice is declared as paid, it must include a payment object within it.
   "invoice": "oc_in_14219457353oiq78b051b1",
   "payment_date": "2015-01-28",
   "customer_bank_country": "United Kingdom",
-  "payment_mode": {}
+  "payment_mode": {},
+  "created_at": "2015-07-12T11:22:29Z",
+  "updated_at": "2015-07-12T11:22:29Z"
 }
 ```
 
@@ -1141,4 +1198,6 @@ Attribute | Type
 **payment_date:** | **date required**
 **customer_bank_country:** | **string required** Country name or code for the customer cheque, card or bank account
 **payment_mode:** | **object required** Payment mode object. See previous section for attributes and details
+**created_at:** | **datetime**
+**updated_at:** | **datetime**
 
