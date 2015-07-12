@@ -613,8 +613,10 @@ A hash with a data property that contains an array of customers. Each entry in t
    "billing_address_state": null,
    "billing_address_country": "France",
    "business_type": "B2C",
-   "vat_number": null 
-  }
+   "vat_number": null,
+   "created_at": "2015-07-12T11:22:29Z",
+   "updated_at": "2015-07-12T11:22:29Z"
+  },
   "customer_id": "oc_cu_1421878635hksc26e4de79",
   "customer_name": "My Customer",
   "customer_address_line1": null,
@@ -776,7 +778,7 @@ Octobat::Invoice.create(
     "vat_number": null,
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
-  }
+  },
   "customer_id": "oc_cu_1421878635hksc26e4de79",
   "customer_name": "My Customer",
   "customer_address_line1": null,
@@ -929,7 +931,7 @@ invoice.pay(
     "vat_number": null,
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
-  }
+  },
   "customer_id": "oc_cu_1421878635hksc26e4de79",
   "customer_name": "My Customer",
   "customer_address_line1": null,
