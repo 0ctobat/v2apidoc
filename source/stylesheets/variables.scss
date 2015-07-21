@@ -24,17 +24,17 @@ under the License.
 // BACKGROUND COLORS
 ////////////////////
 //$nav-bg: #393939;
-$nav-bg: #FFFFFF;
-$examples-bg: #292e33;
-//$code-bg: #292929;
-$code-bg: #292e33;
-$code-annotation-bg: #1c1c1c;
+$nav-bg: #FAFCFC;
+$examples-bg: #504888;
+$dark-box-bg: #2D3134;
+$code-bg: #272B2D;
+$code-annotation-bg: #2D3134;
 $nav-subitem-bg: #ffffff;
 $nav-active-bg: #4f9fef;
-$lang-select-border: #000;
-$lang-select-bg: #222;
-$lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
+$lang-select-border: transparent;
+$lang-select-bg: #242729;
+$lang-select-active-bg: #504888; // feel free to change this to blue or something
+$lang-select-pressed-bg: #504888; // color of language tab bg when mouse is pressed
 //$main-bg: #eaf2f6;
 $main-bg: #FFFFFF;
 $aside-notice-bg: #8fbcd4;
@@ -45,24 +45,25 @@ $search-notice-bg: #c97a7e;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333; // main content text color
-$nav-text: #008cdd;
-$nav-active-text: #fff;
-$lang-select-text: #fff; // color of unselected language tab text
+$main-text: #4c555a; // main content text color
+$nav-text: #4c555a;
+$nav-active-text: #50B3C0;
+$nav-hover-text: #2F3437;
+$lang-select-text: #d0d4d7; // color of unselected language tab text
 $lang-select-active-text: #fff; // color of selected language tab text
 $lang-select-pressed-text: #fff; // color of language tab text when mouse is pressed
 
 
 // SIZES
 ////////////////////
-$nav-width: 200px; // width of the navbar
-$examples-width: 50%; // portion of the screen taken up by code examples
-$logo-margin: 50px; // margin between nav items and logo, ignored if search is active
-$main-padding: 28px; // padding to left and right of content & examples
-$nav-padding: 15px; // padding to left and right of navbar
-$nav-v-padding: 10px; // padding used vertically around search boxes and results
+$nav-width: 220px; // width of the navbar
+$examples-width: 55%; // portion of the screen taken up by code examples
+$logo-margin: 100px; // margin between nav items and logo, ignored if search is active
+$main-padding: 34px; // padding to left and right of content & examples
+$nav-padding: 20px; // padding to left and right of navbar
+$nav-v-padding: 8px; // padding used vertically around search boxes and results
 $nav-indent: 10px; // extra padding for ToC subitems
-$code-annotation-padding: 13px; // padding inside code annotations
+$code-annotation-padding: 0px; // padding inside code annotations
 $h1-margin-bottom: 21px; // padding under the largest header tags
 $tablet-width: 930px; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width; // min width before reverting to mobile size
@@ -73,7 +74,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 %default-font {
   // Monaco,Consolas,"Lucida Console",monospace;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 %header-font {
@@ -83,10 +84,11 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 
 %code-font {
   font-family: Monaco, Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  /*font-family: 'Lato', sans-serif;*/
   //font-size: 12px;
   //line-height: 1.5;
   font-size: 12px;
-  line-height: 1.7em;
+  line-height: 1.5em;
 }
 
 

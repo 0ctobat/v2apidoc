@@ -22,6 +22,9 @@
       }
     }).data('toc-tocify');
 
+    $('<div class="menu-title1">API</div>').insertBefore('#tocify-header0');
+    $('<div class="menu-title2">METHODS</div>').insertBefore('#tocify-header5');
+
     $("#nav-button").click(function() {
       $(".tocify-wrapper").toggleClass('open');
       $("#nav-button").toggleClass('open');
