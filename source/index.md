@@ -858,6 +858,12 @@ A hash with a data property that contains an array of customers. Each entry in t
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
   },
+  "sources": [
+     {
+       "gateway":"stripe",
+       "identifier":"ch_16xjM32Pmv0nOG11rJ9U1hXj"
+     }
+  ],
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -1041,6 +1047,12 @@ Octobat::Invoice.create(
     }
   ],
   "payment": null,
+  "sources": [
+     {
+       "gateway":"stripe",
+       "identifier":"ch_16xjM32Pmv0nOG11rJ9U1hXj"
+     }
+  ],
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -1228,6 +1240,12 @@ invoice.save
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
   },
+  "sources": [
+     {
+       "gateway":"stripe",
+       "identifier":"ch_16xjM32Pmv0nOG11rJ9U1hXj"
+     }
+  ],
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -1412,6 +1430,12 @@ invoice.send
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
   },
+  "sources": [
+     {
+       "gateway":"stripe",
+       "identifier":"ch_16xjM32Pmv0nOG11rJ9U1hXj"
+     }
+  ],
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
@@ -1597,6 +1621,12 @@ invoice.pay(
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
   },
+  "sources": [
+     {
+       "gateway":"stripe",
+       "identifier":"ch_16xjM32Pmv0nOG11rJ9U1hXj"
+     }
+  ],
   "created_at": "2015-07-12T11:22:29Z",
   "updated_at": "2015-07-12T11:22:29Z"
 }
