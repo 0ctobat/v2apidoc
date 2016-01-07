@@ -1800,7 +1800,6 @@ When an invoice is declared as paid, it must include a payment object within it.
 
 
 ## The payment object
-
 > Example object
 
 ```json
