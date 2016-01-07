@@ -758,6 +758,9 @@ A hash with a data property that contains an array of customers. Each entry in t
   "invoice_date": "2015-02-08",
   "currency": "eur",
   "pdf_file_url": null,
+  "extratax_amount_cents": 15610,
+  "tax_amount_cents": 3590,
+  "tax_included_amount_cents": 19200,
   "customer": {
    "id": "oc_cu_1421878635hksc26e4de79",
    "object": "customer",
@@ -785,9 +788,6 @@ A hash with a data property that contains an array of customers. Each entry in t
   "customer_address_zip": "",
   "customer_address_country": "France",
   "customer_vat_number": null,
-  "extratax_amount_cents": 15610,
-  "tax_amount_cents": 3590,
-  "tax_included_amount_cents", 19200,
   "supplier_name": "Octobat",
   "supplier_legal_form": "Inc",
   "supplier_siret": "",
@@ -948,7 +948,7 @@ Octobat::Invoice.create(
   "pdf_file_url": null,
   "extratax_amount_cents": 6651,
   "tax_amount_cents": 1149,
-  "tax_included_amount_cents", 7800,
+  "tax_included_amount_cents": 7800,
   "customer": {
     "id": "oc_cu_1421878635hksc26e4de79",
     "object": "customer",
@@ -1127,7 +1127,7 @@ invoice.save
   "pdf_file_url": null,
   "extratax_amount_cents": 6651,
   "tax_amount_cents": 1149,
-  "tax_included_amount_cents", 7800,
+  "tax_included_amount_cents": 7800,
   "customer": {
     "id": "oc_cu_1421878635hksc26e4de79",
     "object": "customer",
@@ -1320,7 +1320,7 @@ invoice.send
   "pdf_file_url": null,
   "extratax_amount_cents": 6651,
   "tax_amount_cents": 1149,
-  "tax_included_amount_cents", 7800,
+  "tax_included_amount_cents": 7800,
   "customer": {
     "id": "oc_cu_1421878635hksc26e4de79",
     "object": "customer",
@@ -1514,7 +1514,7 @@ invoice.pay(
   "pdf_file_url": null,
   "extratax_amount_cents": 6651,
   "tax_amount_cents": 1149,
-  "tax_included_amount_cents", 7800,
+  "tax_included_amount_cents": 7800,
   "customer": {
     "id": "oc_cu_1421878635hksc26e4de79",
     "object": "customer",
