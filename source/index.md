@@ -881,8 +881,8 @@ POST https://www.octobat.com/api/invoices
 # Example request
 $ curl https://api.octobat.com/invoices \
    -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt: \
-   -d numbering_sequence_id="oc_ns_14213467384iwj86515b55" \
    -d customer_id="oc_cu_1421878635hksc26e4de79" \
+   -d currency="eur" \
    -d payable_by[]="oc_pm_14235210139j06befa616a"
 
 
@@ -984,7 +984,6 @@ Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::Invoice.create(
   currency: "eur",
-  numbering_sequence_id: "oc_ns_14213467384iwj86515b55",
   customer_id: "oc_cu_1421878635hksc26e4de79",
   payable_by: ["oc_pm_14235210139j06befa616a"]
 )
@@ -1083,8 +1082,9 @@ Attribute | Description
 --------- | ------- | -----------
 **currency:** | **string required** ISO code of the currency (eur, usd, gbp...)
 **customer_id:** | **string required** Octobat Customer ID. Create one first if it still does not exist.
-**numbering_sequence_id:** | **string required** Numbering sequence ID
+**numbering_sequence_id:** | **string optional** Numbering sequence ID. Fallbacks to default numbering sequence if not filled
 **payable_by:** | **array optional** Array of Payment methods IDs
+**description:** | **string optional** Global description of the invoice
 **evidence:** | **hash optional** Nested Evidence Hash. Fill it in the following way: `{"customer_ip_address":"137.194.15.1"}` to fill the customer ip address for VATMOSS evidence
 
 ### Returns
