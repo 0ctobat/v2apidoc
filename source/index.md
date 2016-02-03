@@ -1076,19 +1076,15 @@ Octobat::Invoice.create(
 }
 ```
 
+To create an invoice for a customer, you must first create it as a draft. Then, you must add invoice items upon it, and declare if it still has to be paid or if the payment has already been performed.
 ### Arguments
 
 Attribute | Description
 --------- | ------- | -----------
-**livemode:** | **boolean required** 
-**state:** | **string required** can be `confirmed` or `paid`, according to the paid status of the invoice
 **currency:** | **string required** ISO code of the currency (eur, usd, gbp...)
-**customer_id:** | **string optional** Customer identifier. Mandatory if no nested customer object is present
-**customer:** | **object required** Directly creates a new customer and attachs current invoice to him. See the customer#create function to know more about customer fields
+**customer_id:** | **string required** Octobat Customer ID. Create one first if it still does not exist.
+**numbering_sequence_id:** | **string required** Numbering sequence ID
 **evidence:** | **hash optional** Nested Evidence Hash. Fill it in the following way: `{"customer_ip_address":"137.194.15.1"}` to fill the customer ip address for VATMOSS evidence
-**invoice_items:** | **array required** List of invoice items, see the corresponding section to have details on how to fill this section.
-**payable_by:** | **array optional** List of payment modes ids. Mandatory if the invoice state is not equal to `paid`.
-**payment:** | **object optional** A nested payment object. Mandatory if the invoice state equals to `paid`. See the corresponding section to have details on how to fill this object.
 
 ### Returns
 Returns the full invoice object if the creation succeeded. Returns an error if parameters are invalid
