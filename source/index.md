@@ -1084,6 +1084,7 @@ Attribute | Description
 **currency:** | **string required** ISO code of the currency (eur, usd, gbp...)
 **customer_id:** | **string required** Octobat Customer ID. Create one first if it still does not exist.
 **numbering_sequence_id:** | **string required** Numbering sequence ID
+**payable_by:** | **array optional** Array of Payment methods IDs
 **evidence:** | **hash optional** Nested Evidence Hash. Fill it in the following way: `{"customer_ip_address":"137.194.15.1"}` to fill the customer ip address for VATMOSS evidence
 
 ### Returns
