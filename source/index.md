@@ -36,26 +36,25 @@ To make the Octobat API as secure as possible. Authentication is performed throu
 ```shell
 # Example request
 $ curl https://api.octobat.com/customers \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
    
 # curl uses the -u flag to pass basic auth credentials
-# (adding a colon after your API key will prevent it 
+# (adding a colon after your secret API key will prevent it 
 # from asking you for a password).
 ```
 
 ```ruby
 # Example request
 require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 # Authentication is transparently handled for you
 # in subsequent method calls.
 ```
 
-Authentication to the API occurs via HTTP Basic Auth. Provide your API key as the basic auth username. You do not need to provide a password.
+Authentication to the API occurs via HTTP Basic Auth. Provide your API secret key as the basic auth username. You do not need to provide a password.
 All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.
 You can manage your API keys from your account. Your API keys carry many privileges, so be sure to keep them secret!
-
 
 
 # Errors
@@ -89,7 +88,7 @@ Octobat uses conventional HTTP response codes to indicate success or failure of 
 ```shell
 # Example request
 $ curl https://api.octobat.com/customers?limit=3 \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
   
 # Example response
 {
@@ -124,7 +123,7 @@ $ curl https://api.octobat.com/customers?limit=3 \
 ```ruby
 # Example request
 require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 Octobat::Customer.all(limit: 3)
 
 # Example response
@@ -183,13 +182,13 @@ Attribute | Type
 ```shell
 # Example request
 $ curl https://api.octobat.com/customers?include[]=invoices \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 ```
 
 ```ruby
 # Example request
 require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 Octobat::Customer.all(include: ['invoices'])
 ```
 
@@ -232,7 +231,7 @@ GET https://api.octobat.com/numbering_sequences/
 
 # Example request
 $ curl https://api.octobat.com/numbering_sequences \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
    
 # Example response
 {
@@ -259,7 +258,7 @@ Octobat::NumberingSequence.all
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::NumberingSequence.all
 
@@ -353,7 +352,7 @@ POST https://api.octobat.com/customers
 ```shell
 # Example Request
 $ curl https://api.octobat.com/customers \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt: \
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d email="contact@octobat.com" \
    -d name="Octobat Inc." \
    -d phone_number="+33 9 52 54 03 70" \
@@ -388,7 +387,7 @@ $ curl https://api.octobat.com/customers \
 ```ruby
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::Customer.create(
   name: "Octobat Inc.",
@@ -453,7 +452,7 @@ GET https://api.octobat.com/customers/{CUSTOMER_ID}
 
 # Example Request
 $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response
 {
@@ -488,7 +487,7 @@ Octobat::Customer.retrieve({CUSTOMER_ID})
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
 
@@ -541,7 +540,7 @@ PATCH https://api.octobat.com/customers/{CUSTOMER_ID}
 
 # Example request
 $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt: \
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d email="admin@octobat.com"
    
 # Example response
@@ -580,7 +579,7 @@ customer.save
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 customer = Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
 customer.email = "admin@octobat.com"
@@ -645,7 +644,7 @@ GET https://api.octobat.com/customers/
 
 # Example request
 $ curl https://api.octobat.com/customers \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
    
 # Example response
 {
@@ -689,7 +688,7 @@ Octobat::Customer.all
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::Customer.all
 
@@ -880,7 +879,7 @@ POST https://www.octobat.com/api/invoices
 
 # Example request
 $ curl https://api.octobat.com/invoices \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt: \
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer_id="oc_cu_1421878635hksc26e4de79" \
    -d currency="eur" \
    -d payable_by[]="oc_pm_14235210139j06befa616a"
@@ -980,7 +979,7 @@ POST https://www.octobat.com/api/invoices
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::Invoice.create(
   currency: "eur",
@@ -1115,7 +1114,7 @@ invoice.save
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 invoice = Octobat::Invoice.retrieve("oc_in_14234251141rdhb20d40fe")
 invoice.customer_address_line1 = "5th Avenue, 1830"
@@ -1311,7 +1310,7 @@ invoice.send(enforce_errors)
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 invoice = Octobat::Invoice.retrieve("oc_in_14234251141rdhb20d40fe")
 invoice.send
@@ -1501,7 +1500,7 @@ invoice.pay(payment_data)
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 invoice = Octobat::Invoice.retrieve("oc_in_14234251141rdhb20d40fe")
 invoice.pay(
@@ -1744,7 +1743,7 @@ GET https://api.octobat.com/payment_modes/
 
 # Example request
 $ curl https://api.octobat.com/payment_modes \
-   -u oc_key_tkHCYYOUVrYyY5rBFZxNzgtt:
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
    
 # Example response
 {
@@ -1773,7 +1772,7 @@ Octobat::PaymentMode.all
 
 # Example request
 >> require "octobat"
-Octobat.api_key = "oc_key_tkHCYYOUVrYyY5rBFZxNzgtt"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::PaymentMode.all
 
