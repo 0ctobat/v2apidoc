@@ -8,7 +8,7 @@ language_tabs:
 toc_footers:
 
 includes:
-  
+
 
 search: false
 ---
@@ -21,7 +21,7 @@ gem "octobat"
 
 ```global
 API Endpoint
-https://api.octobat.com 
+https://api.octobat.com
 ```
 
 The Octobat API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients.
@@ -37,9 +37,9 @@ To make the Octobat API as secure as possible. Authentication is performed throu
 # Example request
 $ curl https://api.octobat.com/customers \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
-   
+
 # curl uses the -u flag to pass basic auth credentials
-# (adding a colon after your secret API key will prevent it 
+# (adding a colon after your secret API key will prevent it
 # from asking you for a password).
 ```
 
@@ -89,7 +89,7 @@ Octobat uses conventional HTTP response codes to indicate success or failure of 
 # Example request
 $ curl https://api.octobat.com/customers?limit=3 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
-  
+
 # Example response
 {
   "object": "list",
@@ -109,7 +109,7 @@ $ curl https://api.octobat.com/customers?limit=3 \
       "billing_address_state": null,
       "billing_address_country": "France",
       "business_type": "B2B",
-      "vat_number": null,
+      "tax_number": null,
       "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
       "created_at": "2015-07-12T11:22:29Z",
       "updated_at": "2015-07-12T11:22:29Z"
@@ -145,7 +145,7 @@ Octobat::Customer.all(limit: 3)
      "billing_address_state": null,
      "billing_address_country": "France",
      "business_type": "B2B",
-     "vat_number": null,
+     "tax_number": null,
      "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
      "created_at": "2015-07-12T11:22:29Z",
      "updated_at": "2015-07-12T11:22:29Z"
@@ -232,7 +232,7 @@ GET https://api.octobat.com/numbering_sequences/
 # Example request
 $ curl https://api.octobat.com/numbering_sequences \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
-   
+
 # Example response
 {
   "object": "list",
@@ -297,6 +297,7 @@ A hash with a data property that contains an array of numbering sequences. Each 
 {
   "id": "oc_cu_1421878635hksc26e4de79",
   "object" : "customer",
+  "livemode" : true,
   "name": "Octobat Inc.",
   "email": "contact@octobat.com",
   "phone_number": "+33 9 52 54 03 70",
@@ -307,7 +308,7 @@ A hash with a data property that contains an array of numbering sequences. Each 
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null,
+  "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "sources" : [
     {
@@ -325,6 +326,7 @@ Attribute | Type
 --------- | -----------
 **id:** | **string**
 **object:** | **string** equals to customer
+**livemode:** | **boolean**
 **name:** | **string**
 **email:** | **string**
 **phone_number:** | **string**
@@ -335,7 +337,7 @@ Attribute | Type
 **billing_address_state:** | **string**
 **billing_address_country:** | **string**
 **business_type:** | **string** Possible values are `B2B` and `B2C`. An individual must be tagged as `B2C` while a business must be tagged as `B2B`
-**vat_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
+**tax_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
 **octobat_billing_page** | **string** The url of a page listing all customer's invoices
 **sources** | **array** Contains a list of gateways names and identifiers which this customer is from
 **created_at:** | **datetime** ISO8601 format
@@ -360,12 +362,13 @@ $ curl https://api.octobat.com/customers \
    -d billing_address_city="Paris" \
    -d billing_address_country="France" \
    -d business_type="B2B" \
-   -d vat_number="FR60528551658"
-   
+   -d tax_number="FR60528551658"
+
 # Example response
 {
   "id": "oc_cu_1421878635hksc26e4de79",
   "object" : "customer",
+  "livemode" : true,
   "name": "Octobat Inc.",
   "email": "contact@octobat.com",
   "phone_number": "+33 9 52 54 03 70",
@@ -376,7 +379,7 @@ $ curl https://api.octobat.com/customers \
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null,
+  "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "sources": [],
   "created_at": "2015-07-12T11:22:29Z",
@@ -400,13 +403,14 @@ Octobat::Customer.create(
   billing_address_state: null,
   billing_address_country: "France",
   business_type: "B2B",
-  vat_number: null
+  tax_number: null
 )
 
 # Example response
 #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
  "id": "oc_cu_1421878635hksc26e4de79",
  "object" : "customer",
+ "livemode" : true,
  "name": "Octobat Inc.",
  "email": "admin@octobat.com",
  "phone_number": "+33 9 52 54 03 70",
@@ -417,7 +421,7 @@ Octobat::Customer.create(
  "billing_address_state": null,
  "billing_address_country": "France",
  "business_type": "B2B",
- "vat_number": null,
+ "tax_number": null,
  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
  "sources": [],
  "created_at": "2015-07-12T11:22:29Z",
@@ -428,7 +432,7 @@ Octobat::Customer.create(
 ### Arguments
 Attribute | Description
 --------- | ------- | -----------
-**name:** | **string required** 
+**name:** | **string required**
 **email:** | **string required**
 **phone_number:** | **string optional**
 **billing_address_line1:** | **string optional**
@@ -438,7 +442,7 @@ Attribute | Description
 **billing_address_state:** | **string optional**
 **billing_address_country:** | **string required**
 **business_type:** | **string required** Possible values are `B2B` and `B2C`. An individual must be tagged as `B2C` while a business must be tagged as `B2B`
-**vat_number:** | **string optional** If your customer is a business registered at EU-VAT, its VAT registration number.
+**tax_number:** | **string optional** If your customer is a business registered at EU-VAT, its VAT registration number.
 
 ### Returns
 Returns the customer object if the creation succeeds. Returns an error if parameters are invalid
@@ -458,6 +462,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
 {
   "id": "oc_cu_1421878635hksc26e4de79",
   "object" : "customer",
+  "livemode" : true,
   "name": "Octobat Inc.",
   "email": "contact@octobat.com",
   "phone_number": "+33 9 52 54 03 70",
@@ -468,7 +473,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null,
+  "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "sources": [
     {
@@ -495,6 +500,7 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
 #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
  "id": "oc_cu_1421878635hksc26e4de79",
  "object" : "customer",
+ "livemode" : true,
  "name": "Octobat Inc.",
  "email": "contact@octobat.com",
  "phone_number": "+33 9 52 54 03 70",
@@ -505,7 +511,7 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
  "billing_address_state": null,
  "billing_address_country": "France",
  "business_type": "B2B",
- "vat_number": null,
+ "tax_number": null,
  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
  "sources": [
    {
@@ -542,11 +548,12 @@ PATCH https://api.octobat.com/customers/{CUSTOMER_ID}
 $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d email="admin@octobat.com"
-   
+
 # Example response
 {
   "id": "oc_cu_1421878635hksc26e4de79",
   "object" : "customer",
+  "livemode" : true,
   "name": "Octobat Inc.",
   "email": "admin@octobat.com",
   "phone_number": "+33 9 52 54 03 70",
@@ -557,7 +564,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "vat_number": null,
+  "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
   "sources": [
     {
@@ -590,6 +597,7 @@ customer.save
 #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
  "id": "oc_cu_1421878635hksc26e4de79",
  "object" : "customer",
+ "livemode" : true,
  "name": "Octobat Inc.",
  "email": "admin@octobat.com",
  "phone_number": "+33 9 52 54 03 70",
@@ -600,7 +608,7 @@ customer.save
  "billing_address_state": null,
  "billing_address_country": "France",
  "business_type": "B2B",
- "vat_number": null,
+ "tax_number": null,
  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
  "sources": [
    {
@@ -620,7 +628,7 @@ This request accepts mostly the same arguments as the customer creation call.
 ### Arguments
 Attribute | Description
 --------- | ------- | -----------
-**name:** | **string** 
+**name:** | **string**
 **email:** | **string**
 **phone_number:** | **string**
 **billing_address_line1:** | **string**
@@ -630,7 +638,7 @@ Attribute | Description
 **billing_address_state:** | **string**
 **billing_address_country:** | **string**
 **business_type:** | **string** Possible values are `B2B` and `B2C`. An individual must be tagged as `B2C` while a business must be tagged as `B2B`
-**vat_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
+**tax_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
 
 ### Returns
 Returns the customer object if the update succeeded. Returns an error if update parameters are invalid
@@ -645,7 +653,7 @@ GET https://api.octobat.com/customers/
 # Example request
 $ curl https://api.octobat.com/customers \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
-   
+
 # Example response
 {
   "object": "list",
@@ -655,6 +663,7 @@ $ curl https://api.octobat.com/customers \
     {
       "id": "oc_cu_1421878635hksc26e4de79",
       "object" : "customer",
+      "livemode" : true,
       "name": "Octobat Inc.",
       "email": "admin@octobat.com",
       "phone_number": "+33 9 52 54 03 70",
@@ -665,7 +674,7 @@ $ curl https://api.octobat.com/customers \
       "billing_address_state": null,
       "billing_address_country": "France",
       "business_type": "B2B",
-      "vat_number": null,
+      "tax_number": null,
       "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
       "sources": [
         {
@@ -701,6 +710,7 @@ Octobat::Customer.all
     #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
      "id": "oc_cu_1421878635hksc26e4de79",
      "object": "customer",
+     "livemode" : true,
      "name": "Octobat Inc.",
      "email": "admin@octobat.com",
      "phone_number": "+33 9 52 54 03 70",
@@ -711,7 +721,7 @@ Octobat::Customer.all
      "billing_address_state": null,
      "billing_address_country": "France",
      "business_type": "B2B",
-     "vat_number": null,
+     "tax_number": null,
      "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
      "sources": [
        {
@@ -773,7 +783,7 @@ A hash with a data property that contains an array of customers. Each entry in t
    "billing_address_state": null,
    "billing_address_country": "France",
    "business_type": "B2C",
-   "vat_number": null,
+   "tax_number": null,
    "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
    "created_at": "2015-07-12T11:22:29Z",
    "updated_at": "2015-07-12T11:22:29Z"
@@ -913,7 +923,7 @@ $ curl https://api.octobat.com/invoices \
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -1015,7 +1025,7 @@ Octobat::Invoice.create(
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -1150,7 +1160,7 @@ invoice.save
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -1274,7 +1284,7 @@ invoice.save
 
 ### Arguments
 Attribute | Description
---------- | ------- 
+--------- | -------
 **customer_name:** | **string optional**
 **customer_address_line1:** | **string optional**
 **customer_address_line2:** | **string optional**
@@ -1346,7 +1356,7 @@ invoice.send
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -1495,7 +1505,7 @@ PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/confirm
 curl https://www.octobat.com/invoices/oc_in_14234251141rdhb20d40fe/confirm \
  -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
  -X PATCH
- 
+
 # Example response
 {
   "id": "oc_in_14234251141rdhb20d40fe",
@@ -1523,7 +1533,7 @@ curl https://www.octobat.com/invoices/oc_in_14234251141rdhb20d40fe/confirm \
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -1668,7 +1678,7 @@ invoice.confirm()
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -1803,7 +1813,7 @@ curl https://www.octobat.com/invoices/oc_in_14234251141rdhb20d40fe/pay \
  -d payment[customer_bank_country]='UK' \
  -d payment[payment_mode]="oc_pm_14238493313wqfa5849d26" \
  -X PATCH
- 
+
 # Example response
 {
   "id": "oc_in_14234251141rdhb20d40fe",
@@ -1831,7 +1841,7 @@ curl https://www.octobat.com/invoices/oc_in_14234251141rdhb20d40fe/pay \
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -1998,7 +2008,7 @@ invoice.pay(
     "billing_address_state": null,
     "billing_address_country": "France",
     "business_type": "B2C",
-    "vat_number": null,
+    "tax_number": null,
     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
     "created_at": "2015-07-12T11:22:29Z",
     "updated_at": "2015-07-12T11:22:29Z"
@@ -2181,7 +2191,7 @@ curl https://api.octobat.com/payment_modes \
   -d description="Monthly subscription" \
   -d invoice_id="oc_in_14545911337463c688866b" \
   -d tax_included_cents=6000
-  
+
 # Example response
 {
   "id":"oc_ii_14234251155z6y1bdf99f9",
@@ -2287,7 +2297,7 @@ GET https://api.octobat.com/payment_modes/
 # Example request
 $ curl https://api.octobat.com/payment_modes \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
-   
+
 # Example response
 {
   "object": "list",
@@ -2377,4 +2387,3 @@ Attribute | Type
 **payment_mode:** | **object required** Payment mode object. See previous section for attributes and details
 **created_at:** | **datetime**
 **updated_at:** | **datetime**
-
