@@ -68,13 +68,13 @@ header {
     float: right;
     margin-bottom: 0;
     margin-top: 10px;
-    
+
     li {
       display: inline-block;
       text-transform: uppercase;
       list-style-type: none;
       margin-left: 40px;
-      
+
       a {
         font-family: "Raleway", 'Lato', 'Helvetica Neue', Helvetica;
         font-size: 16px;
@@ -82,14 +82,14 @@ header {
         color: #545066;
         line-height: 75px;
         text-decoration: none;
-        
+
         &:hover, &:active {
           color: rgb(236, 186, 16);
         }
-          
+
         &#lp-menu-signup-link {
           color: rgb(44, 62, 80);
- 
+
           &:hover, &:active {
             color: rgb(236, 186, 16);
           }
@@ -286,9 +286,9 @@ header {
       &:hover {
         text-decoration: none;
         color: $nav-active-text;
-      }  
+      }
     }
-    
+
 
   }
 
@@ -543,6 +543,17 @@ header {
     );
   }
 
+
+  h3 {
+    @extend %header-font;
+    font-size: 12px;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #939da3;
+  }
+
   // h2s right after h1s should bump right up
   // against the h1s.
   h1 + h2, h1 + div + h2 {
@@ -550,7 +561,7 @@ header {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h4, h5, h6 {
     @extend %header-font;
     font-size: 12px;
     margin-top: 2.5em;
@@ -577,6 +588,27 @@ header {
       line-height: 1.6;
     }
 
+    td.attribute{
+      text-align: right;
+      width: 200px;
+      span.badge-warning {
+        padding-top: 4px;
+        line-height: 1.2em;
+        color: #ffae54;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      span.details {
+        color: #939da3;
+        font-size: 13px;
+        font-weight: 400;
+        text-transform: none;
+        word-break: normal;
+        line-height: 21px;
+      }
+    }
+
     th {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
@@ -585,6 +617,14 @@ header {
 
     td {
       padding: 10px;
+    }
+
+    tr {
+      border-top:1px solid #f0f4f7;
+    }
+
+    tr:first-child {
+      border-bottom: none;
     }
 
     tr:last-child {
@@ -597,6 +637,10 @@ header {
 
     tr:nth-child(even)>td {
       background-color: lighten($main-bg,2.4%);
+    }
+
+    tbody {
+      border-top:1px solid #e1e8ed;
     }
   }
 
