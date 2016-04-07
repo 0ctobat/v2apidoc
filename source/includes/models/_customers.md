@@ -25,33 +25,80 @@
       "gateway":"stripe",
       "identifier":"cus_5Sei7oLAHSRtel"
     }
-  ],
-  "created_at": "2015-07-12T11:22:29Z",
-  "updated_at": "2015-07-12T11:22:29Z"
+  ]
 }
 ```
 
 ### Attributes
-Attribute | Type
---------- | -----------
-**id:** | **string**
-**object:** | **string** equals to customer
-**livemode:** | **boolean**
-**name:** | **string**
-**email:** | **string**
-**phone_number:** | **string**
-**billing_address_line1:** | **string**
-**billing_address_line2:** | **string**
-**billing_address_city:** | **string**
-**billing_address_zip:** | **string**
-**billing_address_state:** | **string**
-**billing_address_country:** | **string**
-**business_type:** | **string** Possible values are `B2B` and `B2C`. An individual must be tagged as `B2C` while a business must be tagged as `B2B`
-**tax_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
-**octobat_billing_page** | **string** The url of a page listing all customer's invoices
-**sources** | **array** Contains a list of gateways names and identifiers which this customer is from
-**created_at:** | **datetime** ISO8601 format
-**updated_at:** | **datetime** ISO8601 format
+
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>id</strong><br/><span class="details">string</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>object</strong><br/><span class="details">string, value is "<strong>customer</strong>"</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>livemode</strong><br/><span class="details">boolean</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>name</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's name.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>email</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's email.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>phone_number</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's phone number.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_line1</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's address 1.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_line2</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's address 2.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_city</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's city.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_zip</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's zip code.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_state</strong><br/><span class="details">string</span></td>
+      <td><p>Customer's state.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_country</strong><br/><span class="details">string</span></td>
+      <td><p>Two-letter ISO code representing the customer's country.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>business_type</strong><br/><span class="details">string</span></td>
+      <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. An individual must be tagged as `B2C` while a business must be tagged as `B2B`.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>tax_number</strong><br/><span class="details">string</span></td>
+      <td><p>If your customer is a business registered at EU-VAT, its VAT registration number.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>octobat_billing_page</strong><br/><span class="details">string</span></td>
+      <td><p>The url of a page listing all customer's invoices.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>Contains a list of gateways names and identifiers which this customer is from.</p></td>
+    </tr>
+  </tbody>
+</table>
 
 
 ## Create a customer
@@ -91,9 +138,7 @@ $ curl https://api.octobat.com/customers \
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-  "sources": [],
-  "created_at": "2015-07-12T11:22:29Z",
-  "updated_at": "2015-07-12T11:22:29Z"
+  "sources": []
 }
 ```
 
@@ -133,33 +178,67 @@ Octobat::Customer.create(
  "business_type": "B2B",
  "tax_number": null,
  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
- "sources": [],
- "created_at": "2015-07-12T11:22:29Z",
- "updated_at": "2015-07-12T11:22:29Z"
+ "sources": []
 }
 ```
 
 ### Arguments
-Attribute | Description
---------- | ------- | -----------
-**name:** | **string required**
-**email:** | **string required**
-**phone_number:** | **string optional**
-**billing_address_line1:** | **string optional**
-**billing_address_line2:** | **string optional**
-**billing_address_city:** | **string required**
-**billing_address_zip:** | **string required**
-**billing_address_state:** | **string optional**
-**billing_address_country:** | **string required**
-**business_type:** | **string required** Possible values are `B2B` and `B2C`. An individual must be tagged as `B2C` while a business must be tagged as `B2B`
-**tax_number:** | **string optional** If your customer is a business registered at EU-VAT, its VAT registration number.
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>name</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>Customer's name.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>email</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>Customer's email.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>phone_number</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's phone number.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_line1</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's address 1.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_line2</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's address 2.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_city</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's city.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_zip</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's zip code.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_state</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's state.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_country</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>Two-letter ISO code representing the customer's country.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>business_type</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. An individual must be tagged as `B2C` while a business must be tagged as `B2B`.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>tax_number</strong><br/><span class="details">optional</span></td>
+      <td><p>If your customer is a business registered at EU-VAT, its VAT registration number.</p></td>
+    </tr>
+  </tbody>
+</table>
+
 
 ### Returns
 Returns the customer object if the creation succeeds. Returns an error if parameters are invalid
 
 
 
-## Retrieve an existing customer
+## Retrieve a customer
 ```shell
 # Definition
 GET https://api.octobat.com/customers/{CUSTOMER_ID}
@@ -190,9 +269,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
       "gateway":"stripe",
       "identifier":"cus_5Sei7oLAHSRtel"
     }
-  ],
-  "created_at": "2015-07-12T11:22:29Z",
-  "updated_at": "2015-07-12T11:22:29Z"
+  ]
 }
 ```
 
@@ -228,9 +305,7 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
      "gateway":"stripe",
      "identifier":"cus_5Sei7oLAHSRtel"
    }
- ],
- "created_at": "2015-07-12T11:22:29Z",
- "updated_at": "2015-07-12T11:22:29Z"
+ ]
 }
 ```
 
@@ -238,9 +313,14 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
 Retrieves the details of an existing customer. You need only supply the unique customer identifier that was returned upon customer creation.
 
 ### Arguments
-Attribute | Description
---------- | ------- | -----------
-**id:** | **required** The identifier of the customer to be retrieved.
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>customer</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>The identifier of the customer to be retrieved.</p></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Returns
 Returns a customer object if a valid identifier was provided.
@@ -281,9 +361,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
       "gateway":"stripe",
       "identifier":"cus_5Sei7oLAHSRtel"
     }
-  ],
-  "created_at": "2015-07-12T11:22:29Z",
-  "updated_at": "2015-07-12T11:22:29Z"
+  ]
 }
 ```
 
@@ -303,29 +381,27 @@ customer.save
 
 # Example response
 #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
- "id": "oc_cu_1421878635hksc26e4de79",
- "object" : "customer",
- "livemode" : true,
- "name": "Octobat Inc.",
- "email": "admin@octobat.com",
- "phone_number": "+33 9 52 54 03 70",
- "billing_address_line1": null,
- "billing_address_line2": null,
- "billing_address_city": "Paris",
- "billing_address_zip": "75004",
- "billing_address_state": null,
- "billing_address_country": "France",
- "business_type": "B2B",
- "tax_number": null,
- "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
- "sources": [
+  "id": "oc_cu_1421878635hksc26e4de79",
+  "object" : "customer",
+  "livemode" : true,
+  "name": "Octobat Inc.",
+  "email": "admin@octobat.com",
+  "phone_number": "+33 9 52 54 03 70",
+  "billing_address_line1": null,
+  "billing_address_line2": null,
+  "billing_address_city": "Paris",
+  "billing_address_zip": "75004",
+  "billing_address_state": null,
+  "billing_address_country": "France",
+  "business_type": "B2B",
+  "tax_number": null,
+  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [
    {
      "gateway":"stripe",
      "identifier":"cus_5Sei7oLAHSRtel"
    }
- ],
- "created_at": "2015-07-12T11:22:29Z",
- "updated_at": "2015-07-12T11:22:29Z"
+  ]
 }
 ```
 
@@ -334,19 +410,54 @@ Updates the specified customer by setting the values of the parameters passed. A
 This request accepts mostly the same arguments as the customer creation call.
 
 ### Arguments
-Attribute | Description
---------- | ------- | -----------
-**name:** | **string**
-**email:** | **string**
-**phone_number:** | **string**
-**billing_address_line1:** | **string**
-**billing_address_line2:** | **string**
-**billing_address_city:** | **string**
-**billing_address_zip:** | **string**
-**billing_address_state:** | **string**
-**billing_address_country:** | **string**
-**business_type:** | **string** Possible values are `B2B` and `B2C`. An individual must be tagged as `B2C` while a business must be tagged as `B2B`
-**tax_number:** | **string** If your customer is a business registered at EU-VAT, its VAT registration number.
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>name</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>Customer's name.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>email</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>Customer's email.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>phone_number</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's phone number.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_line1</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's address 1.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_line2</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's address 2.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_city</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's city.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_zip</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's zip code.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_state</strong><br/><span class="details">optional</span></td>
+      <td><p>Customer's state.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>billing_address_country</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>Two-letter ISO code representing the customer's country.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>business_type</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. An individual must be tagged as `B2C` while a business must be tagged as `B2B`.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>tax_number</strong><br/><span class="details">optional</span></td>
+      <td><p>If your customer is a business registered at EU-VAT, its VAT registration number.</p></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Returns
 Returns the customer object if the update succeeded. Returns an error if update parameters are invalid
@@ -389,9 +500,7 @@ $ curl https://api.octobat.com/customers \
           "gateway":"stripe",
           "identifier":"cus_5Sei7oLAHSRtel"
         }
-      ],
-      "created_at": "2015-07-12T11:22:29Z",
-      "updated_at": "2015-07-12T11:22:29Z"
+      ]
     },
     {...},
     {...}
@@ -436,9 +545,7 @@ Octobat::Customer.all
          "gateway":"stripe",
          "identifier":"cus_5Sei7oLAHSRtel"
        }
-     ],
-     "created_at": "2015-07-12T11:22:29Z",
-     "updated_at": "2015-07-12T11:22:29Z"
+     ]
     },
     #<Octobat::Customer[...] ...>,
     #<Octobat::Customer[...] ...>

@@ -297,8 +297,91 @@ Returns a transaction object if a valid identifier was provided.
 
 
 
+## List all transactions
 
-## Update a transaction
+```shell
+# Definition
+GET https://api.octobat.com/transactions/
+
+# Example request
+$ curl https://api.octobat.com/transactions \
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
+
+# Example response
+{
+  "object": "list",
+  "has_more": false,
+  "total_count": 3,
+  "data": [
+    {
+      "id": "oc_txn_1459957855kw89e9c7e960",
+      "object": "transaction",
+      "customer": "oc_cu_1459413729au6o6a9ae061",
+      "payment_source": "oc_ps_1459584112d83k4ef3e3bd",
+      "payment_recipient": "oc_pr_14597887132yzs440d46e9",
+      "document": "oc_in_14597887132yzs440der49",
+      "livemode": true,
+      "status": "succeeded",
+      "transaction_date": "2016-03-31T00:00:00.000Z",
+      "transaction_type": "payment",
+      "origin_country": "FR",
+      "destination_country": "GB",
+      "gross_amount": 1500,
+      "currency": "EUR"
+    },
+    {...},
+    {...}
+  ]
+}
+```
+
+```ruby
+# Definition
+Octobat::Transaction.all
+
+# Example request
+>> require "octobat"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
+
+Octobat::Transaction.all
+
+# Example response
+#<Octobat::ListObject:0x3fe634d74498> JSON: {
+  "object": "list",
+  "has_more": false,
+  "total_count": 3,
+  "data": [
+    #<Octobat::Transaction id=oc_txn_1459957855kw89e9c7e960 0x00000a> JSON: {
+      "id": "oc_txn_1459957855kw89e9c7e960",
+      "object": "transaction",
+      "customer": "oc_cu_1459413729au6o6a9ae061",
+      "payment_source": "oc_ps_1459584112d83k4ef3e3bd",
+      "payment_recipient": "oc_pr_14597887132yzs440d46e9",
+      "document": "oc_in_14597887132yzs440der49",
+      "livemode": true,
+      "status": "succeeded",
+      "transaction_date": "2016-03-31T00:00:00.000Z",
+      "transaction_type": "payment",
+      "origin_country": "FR",
+      "destination_country": "GB",
+      "gross_amount": 1500,
+      "currency": "EUR"
+    },
+    #<Octobat::Transaction[...] ...>,
+    #<Octobat::Transaction[...] ...>
+  ]
+}
+```
+
+
+
+Returns a list of transactions.
+
+### Returns
+A hash with a data property that contains an array of transactions. Each entry in the array is a separate transaction object. If no transactions are available, the resulting array will be empty. This request should never raise an error.
+
+
+<!-- ## Update a transaction
 
 ```shell
 # Definition
@@ -416,88 +499,4 @@ This request accepts mostly the same arguments as the transaction creation call.
 </table>
 
 ### Returns
-Returns the transaction object if the update succeeded. Returns an error if update parameters are invalid.
-
-
-## List all transactions
-
-```shell
-# Definition
-GET https://api.octobat.com/transactions/
-
-# Example request
-$ curl https://api.octobat.com/transactions \
-   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
-
-# Example response
-{
-  "object": "list",
-  "has_more": false,
-  "total_count": 3,
-  "data": [
-    {
-      "id": "oc_txn_1459957855kw89e9c7e960",
-      "object": "transaction",
-      "customer": "oc_cu_1459413729au6o6a9ae061",
-      "payment_source": "oc_ps_1459584112d83k4ef3e3bd",
-      "payment_recipient": "oc_pr_14597887132yzs440d46e9",
-      "document": "oc_in_14597887132yzs440der49",
-      "livemode": true,
-      "status": "succeeded",
-      "transaction_date": "2016-03-31T00:00:00.000Z",
-      "transaction_type": "payment",
-      "origin_country": "FR",
-      "destination_country": "GB",
-      "gross_amount": 1500,
-      "currency": "EUR"
-    },
-    {...},
-    {...}
-  ]
-}
-```
-
-```ruby
-# Definition
-Octobat::Transaction.all
-
-# Example request
->> require "octobat"
-Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
-
-Octobat::Transaction.all
-
-# Example response
-#<Octobat::ListObject:0x3fe634d74498> JSON: {
-  "object": "list",
-  "has_more": false,
-  "total_count": 3,
-  "data": [
-    #<Octobat::Transaction id=oc_txn_1459957855kw89e9c7e960 0x00000a> JSON: {
-      "id": "oc_txn_1459957855kw89e9c7e960",
-      "object": "transaction",
-      "customer": "oc_cu_1459413729au6o6a9ae061",
-      "payment_source": "oc_ps_1459584112d83k4ef3e3bd",
-      "payment_recipient": "oc_pr_14597887132yzs440d46e9",
-      "document": "oc_in_14597887132yzs440der49",
-      "livemode": true,
-      "status": "succeeded",
-      "transaction_date": "2016-03-31T00:00:00.000Z",
-      "transaction_type": "payment",
-      "origin_country": "FR",
-      "destination_country": "GB",
-      "gross_amount": 1500,
-      "currency": "EUR"
-    },
-    #<Octobat::Transaction[...] ...>,
-    #<Octobat::Transaction[...] ...>
-  ]
-}
-```
-
-
-
-Returns a list of transactions.
-
-### Returns
-A hash with a data property that contains an array of transactions. Each entry in the array is a separate transaction object. If no transactions are available, the resulting array will be empty. This request should never raise an error.
+Returns the transaction object if the update succeeded. Returns an error if update parameters are invalid. -->
