@@ -30,7 +30,6 @@
 ```
 
 ### Attributes
-
 <table>
   <tbody>
     <tr class="first-row">

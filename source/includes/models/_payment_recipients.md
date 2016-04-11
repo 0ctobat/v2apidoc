@@ -11,23 +11,35 @@
   "name": "Transfer",
   "details": {
     "iban": "FR90 17216 18009 17038133245 88"
-  },
-  "created_at": "2015-07-12T11:22:29Z",
-  "updated_at": "2015-07-12T11:22:29Z"
+  }
 }
 ```
 
 ### Attributes
-Attribute | Type
---------- | -----------
-**id:** | **string**
-**object:** | **string**
-**livemode:** | **boolean**
-**name:** | **string required** Name or description of the payment recipient
-**details:** | **json** Details addressed to the customer, to recieve the payment (IBAN, check recipient...)
-**created_at** | **datetime**
-**updated_at** | **datetime**
-
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>id</strong><br/><span class="details">string</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>object</strong><br/><span class="details">string, value is "<strong>payment_recipient</strong>"</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>livemode</strong><br/><span class="details">boolean</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>name</strong><br/><span class="details">string</span></td>
+      <td><p>Name or description of the payment recipient.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>details</strong><br/><span class="details">json</span></td>
+      <td><p>Details addressed to the customer, to recieve the payment (IBAN, check recipient...).</p></td>
+    </tr>
+  </tbody>
+</table>
 
 
 ## Listing payment recipients
