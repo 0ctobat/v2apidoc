@@ -13,7 +13,6 @@ includes:
   - models/_invoices.md
   - models/_invoice_items.md
   - models/_payment_recipients.md
-  - models/_payments.md
   - models/_payment_sources.md
   - models/_transactions.md
 
