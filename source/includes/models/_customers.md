@@ -20,12 +20,22 @@
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-  "sources" : [
-    {
-      "gateway":"stripe",
-      "identifier":"cus_5Sei7oLAHSRtel"
-    }
-  ]
+  "payment_sources" : {
+    "object": "list",
+    "data": [
+      {
+        "id": "oc_ps_1459584112d83k4ef3e3bd",
+        "object": "payment_source",
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "source": "card_1029383qsfqs",
+        "payment_source_type": "Credit Card",
+        "details": {},
+        "country": "FR",
+        "exp_month": 12,
+        "exp_year": 2017
+      }
+    ]
+  }
 }
 ```
 
@@ -93,7 +103,7 @@
       <td><p>The url of a page listing all customer's invoices.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td class="attribute"><strong>payment_sources</strong><br/><span class="details">json</span></td>
       <td><p>Contains a list of gateways names and identifiers which this customer is from.</p></td>
     </tr>
   </tbody>
@@ -137,7 +147,22 @@ $ curl https://api.octobat.com/customers \
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-  "sources": []
+  "payment_sources" : {
+    "object": "list",
+    "data": [
+      {
+        "id": "oc_ps_1459584112d83k4ef3e3bd",
+        "object": "payment_source",
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "source": "card_1029383qsfqs",
+        "payment_source_type": "Credit Card",
+        "details": {},
+        "country": "FR",
+        "exp_month": 12,
+        "exp_year": 2017
+      }
+    ]
+  }
 }
 ```
 
@@ -162,22 +187,37 @@ Octobat::Customer.create(
 
 # Example response
 #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
- "id": "oc_cu_1421878635hksc26e4de79",
- "object" : "customer",
- "livemode" : true,
- "name": "Octobat Inc.",
- "email": "admin@octobat.com",
- "phone_number": "+33 9 52 54 03 70",
- "billing_address_line1": null,
- "billing_address_line2": null,
- "billing_address_city": "Paris",
- "billing_address_zip": "75004",
- "billing_address_state": null,
- "billing_address_country": "France",
- "business_type": "B2B",
- "tax_number": null,
- "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
- "sources": []
+  "id": "oc_cu_1421878635hksc26e4de79",
+  "object" : "customer",
+  "livemode" : true,
+  "name": "Octobat Inc.",
+  "email": "admin@octobat.com",
+  "phone_number": "+33 9 52 54 03 70",
+  "billing_address_line1": null,
+  "billing_address_line2": null,
+  "billing_address_city": "Paris",
+  "billing_address_zip": "75004",
+  "billing_address_state": null,
+  "billing_address_country": "France",
+  "business_type": "B2B",
+  "tax_number": null,
+  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "payment_sources" : {
+    "object": "list",
+    "data": [
+      {
+       "id": "oc_ps_1459584112d83k4ef3e3bd",
+       "object": "payment_source",
+       "customer": "oc_cu_1459413729au6o6a9ae061",
+       "source": "card_1029383qsfqs",
+       "payment_source_type": "Credit Card",
+       "details": {},
+       "country": "FR",
+       "exp_month": 12,
+       "exp_year": 2017
+      }
+    ]
+  }
 }
 ```
 
@@ -263,12 +303,22 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-  "sources": [
-    {
-      "gateway":"stripe",
-      "identifier":"cus_5Sei7oLAHSRtel"
-    }
-  ]
+  "payment_sources" : {
+    "object": "list",
+    "data": [
+      {
+        "id": "oc_ps_1459584112d83k4ef3e3bd",
+        "object": "payment_source",
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "source": "card_1029383qsfqs",
+        "payment_source_type": "Credit Card",
+        "details": {},
+        "country": "FR",
+        "exp_month": 12,
+        "exp_year": 2017
+      }
+    ]
+  }
 }
 ```
 
@@ -284,27 +334,37 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
 
 # Example response
 #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
- "id": "oc_cu_1421878635hksc26e4de79",
- "object" : "customer",
- "livemode" : true,
- "name": "Octobat Inc.",
- "email": "contact@octobat.com",
- "phone_number": "+33 9 52 54 03 70",
- "billing_address_line1": null,
- "billing_address_line2": null,
- "billing_address_city": "Paris",
- "billing_address_zip": "75004",
- "billing_address_state": null,
- "billing_address_country": "France",
- "business_type": "B2B",
- "tax_number": null,
- "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
- "sources": [
-   {
-     "gateway":"stripe",
-     "identifier":"cus_5Sei7oLAHSRtel"
-   }
- ]
+  "id": "oc_cu_1421878635hksc26e4de79",
+  "object" : "customer",
+  "livemode" : true,
+  "name": "Octobat Inc.",
+  "email": "contact@octobat.com",
+  "phone_number": "+33 9 52 54 03 70",
+  "billing_address_line1": null,
+  "billing_address_line2": null,
+  "billing_address_city": "Paris",
+  "billing_address_zip": "75004",
+  "billing_address_state": null,
+  "billing_address_country": "France",
+  "business_type": "B2B",
+  "tax_number": null,
+  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "payment_sources" : {
+    "object": "list",
+    "data": [
+      {
+        "id": "oc_ps_1459584112d83k4ef3e3bd",
+        "object": "payment_source",
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "source": "card_1029383qsfqs",
+        "payment_source_type": "Credit Card",
+        "details": {},
+        "country": "FR",
+        "exp_month": 12,
+        "exp_year": 2017
+      }
+    ]
+  }
 }
 ```
 
@@ -355,12 +415,22 @@ $ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-  "sources": [
-    {
-      "gateway":"stripe",
-      "identifier":"cus_5Sei7oLAHSRtel"
-    }
-  ]
+  "payment_sources" : {
+    "object": "list",
+    "data": [
+      {
+        "id": "oc_ps_1459584112d83k4ef3e3bd",
+        "object": "payment_source",
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "source": "card_1029383qsfqs",
+        "payment_source_type": "Credit Card",
+        "details": {},
+        "country": "FR",
+        "exp_month": 12,
+        "exp_year": 2017
+      }
+    ]
+  }
 }
 ```
 
@@ -395,12 +465,22 @@ customer.save
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-  "sources": [
-   {
-     "gateway":"stripe",
-     "identifier":"cus_5Sei7oLAHSRtel"
-   }
-  ]
+  "payment_sources" : {
+    "object": "list",
+    "data": [
+      {
+        "id": "oc_ps_1459584112d83k4ef3e3bd",
+        "object": "payment_source",
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "source": "card_1029383qsfqs",
+        "payment_source_type": "Credit Card",
+        "details": {},
+        "country": "FR",
+        "exp_month": 12,
+        "exp_year": 2017
+      }
+    ]
+  }
 }
 ```
 
@@ -494,12 +574,22 @@ $ curl https://api.octobat.com/customers \
       "business_type": "B2B",
       "tax_number": null,
       "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-      "sources": [
-        {
-          "gateway":"stripe",
-          "identifier":"cus_5Sei7oLAHSRtel"
-        }
-      ]
+      "payment_sources" : {
+        "object": "list",
+        "data": [
+          {
+            "id": "oc_ps_1459584112d83k4ef3e3bd",
+            "object": "payment_source",
+            "customer": "oc_cu_1459413729au6o6a9ae061",
+            "source": "card_1029383qsfqs",
+            "payment_source_type": "Credit Card",
+            "details": {},
+            "country": "FR",
+            "exp_month": 12,
+            "exp_year": 2017
+          }
+        ]
+      }
     },
     {...},
     {...}
@@ -524,27 +614,37 @@ Octobat::Customer.all
   "total_count": 3,
   "data": [
     #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
-     "id": "oc_cu_1421878635hksc26e4de79",
-     "object": "customer",
-     "livemode" : true,
-     "name": "Octobat Inc.",
-     "email": "admin@octobat.com",
-     "phone_number": "+33 9 52 54 03 70",
-     "billing_address_line1": null,
-     "billing_address_line2": null,
-     "billing_address_city": "Paris",
-     "billing_address_zip": "75004",
-     "billing_address_state": null,
-     "billing_address_country": "France",
-     "business_type": "B2B",
-     "tax_number": null,
-     "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-     "sources": [
-       {
-         "gateway":"stripe",
-         "identifier":"cus_5Sei7oLAHSRtel"
-       }
-     ]
+      "id": "oc_cu_1421878635hksc26e4de79",
+      "object": "customer",
+      "livemode" : true,
+      "name": "Octobat Inc.",
+      "email": "admin@octobat.com",
+      "phone_number": "+33 9 52 54 03 70",
+      "billing_address_line1": null,
+      "billing_address_line2": null,
+      "billing_address_city": "Paris",
+      "billing_address_zip": "75004",
+      "billing_address_state": null,
+      "billing_address_country": "France",
+      "business_type": "B2B",
+      "tax_number": null,
+      "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+      "payment_sources" : {
+        "object": "list",
+        "data": [
+          {
+            "id": "oc_ps_1459584112d83k4ef3e3bd",
+            "object": "payment_source",
+            "customer": "oc_cu_1459413729au6o6a9ae061",
+            "source": "card_1029383qsfqs",
+            "payment_source_type": "Credit Card",
+            "details": {},
+            "country": "FR",
+            "exp_month": 12,
+            "exp_year": 2017
+          }
+        ]
+      }
     },
     #<Octobat::Customer[...] ...>,
     #<Octobat::Customer[...] ...>

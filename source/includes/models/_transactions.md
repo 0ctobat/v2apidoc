@@ -15,9 +15,7 @@ This is a transaction. It triggers when there is a payment or a refund.
   "livemode": true,
   "status": "succeeded",
   "transaction_date": "2016-03-31T00:00:00.000Z",
-  "transaction_type": "payment",
-  "origin_country": "FR",
-  "destination_country": "GB",
+  "flow_type": "payment",
   "gross_amount": 2500,
   "currency": "EUR"
 }
@@ -63,16 +61,8 @@ This is a transaction. It triggers when there is a payment or a refund.
       <td><p>Date on which the transaction was created.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>transaction_type</strong><br/><span class="details">string</span></td>
+      <td class="attribute"><strong>flow_type</strong><br/><span class="details">string</span></td>
       <td><p>The type of the transaction is either <code>payment</code> or <code>refund</code>.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>origin_country</strong><br/><span class="details">string</span></td>
-      <td><p>Two-letter ISO code representing the origin country of the transaction.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>destination_country</strong><br/><span class="details">string</span></td>
-      <td><p>Two-letter ISO code representing the destination country of the transaction.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>gross_amount</strong><br/><span class="details">integer</span></td>
@@ -103,9 +93,7 @@ $ curl https://api.octobat.com/transactions \
    -d document="oc_in_14597887132yzs440der49" \
    -d status="succeeded" \
    -d transaction_date="2016-03-31" \
-   -d transaction_type="payment" \
-   -d origin_country="FR" \
-   -d destination_country="GB" \
+   -d flow_type="payment" \
    -d gross_amount=2500 \
    -d currency="EUR"
 
@@ -120,9 +108,7 @@ $ curl https://api.octobat.com/transactions \
   "livemode": true,
   "status": "succeeded",
   "transaction_date": "2016-03-31T00:00:00.000Z",
-  "transaction_type": "payment",
-  "origin_country": "FR",
-  "destination_country": "GB",
+  "flow_type": "payment",
   "gross_amount": 2500,
   "currency": "EUR"
 }
@@ -140,9 +126,7 @@ Octobat::Transaction.create(
   document: "oc_in_14597887132yzs440der49",
   status: "succeeded",
   transaction_date: "2016-03-31",
-  transaction_type: "payment",
-  origin_country: "FR",
-  destination_country: "GB",
+  flow_type: "payment",
   gross_amount: 2500,
   currency: 'EUR'
 )
@@ -158,9 +142,7 @@ Octobat::Transaction.create(
   "livemode": true,
   "status": "succeeded",
   "transaction_date": "2016-03-31T00:00:00.000Z",
-  "transaction_type": "payment",
-  "origin_country": "FR",
-  "destination_country": "GB",
+  "flow_type": "payment",
   "gross_amount": 2500,
   "currency": "EUR"
 }
@@ -194,16 +176,8 @@ Octobat::Transaction.create(
       <td><p>Date on which the transaction was created.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>transaction_type</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>flow_type</strong><br/><span class="details">optional</span></td>
       <td><p>The type of the transaction is either <code>payment</code> or <code>refund</code>.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>origin_country</strong><br/><span class="details">optional</span></td>
-      <td><p>Two-letter ISO code representing the origin country of the transaction.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>destination_country</strong><br/><span class="details">optional</span></td>
-      <td><p>Two-letter ISO code representing the destination country of the transaction.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>gross_amount</strong><br/><span class="badge-warning">required</span></td>
@@ -242,9 +216,7 @@ $ curl https://api.octobat.com/transactions/oc_txn_1459957855kw89e9c7e960 \
   "livemode": true,
   "status": "succeeded",
   "transaction_date": "2016-03-31T00:00:00.000Z",
-  "transaction_type": "payment",
-  "origin_country": "FR",
-  "destination_country": "GB",
+  "flow_type": "payment",
   "gross_amount": 2500,
   "currency": "EUR"
 }
@@ -271,9 +243,7 @@ Octobat::Transaction.retrieve("oc_txn_1459957855kw89e9c7e960")
   "livemode": true,
   "status": "succeeded",
   "transaction_date": "2016-03-31T00:00:00.000Z",
-  "transaction_type": "payment",
-  "origin_country": "FR",
-  "destination_country": "GB",
+  "flow_type": "payment",
   "gross_amount": 2500,
   "currency": "EUR"
 }
@@ -323,9 +293,7 @@ $ curl https://api.octobat.com/transactions \
       "livemode": true,
       "status": "succeeded",
       "transaction_date": "2016-03-31T00:00:00.000Z",
-      "transaction_type": "payment",
-      "origin_country": "FR",
-      "destination_country": "GB",
+      "flow_type": "payment",
       "gross_amount": 1500,
       "currency": "EUR"
     },
@@ -361,9 +329,7 @@ Octobat::Transaction.all
       "livemode": true,
       "status": "succeeded",
       "transaction_date": "2016-03-31T00:00:00.000Z",
-      "transaction_type": "payment",
-      "origin_country": "FR",
-      "destination_country": "GB",
+      "flow_type": "payment",
       "gross_amount": 1500,
       "currency": "EUR"
     },
@@ -403,9 +369,7 @@ $ curl https://api.octobat.com/transactions/oc_txn_1459957855kw89e9c7e960 \
   "livemode": true,
   "status": "succeeded",
   "transaction_date": "2016-03-31T00:00:00.000Z",
-  "transaction_type": "payment",
-  "origin_country": "FR",
-  "destination_country": "GB",
+  "flow_type": "payment",
   "gross_amount": 1500,
   "currency": "EUR"
 }
@@ -436,9 +400,7 @@ transaction.save
   "livemode": true,
   "status": "succeeded",
   "transaction_date": "2016-03-31T00:00:00.000Z",
-  "transaction_type": "payment",
-  "origin_country": "FR",
-  "destination_country": "GB",
+  "flow_type": "payment",
   "gross_amount": 1500,
   "currency": "EUR"
 }
@@ -476,16 +438,8 @@ This request accepts mostly the same arguments as the transaction creation call.
       <td><p>Date on which the transaction was created.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>transaction_type</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>flow_type</strong><br/><span class="details">optional</span></td>
       <td><p>The type of the transaction is either <code>payment</code> or <code>refund</code>.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>origin_country</strong><br/><span class="details">optional</span></td>
-      <td><p>Two-letter ISO code representing the origin country of the transaction.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>destination_country</strong><br/><span class="details">optional</span></td>
-      <td><p>Two-letter ISO code representing the destination country of the transaction.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>gross_amount</strong><br/><span class="badge-warning">required</span></td>
