@@ -14,7 +14,9 @@ includes:
   - models/_invoice_items.md
   - models/_payment_recipients.md
   - models/_payment_sources.md
+  - models/_items.md
   - models/_transactions.md
+
 
 search: false
 ---
