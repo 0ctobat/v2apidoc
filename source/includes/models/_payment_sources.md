@@ -236,6 +236,7 @@ $ curl https://api.octobat.com/customers/oc_cu_1459413729au6o6a9ae061/payment_so
 # Example response
 {
   "object": "list",
+  "has_before": false,
   "has_more": false,
   "total_count": 3,
   "data": [
@@ -271,6 +272,7 @@ customer.payment_sources.all
 # Example response
 #<Octobat::ListObject:0x3fe634d74498> JSON: {
   "object": "list",
+  "has_before": false,
   "has_more": false,
   "total_count": 3,
   "data": [

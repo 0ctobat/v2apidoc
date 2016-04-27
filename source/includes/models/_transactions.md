@@ -92,7 +92,6 @@ $ curl https://api.octobat.com/transactions \
    -d payment_recipient="oc_pr_14597887132yzs440d46e9" \
    -d document="oc_in_14597887132yzs440der49" \
    -d status="succeeded" \
-   -d transaction_date="2016-03-31" \
    -d flow_type="payment" \
    -d gross_amount=2500 \
    -d currency="EUR"
@@ -125,7 +124,6 @@ Octobat::Transaction.create(
   payment_recipient: "oc_pr_14597887132yzs440d46e9",
   document: "oc_in_14597887132yzs440der49",
   status: "succeeded",
-  transaction_date: "2016-03-31",
   flow_type: "payment",
   gross_amount: 2500,
   currency: 'EUR'
@@ -168,15 +166,15 @@ Octobat::Transaction.create(
       <td><p>The ID of an existing document.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>status</strong><br/><span class="details">optional</span></td>
-      <td><p>The status of the transaction is either <code>succeeded</code>, <code>pending</code>, or <code>failed</code>.</p></td>
+      <td class="attribute"><strong>status</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>The status of the transaction is either <code>succeeded</code> or <code>failed</code>.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>transaction_date</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>transaction_date</strong><br/><span class="details">optional, default is <strong>current datetime</strong></span></td>
       <td><p>Date on which the transaction was created.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>flow_type</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>flow_type</strong><br/><span class="badge-warning">required</span></td>
       <td><p>The type of the transaction is either <code>payment</code> or <code>refund</code>.</p></td>
     </tr>
     <tr>
@@ -280,6 +278,7 @@ $ curl https://api.octobat.com/transactions \
 # Example response
 {
   "object": "list",
+  "has_before": false,
   "has_more": false,
   "total_count": 3,
   "data": [
@@ -316,6 +315,7 @@ Octobat::Transaction.all
 # Example response
 #<Octobat::ListObject:0x3fe634d74498> JSON: {
   "object": "list",
+  "has_before": false,
   "has_more": false,
   "total_count": 3,
   "data": [
