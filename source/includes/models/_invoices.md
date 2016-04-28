@@ -1238,3 +1238,165 @@ Attribute | Description
 
 ### Returns
 Returns the full invoice object if the update succeeded. Returns an error if update parameters are invalid
+
+
+
+
+
+## List all invoices
+```shell
+# Definition
+GET https://api.octobat.com/invoices/
+
+# Example request
+$ curl https://api.octobat.com/invoices \
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
+   -d customer="oc_cu_1459413729au6o6a9ae061" \
+   -d status="draft" \
+   -d starting_after='oc_in_14611572304z2g1db98a0b' \
+
+
+# Example response
+{
+  "object": "list",
+  "has_before": true,
+  "has_more": false,
+  "total_count": 3,
+  "data": [
+    {
+      "id": "oc_in_1461320056h2qq350fdc3a",
+      "object": "invoice",
+      "livemode": true,
+      "customer": "oc_cu_1459413729au6o6a9ae061",
+      "document_template": "oc_dt_14611418085kha558d6ddf",
+      "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
+      "pdf_file_url": null,
+      "invoice_number": "SP2016-200",
+      "invoice_date": "2016-04-26",
+      "description": "Subscription",
+      "payment_status": "unpaid",
+      "status": "draft",
+      "email_sent": false,
+      "notes": "",
+      "language": "fr",
+      "currency": "EUR",
+      "customer_name": "John doe",
+      "customer_address_line_1": "25 rue du Petit Musc",
+      "customer_address_line_2": null,
+      "customer_address_city": "Paris",
+      "customer_address_state": null,
+      "customer_address_zip": "75004",
+      "customer_address_country": "France",
+      "customer_country_code": "FR",
+      "customer_tax_number": null,
+      "customer_business_type": "B2C",
+      "supplier_name": "Octobat SAS",
+      "supplier_address_line_1": "230 rue du Général Leclerc",
+      "supplier_address_line_2": "",
+      "supplier_address_city": "Ermont",
+      "supplier_address_state": null,
+      "supplier_address_zip": "95120",
+      "supplier_address_country": "France",
+      "supplier_tax_number": null,
+      "legal_fields": {},
+      "items": {"object"=>"list", "data"=>[]}
+    },
+    {...},
+    {...}
+  ]
+}
+```
+
+
+```ruby
+# Definition
+GET https://www.octobat.com/api/invoices
+
+# Example request
+>> require "octobat"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
+
+Octobat::Invoice.all(
+  customer: "oc_cu_1459413729au6o6a9ae061",
+  status: "draft",
+  starting_after: 'oc_in_14611572304z2g1db98a0b'
+)
+
+# Example response
+#<Octobat::ListObject:0x3fe634d74498> JSON: {
+  "object": "list",
+  "has_before": true,
+  "has_more": false,
+  "total_count": 3,
+  "data": [
+    {
+      "id": "oc_in_1461320056h2qq350fdc3a",
+      "object": "invoice",
+      "livemode": true,
+      "customer": "oc_cu_1459413729au6o6a9ae061",
+      "document_template": "oc_dt_14611418085kha558d6ddf",
+      "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
+      "pdf_file_url": null,
+      "invoice_number": "SP2016-200",
+      "invoice_date": "2016-04-26",
+      "description": "Subscription",
+      "payment_status": "unpaid",
+      "status": "draft",
+      "email_sent": false,
+      "notes": "",
+      "language": "fr",
+      "currency": "EUR",
+      "customer_name": "John doe",
+      "customer_address_line_1": "25 rue du Petit Musc",
+      "customer_address_line_2": null,
+      "customer_address_city": "Paris",
+      "customer_address_state": null,
+      "customer_address_zip": "75004",
+      "customer_address_country": "France",
+      "customer_country_code": "FR",
+      "customer_tax_number": null,
+      "customer_business_type": "B2C",
+      "supplier_name": "Octobat SAS",
+      "supplier_address_line_1": "230 rue du Général Leclerc",
+      "supplier_address_line_2": "",
+      "supplier_address_city": "Ermont",
+      "supplier_address_state": null,
+      "supplier_address_zip": "95120",
+      "supplier_address_country": "France",
+      "supplier_tax_number": null,
+      "legal_fields": {},
+      "items": {"object"=>"list", "data"=>[]}
+    },
+    {...},
+    {...}
+  ]
+}
+```
+
+Returns a list of invoices.
+
+
+### Arguments
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>customer</strong><br/><span class="details">optional</span></td>
+      <td><p>The ID of an existing customer.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>status</strong><br/><span class="details">optional</span></td>
+      <td><p>The status of the invoice is either <code>draft</code> or <code>confirmed</code>.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>starting_after</strong><br/><span class="details">optional</span></td>
+      <td><p>Starting after an invoice id.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>ending_before</strong><br/><span class="details">optional</span></td>
+      <td><p>Ending before an invoice id.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+A hash with a data property that contains an array of invoices. Each entry in the array is a separate invoice object. If no invoices are available, the resulting array will be empty. This request should never raise an error.
