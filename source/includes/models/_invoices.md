@@ -9,6 +9,7 @@
   "object": "invoice",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69"],
   "pdf_file_url": null,
@@ -83,6 +84,10 @@
     <tr>
       <td class="attribute"><strong>customer</strong><br/><span class="details">string</span></td>
       <td><p>ID of the customer.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>invoice_numbering_sequence</strong><br/><span class="details">string</span></td>
+      <td><p>ID of the invoice numbering sequence.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>document_template</strong><br/><span class="details">string</span></td>
@@ -167,6 +172,7 @@ $ curl https://api.octobat.com/invoices \
   "object": "invoice",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
@@ -226,6 +232,7 @@ Octobat::Invoice.create(
   "object": "invoice",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
@@ -284,6 +291,10 @@ To create an invoice for a customer, you must first create it as a draft. Then, 
       <td><p>Three-letter ISO code representing the currency of the transaction.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>invoice_numbering_sequence</strong><br/><span class="details">optional</span></td>
+      <td><p>Numbering sequence ID. Fallbacks to default numbering sequence if not filled.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>description</strong><br/><span class="details">optional</span></td>
       <td><p>Invoice's description.</p></td>
     </tr>
@@ -319,6 +330,7 @@ $ curl https://api.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
   "object": "invoice",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
@@ -380,6 +392,7 @@ invoice.save
   "object": "invoice",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
@@ -667,6 +680,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
   "object": "invoice",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
@@ -742,6 +756,7 @@ invoice.confirm()
   "object": "invoice",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
@@ -887,8 +902,8 @@ invoice.payments(
       <td><p>ID of the payment recipient.</p></td>
     </tr>
     <tr class="first-row">
-      <td class="attribute"><strong>gross_amount</strong><br/><span class="badge-warning">required</span></td>
-      <td><p>The total amount that the customer has paid.</p></td>
+      <td class="attribute"><strong>gross_amount</strong><br/><span class="details">optional, default is <strong>rest to be paid</strong></span></td>
+      <td><p>The amount that the customer has paid.</p></td>
     </tr>
     <tr class="first-row">
       <td class="attribute"><strong>transaction_date</strong><br/><span class="details">optional, default is <strong>current datetime</strong></span></td>
@@ -899,347 +914,6 @@ invoice.payments(
 
 ### Returns
 Returns the full transaction object if the adding succeeded. Returns an error if parameters are invalid.
-
-
-
-## Declare as paid
-```shell
-# Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/pay
-
-# Example request
-curl https://www.octobat.com/invoices/oc_in_14234251141rdhb20d40fe/pay \
- -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
- -d payment[payment_date]='2016-02-04' \
- -d payment[customer_bank_country]='UK' \
- -d payment[payment_mode]="oc_pm_14238493313wqfa5849d26" \
- -X PATCH
-
-# Example response
-{
-  "id": "oc_in_14234251141rdhb20d40fe",
-  "object": "invoice",
-  "livemode": true,
-  "state": "paid",
-  "numbering_sequence_id": "oc_ns_14213467384iwj86515b55",
-  "invoice_number": "OC-2015-100",
-  "invoice_date": "2015-02-08",
-  "currency": "eur",
-  "pdf_file_url": null,
-  "extratax_amount_cents": 6651,
-  "tax_amount_cents": 1149,
-  "tax_included_amount_cents": 7800,
-  "customer": {
-    "id": "oc_cu_1421878635hksc26e4de79",
-    "object": "customer",
-    "name": "My customer",
-    "email": "contact@octobat.com",
-    "phone_number": "+33 9 52 54 03 70",
-    "billing_address_line1": null,
-    "billing_address_line2": null,
-    "billing_address_city": "Paris",
-    "billing_address_zip": "75004",
-    "billing_address_state": null,
-    "billing_address_country": "France",
-    "business_type": "B2C",
-    "tax_number": null,
-    "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-    "created_at": "2015-07-12T11:22:29Z",
-    "updated_at": "2015-07-12T11:22:29Z"
-  },
-  "customer_id": "oc_cu_1421878635hksc26e4de79",
-  "customer_name": "My Customer",
-  "customer_address_line1": null,
-  "customer_address_line2": null,
-  "customer_address_city": "Paris",
-  "customer_address_state": null,
-  "customer_address_zip": "75004",
-  "customer_address_country": "France",
-  "customer_vat_number": null,
-  "supplier_name": "Octobat",
-  "supplier_legal_form": "Inc",
-  "supplier_siret": "",
-  "supplier_address": "25 rue du Petit Musc",
-  "supplier_zip_code": "75004",
-  "supplier_city": "Paris",
-  "supplier_country": "France",
-  "supplier_vat_number": "FR60528551658",
-  "supplier_capital_stock": "1000",
-  "business_type": "B2C",
-  "compliance": {
-    "errors": {
-      "count": 0,
-      "fields":[]
-    },
-    "warnings": {
-      "count": 1,
-      "fields": [
-        "customer_address"
-      ]
-    }
-  },
-  "invoice_items": {
-    "object":"list",
-    "has_more": false,
-    "total_count": 3,
-    "data": [
-      #<Octobat::InvoiceItem id=oc_ii_14234251155z6y1bdf99f9 0x00000a> JSON: {
-        "id":"oc_ii_14234251155z6y1bdf99f9",
-        "object":"invoice_item",
-        "invoice_id":"oc_in_14234251141rdhb20d40fe",
-        "description":"Monthly subscription",
-        "extratax_cents":833,
-        "quantity":1,
-        "tax_rate":20.0,
-        "tax_included_cents":1000,
-        "eservice":true,
-        "created_at": "2015-07-12T11:22:29Z",
-        "updated_at": "2015-07-12T11:22:29Z"
-      },
-      #<Octobat::InvoiceItem id=oc_ii_14234251155z6y590f99f9 0x00000a> JSON: {
-        "id":"oc_ii_14234251155z6y590f99f9",
-        "object":"invoice_item",
-        "invoice_id":"oc_in_14234251141rdhb20d40fe",
-        "description":"2 hours extratim",
-        "extratax_cents":1818,
-        "quantity":1,
-        "tax_rate":10.0,
-        "tax_included_cents":2000,
-        "eservice":true,
-        "created_at": "2015-07-12T11:22:29Z",
-        "updated_at": "2015-07-12T11:22:29Z"
-      },
-       #<Octobat::InvoiceItem id=oc_ii_14234271095z6y590f59fb 0x00000a> JSON: {
-        "id":"oc_ii_14234271095z6y590f59fb",
-        "object":"invoice_item",
-        "invoice_id":"oc_in_14234251141rdhb20d40fe",
-        "description":"Monthly subscription",
-        "extratax_cents":4000,
-        "quantity":1,
-        "tax_rate":20.0,
-        "tax_included_cents":4800,
-        "eservice":false,
-        "created_at": "2015-07-12T11:22:29Z",
-        "updated_at": "2015-07-12T11:22:29Z"
-      }
-    ]
-  },
-  "payable_by": [
-    {
-      "id": "oc_pm_14235210139j06befa616a",
-      "object": "payment_mode",
-      "name": "Bank name",
-      "payment_mode_type": "transfer",
-      "details": {
-        "iban": "FR90 17216 18009 17038133245 88"
-      }
-    }
-  ],
-  "payment": {
-    "id": "oc_pa_14234412027lw37c15a717",
-    "object": "payment",
-    "invoice": "oc_in_14219457353oiq78b051b1",
-    "payment_date": "2015-01-05",
-    "customer_bank_country": "United Kingdom",
-    "payment_mode": {
-      "id": "oc_pm_14235210139j06befa616a",
-      "object": "payment_mode",
-      "name": "Bank name",
-      "payment_mode_type": "transfer",
-      "details": {
-        "iban": "FR90 17216 18009 17038133245 88"
-      }
-    },
-    "created_at": "2015-07-12T11:22:29Z",
-    "updated_at": "2015-07-12T11:22:29Z"
-  },
-  "sources": [
-     {
-       "gateway":"stripe",
-       "identifier":"ch_16xjM32Pmv0nOG11rJ9U1hXj"
-     }
-  ],
-  "created_at": "2015-07-12T11:22:29Z",
-  "updated_at": "2015-07-12T11:22:29Z"
-}
-```
-
-
-```ruby
-# Definition
-invoice = Octobat::Invoice.retrieve("oc_in_14234251141rdhb20d40fe")
-payment_data = {...}
-invoice.pay(payment_data)
-
-# Example request
->> require "octobat"
-Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
-
-invoice = Octobat::Invoice.retrieve("oc_in_14234251141rdhb20d40fe")
-invoice.pay(
-  payment_date: "2015-01-05",
-  customer_bank_country: "United Kingdom",
-  payment_mode: "oc_pm_14235210139j06befa616a"
-)
-
-# Example response
-#<Octobat::Invoice id=oc_in_14234251141rdhb20d40fe 0x00000a> JSON: {{
-  "id": "oc_in_14234251141rdhb20d40fe",
-  "object": "invoice",
-  "livemode": true,
-  "state": "paid",
-  "numbering_sequence_id": "oc_ns_14213467384iwj86515b55",
-  "invoice_number": "OC-2015-100",
-  "invoice_date": "2015-02-08",
-  "currency": "eur",
-  "pdf_file_url": null,
-  "extratax_amount_cents": 6651,
-  "tax_amount_cents": 1149,
-  "tax_included_amount_cents": 7800,
-  "customer": {
-    "id": "oc_cu_1421878635hksc26e4de79",
-    "object": "customer",
-    "name": "My customer",
-    "email": "contact@octobat.com",
-    "phone_number": "+33 9 52 54 03 70",
-    "billing_address_line1": null,
-    "billing_address_line2": null,
-    "billing_address_city": "Paris",
-    "billing_address_zip": "75004",
-    "billing_address_state": null,
-    "billing_address_country": "France",
-    "business_type": "B2C",
-    "tax_number": null,
-    "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
-    "created_at": "2015-07-12T11:22:29Z",
-    "updated_at": "2015-07-12T11:22:29Z"
-  },
-  "customer_id": "oc_cu_1421878635hksc26e4de79",
-  "customer_name": "My Customer",
-  "customer_address_line1": null,
-  "customer_address_line2": null,
-  "customer_address_city": "Paris",
-  "customer_address_state": null,
-  "customer_address_zip": "75004",
-  "customer_address_country": "France",
-  "customer_vat_number": null,
-  "supplier_name": "Octobat",
-  "supplier_legal_form": "Inc",
-  "supplier_siret": "",
-  "supplier_address": "25 rue du Petit Musc",
-  "supplier_zip_code": "75004",
-  "supplier_city": "Paris",
-  "supplier_country": "France",
-  "supplier_vat_number": "FR60528551658",
-  "supplier_capital_stock": "1000",
-  "business_type": "B2C",
-  "compliance": {
-    "errors": {
-      "count": 0,
-      "fields":[]
-    },
-    "warnings": {
-      "count": 1,
-      "fields": [
-        "customer_address"
-      ]
-    }
-  },
-  "invoice_items": {
-    "object":"list",
-    "has_more": false,
-    "total_count": 3,
-    "data": [
-      #<Octobat::InvoiceItem id=oc_ii_14234251155z6y1bdf99f9 0x00000a> JSON: {
-        "id":"oc_ii_14234251155z6y1bdf99f9",
-        "object":"invoice_item",
-        "invoice_id":"oc_in_14234251141rdhb20d40fe",
-        "description":"Monthly subscription",
-        "extratax_cents":833,
-        "quantity":1,
-        "tax_rate":20.0,
-        "tax_included_cents":1000,
-        "eservice":true,
-        "created_at": "2015-07-12T11:22:29Z",
-        "updated_at": "2015-07-12T11:22:29Z"
-      },
-      #<Octobat::InvoiceItem id=oc_ii_14234251155z6y590f99f9 0x00000a> JSON: {
-        "id":"oc_ii_14234251155z6y590f99f9",
-        "object":"invoice_item",
-        "invoice_id":"oc_in_14234251141rdhb20d40fe",
-        "description":"2 hours extratim",
-        "extratax_cents":1818,
-        "quantity":1,
-        "tax_rate":10.0,
-        "tax_included_cents":2000,
-        "eservice":true,
-        "created_at": "2015-07-12T11:22:29Z",
-        "updated_at": "2015-07-12T11:22:29Z"
-      },
-       #<Octobat::InvoiceItem id=oc_ii_14234271095z6y590f59fb 0x00000a> JSON: {
-        "id":"oc_ii_14234271095z6y590f59fb",
-        "object":"invoice_item",
-        "invoice_id":"oc_in_14234251141rdhb20d40fe",
-        "description":"Monthly subscription",
-        "extratax_cents":4000,
-        "quantity":1,
-        "tax_rate":20.0,
-        "tax_included_cents":4800,
-        "eservice":false,
-        "created_at": "2015-07-12T11:22:29Z",
-        "updated_at": "2015-07-12T11:22:29Z"
-      }
-    ]
-  },
-  "payable_by": [
-    {
-      "id": "oc_pm_14235210139j06befa616a",
-      "object": "payment_mode",
-      "name": "Bank name",
-      "payment_mode_type": "transfer",
-      "details": {
-        "iban": "FR90 17216 18009 17038133245 88"
-      }
-    }
-  ],
-  "payment": {
-    "id": "oc_pa_14234412027lw37c15a717",
-    "object": "payment",
-    "invoice": "oc_in_14219457353oiq78b051b1",
-    "payment_date": "2015-01-05",
-    "customer_bank_country": "United Kingdom",
-    "payment_mode": {
-      "id": "oc_pm_14235210139j06befa616a",
-      "object": "payment_mode",
-      "name": "Bank name",
-      "payment_mode_type": "transfer",
-      "details": {
-        "iban": "FR90 17216 18009 17038133245 88"
-      }
-    },
-    "created_at": "2015-07-12T11:22:29Z",
-    "updated_at": "2015-07-12T11:22:29Z"
-  },
-  "sources": [
-     {
-       "gateway":"stripe",
-       "identifier":"ch_16xjM32Pmv0nOG11rJ9U1hXj"
-     }
-  ],
-  "created_at": "2015-07-12T11:22:29Z",
-  "updated_at": "2015-07-12T11:22:29Z"
-}
-```
-
-### Arguments
-Attribute | Description
---------- | ------- | -----------
-**payment:** | **object required** A nested payment object. See the corresponding section to have details on how to fill this object.
-
-### Returns
-Returns the full invoice object if the update succeeded. Returns an error if update parameters are invalid
-
-
 
 
 
@@ -1268,6 +942,7 @@ $ curl https://api.octobat.com/invoices \
       "object": "invoice",
       "livemode": true,
       "customer": "oc_cu_1459413729au6o6a9ae061",
+      "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
       "document_template": "oc_dt_14611418085kha558d6ddf",
       "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
       "pdf_file_url": null,
@@ -1334,6 +1009,7 @@ Octobat::Invoice.all(
       "object": "invoice",
       "livemode": true,
       "customer": "oc_cu_1459413729au6o6a9ae061",
+      "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
       "document_template": "oc_dt_14611418085kha558d6ddf",
       "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
       "pdf_file_url": null,
