@@ -143,7 +143,7 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
 >> require "octobat"
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
-invoice = Octobat::Invoice.find("oc_in_14619363114yke51e2ce5f")
+invoice = Octobat::Invoice.retrieve("oc_in_14619363114yke51e2ce5f")
 item = invoice.items.new(
   tax_evidence: "oc_tev_1460565379am3be8f5ef71",
   quantity: 1,
@@ -262,21 +262,21 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_it
 
 ```ruby
 # Definition
-invoice = Octobat::Invoice.find({INVOICE_ID})
-invoice.items.find({ITEM_ID})
+invoice = Octobat::Invoice.retrieve({INVOICE_ID})
+invoice.items.retrieve({ITEM_ID})
 # or
-transaction = Octobat::Transaction.find({TRANSACTION_ID})
-transaction.items.find({ITEM_ID})
+transaction = Octobat::Transaction.retrieve({TRANSACTION_ID})
+transaction.items.retrieve({ITEM_ID})
 # or
-credit_note = Octobat::CreditNote.find({CREDIT_NOTE_ID})
-credit_note.items.find({ITEM_ID})
+credit_note = Octobat::CreditNote.retrieve({CREDIT_NOTE_ID})
+credit_note.items.retrieve({ITEM_ID})
 
 # Example request
 >> require "octobat"
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
-invoice = Octobat::Invoice.find("oc_in_14619363114yke51e2ce5f")
-invoice.items.find("oc_it_1461938887kzsf607ad4cf")
+invoice = Octobat::Invoice.retrieve("oc_in_14619363114yke51e2ce5f")
+invoice.items.retrieve("oc_it_1461938887kzsf607ad4cf")
 
 # Example response
 #<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
@@ -309,6 +309,111 @@ Retrieves the details of an existing item.
 ### Returns
 Returns an item object if a valid identifier was provided.
 
+
+## Update an item
+
+```shell
+# Definition
+PATCH https://api.octobat.com/transactions/{TRANSACTION_ID}/items/{ITEM_ID}
+PATCH https://api.octobat.com/invoices/{INVOICE_ID}/items/{ITEM_ID}
+PATCH https://api.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items/{ITEM_ID}
+
+# Example request
+$ curl https://api.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_it_14621841535d5d3284b1a2 \
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
+   -d quantity=5 \
+   -d unit_extratax_amount=1000 \
+
+# Example response
+{
+  "id": "oc_it_14621841535d5d3284b1a2",
+  "object": "item",
+  "transaction": nil,
+  "invoice": "oc_in_1462181488gsc8cf8fafbd",
+  "credit_note": nil,
+  "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "description": "Entreprise Plan",
+  "unit_extratax_amount": 1000,
+  "currency": "EUR",
+  "quantity": 5,
+  "extratax_amount": 5000,
+  "tax_rate": 22.0,
+  "tax_amount": 1100,
+  "gross_amount": 6100,
+  "item_exchange": null
+}
+```
+
+```ruby
+# Definition
+invoice = Octobat::Invoice.retrieve({INVOICE_ID})
+invoice.items.retrieve({ITEM_ID})
+# or
+transaction = Octobat::Transaction.retrieve({TRANSACTION_ID})
+transaction.items.retrieve({ITEM_ID})
+# or
+credit_note = Octobat::CreditNote.retrieve({CREDIT_NOTE_ID})
+credit_note.items.retrieve({ITEM_ID})
+
+# Example request
+>> require "octobat"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
+
+invoice = Octobat::Invoice.retrieve("oc_in_1462181488gsc8cf8fafbd")
+item = invoice.items.retrieve("oc_it_14621841535d5d3284b1a2")
+item.quantity = 5
+item.unit_extratax_amount = 1000
+item.save
+
+
+# Example response
+#<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
+  "id": "oc_it_14621841535d5d3284b1a2",
+  "object": "item",
+  "transaction": nil,
+  "invoice": "oc_in_1462181488gsc8cf8fafbd",
+  "credit_note": nil,
+  "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "description": "Entreprise Plan",
+  "unit_extratax_amount": 1000,
+  "currency": "EUR",
+  "quantity": 5,
+  "extratax_amount": 5000,
+  "tax_rate": 22.0,
+  "tax_amount": 1100,
+  "gross_amount": 6100,
+  "item_exchange": null
+}
+```
+
+Updates the specified item by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
+This request accepts mostly the same arguments as the item creation call.
+
+### Arguments
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>unit_extratax_amount</strong><br/><span class="details">optional</span></td>
+      <td><p>The unit price of the item without tax.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>currency</strong><br/><span class="details">optional</span></td>
+      <td><p>3-letter <a href="http://www.xe.com/iso4217.php#section2" target="_blank">ISO code for currency</a>.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>quantity</strong><br/><span class="details">optional, default is 1</span></td>
+      <td><p>A positive integer representing the number of instances of the item.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>description</strong><br/><span class="details">optional</span></td>
+      <td><p>Item's description.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+
+### Returns
+Returns the item object if the update succeeded. Returns an error if update parameters are invalid.
 
 
 ## List all items
@@ -359,20 +464,20 @@ $ curl https://api.octobat.com/transactions/oc_txn_1459936947icq9005f4668/items 
 
 ```ruby
 # Definition
-transaction = Octobat::Transaction.find({TRANSACTION_ID})
+transaction = Octobat::Transaction.retrieve({TRANSACTION_ID})
 transaction.items.all
 # or
-invoice = Octobat::Invoice.find({INVOICE_ID})
+invoice = Octobat::Invoice.retrieve({INVOICE_ID})
 invoice.items.all
 # or
-credit_note = Octobat::CreditNote.find({CREDIT_NOTE_ID})
+credit_note = Octobat::CreditNote.retrieve({CREDIT_NOTE_ID})
 credit_note.items.all
 
 # Example request
 >> require "octobat"
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
-transaction = Octobat::Transaction.find("oc_txn_14605672518yko2fd30d23")
+transaction = Octobat::Transaction.retrieve("oc_txn_14605672518yko2fd30d23")
 transaction.items.all
 
 # Example response

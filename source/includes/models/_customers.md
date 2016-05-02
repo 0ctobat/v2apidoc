@@ -492,11 +492,11 @@ This request accepts mostly the same arguments as the customer creation call.
 <table>
   <tbody>
     <tr class="first-row">
-      <td class="attribute"><strong>name</strong><br/><span class="badge-warning">required</span></td>
+      <td class="attribute"><strong>name</strong><br/><span class="details">optional</span></td>
       <td><p>Customer's name.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>email</strong><br/><span class="badge-warning">required</span></td>
+      <td class="attribute"><strong>email</strong><br/><span class="details">optional</span></td>
       <td><p>Customer's email.</p></td>
     </tr>
     <tr>
@@ -524,11 +524,11 @@ This request accepts mostly the same arguments as the customer creation call.
       <td><p>Customer's state.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>billing_address_country</strong><br/><span class="badge-warning">required</span></td>
+      <td class="attribute"><strong>billing_address_country</strong><br/><span class="details">optional</span></td>
       <td><p>Two-letter ISO code representing the customer's country.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>business_type</strong><br/><span class="badge-warning">required</span></td>
+      <td class="attribute"><strong>business_type</strong><br/><span class="details">optional</span></td>
       <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. An individual must be tagged as `B2C` while a business must be tagged as `B2B`.</p></td>
     </tr>
     <tr>
