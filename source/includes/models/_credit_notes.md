@@ -1,26 +1,23 @@
-# Invoices
-## The invoice object
+# Credit notes
+## The credit note object
 
 > Example object
 
 ```json
 {
-  "id": "oc_in_1461320056h2qq350fdc3a",
-  "object": "invoice",
+  "id": "oc_cn_1462279788aw2y99365ac5",
+  "object": "credit_note",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
-  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
-  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69"],
   "pdf_file_url": null,
-  "invoice_number": "SP2016-200",
-  "invoice_date": "2016-04-26",
-  "description": "Subscription",
-  "payment_status": "paid",
-  "status": "confirmed",
+  "credit_note_number": "CN-AAA-2",
+  "invoice_date": "2016-05-03",
+  "description": "Refund Subscription",
   "email_sent": false,
   "notes": "",
-  "language": "en",
+  "language": "fr",
   "currency": "EUR",
   "customer_name": "John doe",
   "customer_address_line_1": "25 rue du Petit Musc",
@@ -48,9 +45,9 @@
         "id": "oc_it_146133143279h39ba598f5",
         "object": "item",
         "transaction": null,
-        "document": "oc_in_1461320056h2qq350fdc3a",
+        "document": "oc_cn_1462279788aw2y99365ac5",
         "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "description": "Entreprise Plan",
+        "description": "Refund Entreprise Plan",
         "unit_extratax_amount": 19900,
         "currency": "EUR",
         "quantity": 1,
@@ -74,7 +71,7 @@
       <td><p>-</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>object</strong><br/><span class="details">string, value is "<strong>invoice</strong>"</span></td>
+      <td class="attribute"><strong>object</strong><br/><span class="details">string, value is "<strong>credit_note</strong>"</span></td>
       <td><p>-</p></td>
     </tr>
     <tr>
@@ -86,40 +83,28 @@
       <td><p>ID of the customer.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>invoice_numbering_sequence</strong><br/><span class="details">string</span></td>
-      <td><p>ID of the invoice numbering sequence.</p></td>
+      <td class="attribute"><strong>credit_note_numbering_sequence</strong><br/><span class="details">string</span></td>
+      <td><p>ID of the credit_note numbering sequence.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>document_template</strong><br/><span class="details">string</span></td>
       <td><p>ID of the document template.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>payment_recipients</strong><br/><span class="details">array</span></td>
-      <td><p>IDs of payment recipients.</p></td>
-    </tr>
-    <tr>
       <td class="attribute"><strong>pdf_file_url</strong><br/><span class="details">string</span></td>
-      <td><p>URL of the invoice PDF.</p></td>
+      <td><p>URL of the credit note PDF.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>invoice_number</strong><br/><span class="details">string</span></td>
-      <td><p>Autocalculate number of the invoice.</p></td>
+      <td class="attribute"><strong>credit_note_number</strong><br/><span class="details">string</span></td>
+      <td><p>Autocalculate number of the credit note.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>invoice_date</strong><br/><span class="details">string</span></td>
-      <td><p>Date of the invoice.</p></td>
+      <td class="attribute"><strong>credit_note_date</strong><br/><span class="details">string</span></td>
+      <td><p>Date of the credit note.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>description</strong><br/><span class="details">string</span></td>
       <td><p>-</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>payment_status</strong><br/><span class="details">string</span></td>
-      <td><p>The payment status of the invoice is either <code>paid</code> or <code>unpaid</code>.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>status</strong><br/><span class="details">string</span></td>
-      <td><p>The status of the invoice is either <code>draft</code> or <code>confirmed</code>.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>email_sent</strong><br/><span class="details">boolean</span></td>
@@ -131,11 +116,11 @@
     </tr>
     <tr>
       <td class="attribute"><strong>language</strong><br/><span class="details">string</span></td>
-      <td><p>Invoice's language.</p></td>
+      <td><p>Credit note's language.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>currency</strong><br/><span class="details">string</span></td>
-      <td><p>Invoice's currency.</p></td>
+      <td><p>Credit note's currency.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>legal_fields</strong><br/><span class="details">json</span></td>
@@ -143,43 +128,38 @@
     </tr>
     <tr>
       <td class="attribute"><strong>items</strong><br/><span class="details">list</span></td>
-      <td><p>Invoice items.</p></td>
+      <td><p>Credit note items.</p></td>
     </tr>
   </tbody>
 </table>
 
-## Create an invoice
+## Create a credit note
 
 ```shell
 # Definition
-POST https://www.octobat.com/api/invoices
+POST https://www.octobat.com/api/credit_notes
 
 # Example request
-$ curl https://api.octobat.com/invoices \
+$ curl https://api.octobat.com/credit_notes \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_1459413729au6o6a9ae061" \
-   -d payment_recipients[]="oc_pr_1461595230igdu5ce59471" \
-   -d payment_recipients[]="oc_pr_14603917916fhf5eb09a69" \
-   -d description='Subscription' \
+   -d description='Refund Subscription' \
    -d currency='EUR' \
    -d notes='' \
 
 
 # Example response
 {
-  "id": "oc_in_1461320056h2qq350fdc3a",
-  "object": "invoice",
+  "id": "oc_cn_1462279788aw2y99365ac5",
+  "object": "credit_note",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
-  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
-  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
-  "invoice_number": "SP2016-200",
-  "invoice_date": "2016-04-26",
-  "description": "Subscription",
-  "payment_status": "unpaid",
-  "status": "draft",
+  "credit_note_number": "CN-AAA-2",
+  "credit_note_date": "2016-05-03",
+  "description": "Refund Subscription",
   "email_sent": false,
   "notes": "",
   "language": "fr",
@@ -210,35 +190,31 @@ $ curl https://api.octobat.com/invoices \
 
 ```ruby
 # Definition
-POST https://www.octobat.com/api/invoices
+POST https://www.octobat.com/api/credit_notes
 
 # Example request
 >> require "octobat"
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
-Octobat::Invoice.create(
+Octobat::CreditNote.create(
   customer: "oc_cu_1459413729au6o6a9ae061",
-  payment_recipients: ['oc_pr_14603917916fhf5eb09a69', 'oc_pr_1461595230igdu5ce59471'],
-  description: 'Subscription',
+  description: 'Refund Subscription',
   currency: 'EUR',
   notes: ''
 )
 
 # Example response
-#<Octobat::Invoice id=oc_in_1461320056h2qq350fdc3a 0x00000a> JSON: {
-  "id": "oc_in_1461320056h2qq350fdc3a",
-  "object": "invoice",
+#<Octobat::CreditNote id=oc_cn_1462279788aw2y99365ac5 0x00000a> JSON: {
+  "id": "oc_cn_1462279788aw2y99365ac5",
+  "object": "credit_note",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
-  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
-  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
-  "invoice_number": "SP2016-200",
-  "invoice_date": "2016-04-26",
-  "description": "Subscription",
-  "payment_status": "unpaid",
-  "status": "draft",
+  "credit_note_number": "CN-AAA-2",
+  "credit_note_date": "2016-05-03",
+  "description": "Refund Subscription",
   "email_sent": false,
   "notes": "",
   "language": "fr",
@@ -266,9 +242,6 @@ Octobat::Invoice.create(
 }
 ```
 
-To create an invoice for a customer, you must first create it as a draft. Then, you must add items upon it, add payments, and declare if it still has to be paid or if the payment has already been performed.
-
-
 ### Arguments
 <table>
   <tbody>
@@ -277,41 +250,37 @@ To create an invoice for a customer, you must first create it as a draft. Then, 
       <td><p>The ID of an existing customer.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>payment_recipients</strong><br/><span class="badge-warning">required</span></td>
-      <td><p>The IDs of existing payment recipients.</p></td>
-    </tr>
-    <tr>
       <td class="attribute"><strong>currency</strong><br/><span class="badge-warning">required</span></td>
       <td><p>Three-letter ISO code representing the currency of the transaction.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>invoice_numbering_sequence</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>credit_note_numbering_sequence</strong><br/><span class="details">optional</span></td>
       <td><p>Numbering sequence ID. Fallbacks to default numbering sequence if not filled.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>description</strong><br/><span class="details">optional</span></td>
-      <td><p>Invoice's description.</p></td>
+      <td><p>Credit note's description.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>notes</strong><br/><span class="details">optional</span></td>
-      <td><p>What you want display at the end of the invoice.</p></td>
+      <td><p>What you want display at the end of the credit note.</p></td>
     </tr>
   </tbody>
 </table>
 
 ### Returns
-Returns the full invoice object if the creation succeeded. Returns an error if parameters are invalid
+Returns the full credit note object if the creation succeeded. Returns an error if parameters are invalid.
 
 
 
 
-## Update a draft invoice
+## Update a credit note
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}
+PATCH https://www.octobat.com/api/credit_notes/{CREDIT_NOTE_ID}
 
 # Example request
-$ curl https://api.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
+$ curl https://api.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer_name="Zuuno SARL" \
    -d customer_business_type="B2B" \
@@ -320,19 +289,16 @@ $ curl https://api.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
 
 # Example response
 {
-  "id": "oc_in_1461320056h2qq350fdc3a",
-  "object": "invoice",
+  "id": "oc_cn_1462279788aw2y99365ac5",
+  "object": "credit_note",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
-  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
-  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
-  "invoice_number": "SP2016-200",
-  "invoice_date": "2016-04-26",
-  "description": "Subscription",
-  "payment_status": "unpaid",
-  "status": "draft",
+  "credit_note_number": "CN-AAA-2",
+  "credit_note_date": "2016-05-03",
+  "description": "Refund Subscription",
   "email_sent": false,
   "notes": "",
   "language": "fr",
@@ -363,38 +329,35 @@ $ curl https://api.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
 
 ```ruby
 # Definition
-invoice = Octobat::Invoice.retrieve({INVOICE_ID})
-invoice.customer_name = {NEW_CUSTOMER_NAME}
-invoice.customer_business_type = {NEW_CUSTOMER_BUSINESS_TYPE}
-invoice.customer_tax_number = {NEW_CUSTOMER_TAX_NUMBER}
-invoice.save
+credit_note = Octobat::CreditNote.retrieve({CREDIT_NOTE_ID})
+credit_note.customer_name = {NEW_CUSTOMER_NAME}
+credit_note.customer_business_type = {NEW_CUSTOMER_BUSINESS_TYPE}
+credit_note.customer_tax_number = {NEW_CUSTOMER_TAX_NUMBER}
+credit_note.save
 
 # Example request
 >> require "octobat"
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
-invoice = Octobat::Invoice.retrieve("oc_in_1461320056h2qq350fdc3a")
-invoice.customer_name = "Zuuno SARL"
-invoice.customer_business_type = "B2B"
-invoice.customer_tax_number = "FR60528551658"
-invoice.save
+credit_note = Octobat::CreditNote.retrieve("oc_cn_1462279788aw2y99365ac5")
+credit_note.customer_name = "Zuuno SARL"
+credit_note.customer_business_type = "B2B"
+credit_note.customer_tax_number = "FR60528551658"
+credit_note.save
 
 
 # Example response
-#<Octobat::Invoice id=oc_in_1461320056h2qq350fdc3a 0x00000a> JSON: {{
-  "id": "oc_in_1461320056h2qq350fdc3a",
-  "object": "invoice",
+#<Octobat::CreditNote id=oc_cn_1462279788aw2y99365ac5 0x00000a> JSON: {{
+  "id": "oc_cn_1462279788aw2y99365ac5",
+  "object": "credit_note",
   "livemode": true,
   "customer": "oc_cu_1459413729au6o6a9ae061",
-  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
-  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
   "pdf_file_url": null,
-  "invoice_number": "SP2016-200",
-  "invoice_date": "2016-04-26",
-  "description": "Subscription",
-  "payment_status": "unpaid",
-  "status": "draft",
+  "credit_note_number": "CN-AAA-2",
+  "credit_note_date": "2016-05-03",
+  "description": "Refund Subscription",
   "email_sent": false,
   "notes": "",
   "language": "fr",
@@ -465,7 +428,7 @@ invoice.save
 </table>
 
 ### Returns
-Returns the full invoice object if the update succeeded. Returns an error if the invoice has already been sent by email and is no longer updatable, or if the update fails
+Returns the full credit note object if the update succeeded. Returns an error if the credit note has already been sent by email and is no longer updatable, or if the update fails.
 
 
 
@@ -656,295 +619,35 @@ Returns the full invoice object if the update succeeded. Returns an error if the
 
 
 
-
-
-## Confirm a draft invoice
+## List all credit notes
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/confirm
+GET https://api.octobat.com/credit_notes/
 
 # Example request
-curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
- -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
- -X PATCH
-
-# Example response
-{
-  "id": "oc_in_1461320056h2qq350fdc3a",
-  "object": "invoice",
-  "livemode": true,
-  "customer": "oc_cu_1459413729au6o6a9ae061",
-  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
-  "document_template": "oc_dt_14611418085kha558d6ddf",
-  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": null,
-  "invoice_number": "SP2016-200",
-  "invoice_date": "2016-04-26",
-  "description": "Subscription",
-  "payment_status": "unpaid",
-  "status": "confirmed",
-  "email_sent": false,
-  "notes": "",
-  "language": "fr",
-  "currency": "EUR",
-  "customer_name": "Zuuno SARL",
-  "customer_address_line_1": "25 rue du Petit Musc",
-  "customer_address_line_2": null,
-  "customer_address_city": "Paris",
-  "customer_address_state": null,
-  "customer_address_zip": "75004",
-  "customer_address_country": "France",
-  "customer_country_code": "FR",
-  "customer_tax_number": "FR60528551658",
-  "customer_business_type": "B2B",
-  "supplier_name": "Octobat SAS",
-  "supplier_address_line_1": "230 rue du Général Leclerc",
-  "supplier_address_line_2": "",
-  "supplier_address_city": "Ermont",
-  "supplier_address_state": null,
-  "supplier_address_zip": "95120",
-  "supplier_address_country": "France",
-  "supplier_tax_number": null,
-  "legal_fields": {},
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "transaction": null,
-        "document": "oc_in_1461320056h2qq350fdc3a",
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278
-      },
-      {...},
-      {...}
-    ]
-  }
-}
-```
-
-
-```ruby
-# Definition
-invoice = Octobat::Invoice.retrieve({INVOICE_ID})
-invoice.confirm
-
-# Example request
->> require "octobat"
-Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
-
-invoice = Octobat::Invoice.retrieve("oc_in_1461320056h2qq350fdc3a")
-invoice.confirm()
-
-# Example response
-#<Octobat::Invoice id=oc_in_1461320056h2qq350fdc3a 0x00000a> JSON: {{
-  "id": "oc_in_1461320056h2qq350fdc3a",
-  "object": "invoice",
-  "livemode": true,
-  "customer": "oc_cu_1459413729au6o6a9ae061",
-  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
-  "document_template": "oc_dt_14611418085kha558d6ddf",
-  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": null,
-  "invoice_number": "SP2016-200",
-  "invoice_date": "2016-04-26",
-  "description": "Subscription",
-  "payment_status": "unpaid",
-  "status": "confirmed",
-  "email_sent": false,
-  "notes": "",
-  "language": "fr",
-  "currency": "EUR",
-  "customer_name": "Zuuno SARL",
-  "customer_address_line_1": "25 rue du Petit Musc",
-  "customer_address_line_2": null,
-  "customer_address_city": "Paris",
-  "customer_address_state": null,
-  "customer_address_zip": "75004",
-  "customer_address_country": "France",
-  "customer_country_code": "FR",
-  "customer_tax_number": "FR60528551658",
-  "customer_business_type": "B2B",
-  "supplier_name": "Octobat SAS",
-  "supplier_address_line_1": "230 rue du Général Leclerc",
-  "supplier_address_line_2": "",
-  "supplier_address_city": "Ermont",
-  "supplier_address_state": null,
-  "supplier_address_zip": "95120",
-  "supplier_address_country": "France",
-  "supplier_tax_number": null,
-  "legal_fields": {},
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "transaction": null,
-        "document": "oc_in_1461320056h2qq350fdc3a",
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278
-      },
-      {...},
-      {...}
-    ]
-  }
-}
-```
-
-### Returns
-After creating a draft invoice and adding invoice items, you have to confirm it before sending it to the customer. At least one item must have attached to the invoice.
-Returns the full invoice object if the update succeeded. Returns an error if update parameters are invalid
-
-
-
-
-## Add a payment
-```shell
-# Definition
-POST https://www.octobat.com/api/invoices/{INVOICE_ID}/payments
-
-# Example request
-curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/payments \
- -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
- -d payment_source="oc_ps_14603913028h342393e1d0" \
- -d payment_recipient="oc_pr_14603917916fhf5eb09a69" \
- -d gross_amount="1000" \
-
-
-# Example response
-{
-  "id": "oc_txn_1461747941aj6we5567096",
-  "object": "transaction",
-  "livemode": true,
-  "customer": "oc_cu_1459413729au6o6a9ae061",
-  "payment_source": "oc_ps_14603913028h342393e1d0",
-  "payment_recipient": "oc_pr_14603917916fhf5eb09a69",
-  "document": "oc_in_1461320056h2qq350fdc3a",
-  "gross_amount": 1000,
-  "currency": "EUR",
-  "livemode": true,
-  "status": "succeeded",
-  "transaction_date": "2016-04-27T09:05:39.000Z",
-  "flow_type": "payment"
-}
-```
-
-
-```ruby
-# Definition
-invoice = Octobat::Invoice.retrieve({INVOICE_ID})
-invoice.payments(
-  payment_source: {PAYMENT_SOURCE_ID},
-  payment_recipient: {PAYMENT_RECIPIENT_ID},
-  gross_amount: {GROSS_AMOUNT}
-)
-
-# Example request
->> require "octobat"
-Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
-
-invoice = Octobat::Invoice.retrieve("oc_in_1461320056h2qq350fdc3a")
-invoice.payments(
-  payment_source: "oc_ps_14603913028h342393e1d0",
-  payment_recipient: "oc_pr_14603917916fhf5eb09a69",
-  gross_amount: 1000
-)
-
-# Example response
-#<Octobat::Transaction id=oc_txn_1461747941aj6we5567096 0x00000a> JSON: {{
-  "id": "oc_txn_1461747941aj6we5567096",
-  "object": "transaction",
-  "livemode": true,
-  "customer": "oc_cu_1459413729au6o6a9ae061",
-  "payment_source": "oc_ps_14603913028h342393e1d0",
-  "payment_recipient": "oc_pr_14603917916fhf5eb09a69",
-  "document": "oc_in_1461320056h2qq350fdc3a",
-  "gross_amount": 1000,
-  "currency": "EUR",
-  "livemode": true,
-  "status": "succeeded",
-  "transaction_date": "2016-04-27T09:05:39.000Z",
-  "flow_type": "payment"
-}
-```
-
-### Arguments
-<table>
-  <tbody>
-    <tr class="first-row">
-      <td class="attribute"><strong>payment_source</strong><br/><span class="badge-warning">required</span></td>
-      <td><p>ID of the payment source.</p></td>
-    </tr>
-    <tr class="first-row">
-      <td class="attribute"><strong>payment_recipient</strong><br/><span class="badge-warning">required</span></td>
-      <td><p>ID of the payment recipient.</p></td>
-    </tr>
-    <tr class="first-row">
-      <td class="attribute"><strong>gross_amount</strong><br/><span class="details">optional, default is <strong>rest to be paid</strong></span></td>
-      <td><p>The amount that the customer has paid.</p></td>
-    </tr>
-    <tr class="first-row">
-      <td class="attribute"><strong>transaction_date</strong><br/><span class="details">optional, default is <strong>current datetime</strong></span></td>
-      <td><p>Date on which the transaction was created.</p></td>
-    </tr>
-  </tbody>
-</table>
-
-### Returns
-Returns the full transaction object if the adding succeeded. Returns an error if parameters are invalid.
-
-
-
-## List all invoices
-```shell
-# Definition
-GET https://api.octobat.com/invoices/
-
-# Example request
-$ curl https://api.octobat.com/invoices \
+$ curl https://api.octobat.com/credit_notes \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_1459413729au6o6a9ae061" \
-   -d status="draft" \
-   -d starting_after='oc_in_14611572304z2g1db98a0b' \
 
 
 # Example response
 {
   "object": "list",
-  "has_before": true,
+  "has_before": false,
   "has_more": false,
   "total_count": 3,
   "data": [
     {
-      "id": "oc_in_1461320056h2qq350fdc3a",
-      "object": "invoice",
+      "id": "oc_cn_1462279788aw2y99365ac5",
+      "object": "credit_note",
       "livemode": true,
       "customer": "oc_cu_1459413729au6o6a9ae061",
-      "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+      "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
       "document_template": "oc_dt_14611418085kha558d6ddf",
-      "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
       "pdf_file_url": null,
-      "invoice_number": "SP2016-200",
-      "invoice_date": "2016-04-26",
-      "description": "Subscription",
-      "payment_status": "unpaid",
-      "status": "draft",
+      "credit_note_number": "CN-AAA-2",
+      "invoice_date": "2016-05-03",
+      "description": "Refund Subscription",
       "email_sent": false,
       "notes": "",
       "language": "fr",
@@ -979,7 +682,7 @@ $ curl https://api.octobat.com/invoices \
 
 ```ruby
 # Definition
-GET https://www.octobat.com/api/invoices
+GET https://www.octobat.com/api/credit_notes
 
 # Example request
 >> require "octobat"
@@ -987,31 +690,26 @@ Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::Invoice.all(
   customer: "oc_cu_1459413729au6o6a9ae061",
-  status: "draft",
-  starting_after: 'oc_in_14611572304z2g1db98a0b'
 )
 
 # Example response
 #<Octobat::ListObject:0x3fe634d74498> JSON: {
   "object": "list",
-  "has_before": true,
+  "has_before": false,
   "has_more": false,
   "total_count": 3,
   "data": [
     {
-      "id": "oc_in_1461320056h2qq350fdc3a",
-      "object": "invoice",
+      "id": "oc_cn_1462279788aw2y99365ac5",
+      "object": "credit_note",
       "livemode": true,
       "customer": "oc_cu_1459413729au6o6a9ae061",
-      "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+      "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
       "document_template": "oc_dt_14611418085kha558d6ddf",
-      "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
       "pdf_file_url": null,
-      "invoice_number": "SP2016-200",
-      "invoice_date": "2016-04-26",
-      "description": "Subscription",
-      "payment_status": "unpaid",
-      "status": "draft",
+      "credit_note_number": "CN-AAA-2",
+      "invoice_date": "2016-05-03",
+      "description": "Refund Subscription",
       "email_sent": false,
       "notes": "",
       "language": "fr",
@@ -1043,7 +741,7 @@ Octobat::Invoice.all(
 }
 ```
 
-Returns a list of invoices.
+Returns a list of credit notes.
 
 
 ### Arguments
@@ -1052,10 +750,6 @@ Returns a list of invoices.
     <tr class="first-row">
       <td class="attribute"><strong>customer</strong><br/><span class="details">optional</span></td>
       <td><p>The ID of an existing customer.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>status</strong><br/><span class="details">optional</span></td>
-      <td><p>The status of the invoice is either <code>draft</code> or <code>confirmed</code>.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>starting_after</strong><br/><span class="details">optional</span></td>
@@ -1069,4 +763,4 @@ Returns a list of invoices.
 </table>
 
 ### Returns
-A hash with a data property that contains an array of invoices. Each entry in the array is a separate invoice object. If no invoices are available, the resulting array will be empty. This request should never raise an error.
+A hash with a data property that contains an array of credit notes. Each entry in the array is a separate credit note object. If no credit notes are available, the resulting array will be empty. This request should never raise an error.
