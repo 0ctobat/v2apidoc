@@ -151,7 +151,6 @@ item = invoice.items.create(
   unit_extratax_amount: 19900,
   description: "Entreprise Plan"
 )
-item.save
 
 # Example response
 #<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
