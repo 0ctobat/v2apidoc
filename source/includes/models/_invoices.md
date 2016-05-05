@@ -891,15 +891,15 @@ invoice.payments(
       <td class="attribute"><strong>payment_source</strong><br/><span class="badge-warning">required</span></td>
       <td><p>ID of the payment source.</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>payment_recipient</strong><br/><span class="badge-warning">required</span></td>
       <td><p>ID of the payment recipient.</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>gross_amount</strong><br/><span class="details">optional, default is <strong>rest to be paid</strong></span></td>
       <td><p>The amount that the customer has paid.</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>transaction_date</strong><br/><span class="details">optional, default is <strong>current datetime</strong></span></td>
       <td><p>Date on which the transaction was created.</p></td>
     </tr>

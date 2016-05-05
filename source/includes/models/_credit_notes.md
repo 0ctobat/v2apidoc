@@ -13,7 +13,7 @@
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "pdf_file_url": null,
   "credit_note_number": "CN-AAA-2",
-  "invoice_date": "2016-05-03",
+  "credit_note_date": "2016-05-03",
   "description": "Refund Subscription",
   "email_sent": false,
   "notes": "",
@@ -619,6 +619,105 @@ Returns the full invoice object if the update succeeded. Returns an error if the
 
 
 
+
+## Add a refund
+```shell
+# Definition
+POST https://www.octobat.com/api/credit_notes/{CREDIT_NOTE_ID}/refunds
+
+# Example request
+curl https://www.octobat.com/credit_notes/oc_cn_1462279419bewr052de7eb/refunds \
+ -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
+ -d payment_source="oc_ps_14603913028h342393e1d0" \
+ -d payment_recipient="oc_pr_14603917916fhf5eb09a69" \
+ -d gross_amount="1000" \
+
+
+# Example response
+{
+  "id": "oc_txn_1461747941aj6we5567096",
+  "object": "transaction",
+  "livemode": true,
+  "customer": "oc_cu_1459413729au6o6a9ae061",
+  "payment_source": "oc_ps_14603913028h342393e1d0",
+  "payment_recipient": "oc_pr_14603917916fhf5eb09a69",
+  "document": "oc_cn_1462279419bewr052de7eb",
+  "gross_amount": 1000,
+  "currency": "EUR",
+  "livemode": true,
+  "status": "succeeded",
+  "transaction_date": "2016-04-27T09:05:39.000Z",
+  "flow_type": "refund"
+}
+```
+
+
+```ruby
+# Definition
+credit_note = Octobat::CreditNote.retrieve({CREDIT_NOTE_ID})
+credit_note.refunds(
+  payment_source: {PAYMENT_SOURCE_ID},
+  payment_recipient: {PAYMENT_RECIPIENT_ID},
+  gross_amount: {GROSS_AMOUNT}
+)
+
+# Example request
+>> require "octobat"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
+
+credit_note = Octobat::CreditNote.retrieve("oc_cn_1462279419bewr052de7eb")
+credit_note.refunds(
+  payment_source: "oc_ps_14603913028h342393e1d0",
+  payment_recipient: "oc_pr_14603917916fhf5eb09a69",
+  gross_amount: 1000
+)
+
+# Example response
+#<Octobat::Transaction id=oc_txn_1461747941aj6we5567096 0x00000a> JSON: {{
+  "id": "oc_txn_1461747941aj6we5567096",
+  "object": "transaction",
+  "livemode": true,
+  "customer": "oc_cu_1459413729au6o6a9ae061",
+  "payment_source": "oc_ps_14603913028h342393e1d0",
+  "payment_recipient": "oc_pr_14603917916fhf5eb09a69",
+  "document": "oc_cn_1462279419bewr052de7eb",
+  "gross_amount": 1000,
+  "currency": "EUR",
+  "livemode": true,
+  "status": "succeeded",
+  "transaction_date": "2016-04-27T09:05:39.000Z",
+  "flow_type": "refund"
+}
+```
+
+### Arguments
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>payment_source</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>ID of the payment source.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>payment_recipient</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>ID of the payment recipient.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>gross_amount</strong><br/><span class="details">optional, default is <strong>rest to be refunded</strong></span></td>
+      <td><p>The amount that the customer has been refunded.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>transaction_date</strong><br/><span class="details">optional, default is <strong>current datetime</strong></span></td>
+      <td><p>Date on which the transaction was created.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+### Returns
+Returns the full transaction object if the adding succeeded. Returns an error if parameters are invalid.
+
+
+
+
 ## List all credit notes
 ```shell
 # Definition
@@ -646,7 +745,7 @@ $ curl https://api.octobat.com/credit_notes \
       "document_template": "oc_dt_14611418085kha558d6ddf",
       "pdf_file_url": null,
       "credit_note_number": "CN-AAA-2",
-      "invoice_date": "2016-05-03",
+      "credit_note_date": "2016-05-03",
       "description": "Refund Subscription",
       "email_sent": false,
       "notes": "",
@@ -688,7 +787,7 @@ GET https://www.octobat.com/api/credit_notes
 >> require "octobat"
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
-Octobat::Invoice.all(
+Octobat::CreditNote.all(
   customer: "oc_cu_1459413729au6o6a9ae061",
 )
 
@@ -708,7 +807,7 @@ Octobat::Invoice.all(
       "document_template": "oc_dt_14611418085kha558d6ddf",
       "pdf_file_url": null,
       "credit_note_number": "CN-AAA-2",
-      "invoice_date": "2016-05-03",
+      "credit_note_date": "2016-05-03",
       "description": "Refund Subscription",
       "email_sent": false,
       "notes": "",
@@ -753,11 +852,11 @@ Returns a list of credit notes.
     </tr>
     <tr>
       <td class="attribute"><strong>starting_after</strong><br/><span class="details">optional</span></td>
-      <td><p>Starting after an invoice id.</p></td>
+      <td><p>Starting after an credit note id.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>ending_before</strong><br/><span class="details">optional</span></td>
-      <td><p>Ending before an invoice id.</p></td>
+      <td><p>Ending before an credit note id.</p></td>
     </tr>
   </tbody>
 </table>
