@@ -41,6 +41,7 @@
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "cancel_and_replace_invoice": null,
   "items": {
     "object":"list",
     "data": [
@@ -119,7 +120,7 @@
     </tr>
     <tr>
       <td class="attribute"><strong>status</strong><br/><span class="details">string</span></td>
-      <td><p>The status of the invoice is either <code>draft</code> or <code>confirmed</code>.</p></td>
+      <td><p>The status of the invoice is either <code>draft</code>, <code>confirmed</code> or <code>cancelled</code>.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>email_sent</strong><br/><span class="details">boolean</span></td>
@@ -140,6 +141,10 @@
     <tr>
       <td class="attribute"><strong>legal_fields</strong><br/><span class="details">json</span></td>
       <td><p>Fields depending on the supplier country.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>cancel_and_replace_invoice</strong><br/><span class="details">string</span></td>
+      <td><p>ID of the invoice cancelled and replaced by this invoice.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>items</strong><br/><span class="details">list</span></td>
@@ -203,6 +208,7 @@ $ curl https://api.octobat.com/invoices \
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "cancel_and_replace_invoice": null,
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -262,6 +268,7 @@ Octobat::Invoice.create(
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "cancel_and_replace_invoice": null,
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -356,6 +363,7 @@ $ curl https://api.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "cancel_and_replace_invoice": null,
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -418,6 +426,7 @@ invoice.save
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "cancel_and_replace_invoice": null,
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -429,36 +438,44 @@ invoice.save
       <td class="attribute"><strong>customer_name</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_address_line_1</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_address_line_2</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_address_city</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_address_state</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_address_zip</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_address_country</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_tax_number</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
-    <tr class="first-row">
+    <tr>
       <td class="attribute"><strong>customer_business_type</strong><br/><span class="details">optional</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>description</strong><br/><span class="details">optional</span></td>
+      <td><p>-</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>notes</strong><br/><span class="details">optional</span></td>
       <td><p>-</p></td>
     </tr>
   </tbody>
@@ -706,6 +723,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "cancel_and_replace_invoice": null,
   "items": {
     "object":"list",
     "data": [
@@ -782,6 +800,7 @@ invoice.confirm()
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "cancel_and_replace_invoice": null,
   "items": {
     "object":"list",
     "data": [
@@ -810,6 +829,167 @@ invoice.confirm()
 ### Returns
 After creating a draft invoice and adding invoice items, you have to confirm it before sending it to the customer. At least one item must have attached to the invoice.
 Returns the full invoice object if the update succeeded. Returns an error if update parameters are invalid
+
+
+
+
+## Cancel a confirmed invoice
+```shell
+# Definition
+PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/cancel
+
+# Example request
+curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel \
+ -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
+ -X PATCH
+
+# Example response
+{
+  "id": "oc_in_1461320056h2qq350fdc3a",
+  "object": "invoice",
+  "livemode": true,
+  "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "document_template": "oc_dt_14611418085kha558d6ddf",
+  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
+  "pdf_file_url": null,
+  "invoice_number": "SP2016-200",
+  "invoice_date": "2016-04-26",
+  "description": "Subscription",
+  "payment_status": "unpaid",
+  "status": "cancelled",
+  "email_sent": false,
+  "notes": "",
+  "language": "fr",
+  "currency": "EUR",
+  "customer_name": "Zuuno SARL",
+  "customer_address_line_1": "25 rue du Petit Musc",
+  "customer_address_line_2": null,
+  "customer_address_city": "Paris",
+  "customer_address_state": null,
+  "customer_address_zip": "75004",
+  "customer_address_country": "France",
+  "customer_country_code": "FR",
+  "customer_tax_number": "FR60528551658",
+  "customer_business_type": "B2B",
+  "supplier_name": "Octobat SAS",
+  "supplier_address_line_1": "230 rue du Général Leclerc",
+  "supplier_address_line_2": "",
+  "supplier_address_city": "Ermont",
+  "supplier_address_state": null,
+  "supplier_address_zip": "95120",
+  "supplier_address_country": "France",
+  "supplier_tax_number": null,
+  "legal_fields": {},
+  "cancel_and_replace_invoice": null,
+  "items": {
+    "object":"list",
+    "data": [
+      {
+        "id": "oc_it_146133143279h39ba598f5",
+        "object": "item",
+        "transaction": null,
+        "document": "oc_in_1461320056h2qq350fdc3a",
+        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+        "description": "Entreprise Plan",
+        "unit_extratax_amount": 19900,
+        "currency": "EUR",
+        "quantity": 1,
+        "extratax_amount": 19900,
+        "tax_rate": 22.0,
+        "tax_amount": 4378,
+        "gross_amount": 24278
+      },
+      {...},
+      {...}
+    ]
+  }
+}
+```
+
+
+```ruby
+# Definition
+invoice = Octobat::Invoice.retrieve({INVOICE_ID})
+invoice.cancel
+
+# Example request
+>> require "octobat"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
+
+invoice = Octobat::Invoice.retrieve("oc_in_1461320056h2qq350fdc3a")
+invoice.cancel()
+
+# Example response
+#<Octobat::Invoice id=oc_in_1461320056h2qq350fdc3a 0x00000a> JSON: {{
+  "id": "oc_in_1461320056h2qq350fdc3a",
+  "object": "invoice",
+  "livemode": true,
+  "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "document_template": "oc_dt_14611418085kha558d6ddf",
+  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
+  "pdf_file_url": null,
+  "invoice_number": "SP2016-200",
+  "invoice_date": "2016-04-26",
+  "description": "Subscription",
+  "payment_status": "unpaid",
+  "status": "cancelled",
+  "email_sent": false,
+  "notes": "",
+  "language": "fr",
+  "currency": "EUR",
+  "customer_name": "Zuuno SARL",
+  "customer_address_line_1": "25 rue du Petit Musc",
+  "customer_address_line_2": null,
+  "customer_address_city": "Paris",
+  "customer_address_state": null,
+  "customer_address_zip": "75004",
+  "customer_address_country": "France",
+  "customer_country_code": "FR",
+  "customer_tax_number": "FR60528551658",
+  "customer_business_type": "B2B",
+  "supplier_name": "Octobat SAS",
+  "supplier_address_line_1": "230 rue du Général Leclerc",
+  "supplier_address_line_2": "",
+  "supplier_address_city": "Ermont",
+  "supplier_address_state": null,
+  "supplier_address_zip": "95120",
+  "supplier_address_country": "France",
+  "supplier_tax_number": null,
+  "legal_fields": {},
+  "cancel_and_replace_invoice": null,
+  "items": {
+    "object":"list",
+    "data": [
+      {
+        "id": "oc_it_146133143279h39ba598f5",
+        "object": "item",
+        "transaction": null,
+        "document": "oc_in_1461320056h2qq350fdc3a",
+        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+        "description": "Entreprise Plan",
+        "unit_extratax_amount": 19900,
+        "currency": "EUR",
+        "quantity": 1,
+        "extratax_amount": 19900,
+        "tax_rate": 22.0,
+        "tax_amount": 4378,
+        "gross_amount": 24278
+      },
+      {...},
+      {...}
+    ]
+  }
+}
+```
+
+Change the invoice status to 'cancelled' and create a credit note with invoice items duplicated.
+
+### Returns
+Returns the full invoice object if the update succeeded. Returns an error if update parameters are invalid.
+
+
 
 
 
@@ -867,7 +1047,7 @@ invoice.payments(
 )
 
 # Example response
-#<Octobat::Transaction id=oc_txn_1461747941aj6we5567096 0x00000a> JSON: {{
+#<Octobat::Invoice id=oc_txn_1461747941aj6we5567096 0x00000a> JSON: {{
   "id": "oc_txn_1461747941aj6we5567096",
   "object": "transaction",
   "livemode": true,
@@ -968,6 +1148,7 @@ $ curl https://api.octobat.com/invoices \
       "supplier_address_country": "France",
       "supplier_tax_number": null,
       "legal_fields": {},
+      "cancel_and_replace_invoice": null,
       "items": {"object"=>"list", "data"=>[]}
     },
     {...},
@@ -1035,6 +1216,7 @@ Octobat::Invoice.all(
       "supplier_address_country": "France",
       "supplier_tax_number": null,
       "legal_fields": {},
+      "cancel_and_replace_invoice": null,
       "items": {"object"=>"list", "data"=>[]}
     },
     {...},

@@ -144,7 +144,7 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 invoice = Octobat::Invoice.retrieve("oc_in_14619363114yke51e2ce5f")
-item = invoice.items.create(
+invoice.items.create(
   tax_evidence: "oc_tev_1460565379am3be8f5ef71",
   quantity: 1,
   currency: "USD",

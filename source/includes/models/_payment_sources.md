@@ -99,7 +99,8 @@ $ curl https://api.octobat.com/customers/{CUSTOMER_ID}/payment_sources \
 >> require "octobat"
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
-Octobat::PaymentSource.create(
+customer = Octobat::Customer.retrieve("oc_cu_1459413729au6o6a9ae061")
+customer.payment_sources.create(
   source: "card_1029383qsfqs",
   payment_source_type: "Credit Card",
   details: {},
@@ -276,7 +277,7 @@ customer.payment_sources.all
   "has_more": false,
   "total_count": 3,
   "data": [
-    #<Octobat::Customer id=oc_cu_1421878635hksc26e4de79 0x00000a> JSON: {
+    #<Octobat::PaymentSource id=oc_ps_1459584112d83k4ef3e3bd 0x00000a> JSON: {
       "id": "oc_ps_1459584112d83k4ef3e3bd",
       "object" : "payment_source",
       "customer" : "oc_cu_1459413729au6o6a9ae061",
@@ -287,8 +288,8 @@ customer.payment_sources.all
       "exp_month": 12,
       "exp_year": 2017
     },
-    #<Octobat::Customer[...] ...>,
-    #<Octobat::Customer[...] ...>
+    #<Octobat::PaymentSource[...] ...>,
+    #<Octobat::PaymentSource[...] ...>
   ]
 }
 ```

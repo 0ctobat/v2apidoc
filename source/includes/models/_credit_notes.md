@@ -11,6 +11,7 @@
   "customer": "oc_cu_1459413729au6o6a9ae061",
   "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
+  "invoice": null,
   "pdf_file_url": null,
   "credit_note_number": "CN-AAA-2",
   "credit_note_date": "2016-05-03",
@@ -91,6 +92,10 @@
       <td><p>ID of the document template.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>invoice</strong><br/><span class="details">string</span></td>
+      <td><p>ID of the invoice.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>pdf_file_url</strong><br/><span class="details">string</span></td>
       <td><p>URL of the credit note PDF.</p></td>
     </tr>
@@ -156,6 +161,7 @@ $ curl https://api.octobat.com/credit_notes \
   "customer": "oc_cu_1459413729au6o6a9ae061",
   "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
+  "invoice": null,
   "pdf_file_url": null,
   "credit_note_number": "CN-AAA-2",
   "credit_note_date": "2016-05-03",
@@ -211,6 +217,7 @@ Octobat::CreditNote.create(
   "customer": "oc_cu_1459413729au6o6a9ae061",
   "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
+  "invoice": null,
   "pdf_file_url": null,
   "credit_note_number": "CN-AAA-2",
   "credit_note_date": "2016-05-03",
@@ -258,6 +265,10 @@ Octobat::CreditNote.create(
       <td><p>Numbering sequence ID. Fallbacks to default numbering sequence if not filled.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>invoice</strong><br/><span class="details">optional</span></td>
+      <td><p>Invoice ID. The credit note is linked to this invoice.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>description</strong><br/><span class="details">optional</span></td>
       <td><p>Credit note's description.</p></td>
     </tr>
@@ -295,6 +306,7 @@ $ curl https://api.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
   "customer": "oc_cu_1459413729au6o6a9ae061",
   "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
+  "invoice": null,
   "pdf_file_url": null,
   "credit_note_number": "CN-AAA-2",
   "credit_note_date": "2016-05-03",
@@ -354,6 +366,7 @@ credit_note.save
   "customer": "oc_cu_1459413729au6o6a9ae061",
   "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
   "document_template": "oc_dt_14611418085kha558d6ddf",
+  "invoice": null,
   "pdf_file_url": null,
   "credit_note_number": "CN-AAA-2",
   "credit_note_date": "2016-05-03",
@@ -673,7 +686,7 @@ credit_note.refunds(
 )
 
 # Example response
-#<Octobat::Transaction id=oc_txn_1461747941aj6we5567096 0x00000a> JSON: {{
+#<Octobat::CreditNote id=oc_txn_1461747941aj6we5567096 0x00000a> JSON: {{
   "id": "oc_txn_1461747941aj6we5567096",
   "object": "transaction",
   "livemode": true,
@@ -743,6 +756,7 @@ $ curl https://api.octobat.com/credit_notes \
       "customer": "oc_cu_1459413729au6o6a9ae061",
       "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
       "document_template": "oc_dt_14611418085kha558d6ddf",
+      "invoice": null,
       "pdf_file_url": null,
       "credit_note_number": "CN-AAA-2",
       "credit_note_date": "2016-05-03",
@@ -788,7 +802,7 @@ GET https://www.octobat.com/api/credit_notes
 Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::CreditNote.all(
-  customer: "oc_cu_1459413729au6o6a9ae061",
+  customer: "oc_cu_1459413729au6o6a9ae061"
 )
 
 # Example response
@@ -805,6 +819,7 @@ Octobat::CreditNote.all(
       "customer": "oc_cu_1459413729au6o6a9ae061",
       "credit_note_numbering_sequence": "oc_cns_1462279395ko79c927206e",
       "document_template": "oc_dt_14611418085kha558d6ddf",
+      "invoice": null,
       "pdf_file_url": null,
       "credit_note_number": "CN-AAA-2",
       "credit_note_date": "2016-05-03",
@@ -849,6 +864,10 @@ Returns a list of credit notes.
     <tr class="first-row">
       <td class="attribute"><strong>customer</strong><br/><span class="details">optional</span></td>
       <td><p>The ID of an existing customer.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>invoice</strong><br/><span class="details">optional</span></td>
+      <td><p>The ID of an existing invoice.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>starting_after</strong><br/><span class="details">optional</span></td>
