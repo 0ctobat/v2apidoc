@@ -8,10 +8,13 @@ Either attached to a document or a transaction.
 {
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
+  "status": "draft",
   "transaction": "oc_txn_14605672518yko2fd30d23",
   "invoice": nil,
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "product_type": "eservice",
+  "sale_mode": "B2C",
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -20,6 +23,8 @@ Either attached to a document or a transaction.
   "tax_rate": 22.0,
   "tax_amount": 4378,
   "gross_amount": 24278,
+  "declare_in_region": "IT",
+  "tax": "VAT",
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -40,6 +45,10 @@ Either attached to a document or a transaction.
       <td><p>-</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>status</strong><br/><span class="details">string</span></td>
+      <td><p>Depending on the invoice, credit note or transaction status.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>transaction</strong><br/><span class="details">string</span></td>
       <td><p>ID of the transaction.</p></td>
     </tr>
@@ -54,6 +63,14 @@ Either attached to a document or a transaction.
     <tr>
       <td class="attribute"><strong>tax_evidence</strong><br/><span class="details">string</span></td>
       <td><p>ID of the tax_evidence.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>product_type</strong><br/><span class="details">string</span></td>
+      <td><p>Values can be: eservice, standard or ebook.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>sale_mode</strong><br/><span class="details">string</span></td>
+      <td><p>Depending on your client if it is a consumer or a business.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>description</strong><br/><span class="details">string</span></td>
@@ -88,6 +105,14 @@ Either attached to a document or a transaction.
       <td><p>The amount all tax included.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>declare_in_region</strong><br/><span class="details">string</span></td>
+      <td><p>The country in which the tax is declared.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>tax</strong><br/><span class="details">string</span></td>
+      <td><p>The tax name applied.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>item_exchange</strong><br/><span class="details">hash</span></td>
       <td><p>The exchange information if needed.</p></td>
     </tr>
@@ -118,10 +143,13 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
 {
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
+  "status"=>"draft",
   "transaction": nil,
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "product_type"=>"eservice",
+  "sale_mode"=>"B2C",
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -130,6 +158,8 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
   "tax_rate": 22.0,
   "tax_amount": 4378,
   "gross_amount": 24278,
+  "declare_in_region"=>"IT",
+  "tax"=>"VAT",
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -156,10 +186,13 @@ invoice.items.create(
 #<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
+  "status"=>"draft",
   "transaction": nil,
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "product_type"=>"eservice",
+  "sale_mode"=>"B2C",
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -168,6 +201,8 @@ invoice.items.create(
   "tax_rate": 22.0,
   "tax_amount": 4378,
   "gross_amount": 24278,
+  "declare_in_region"=>"IT",
+  "tax"=>"VAT",
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -239,10 +274,13 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_it
 {
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
+  "status"=>"draft",
   "transaction": nil,
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "product_type"=>"eservice",
+  "sale_mode"=>"B2C",
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -251,6 +289,8 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_it
   "tax_rate": 22.0,
   "tax_amount": 4378,
   "gross_amount": 24278,
+  "declare_in_region"=>"IT",
+  "tax"=>"VAT",
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -281,10 +321,13 @@ invoice.items.retrieve("oc_it_1461938887kzsf607ad4cf")
 #<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
+  "status"=>"draft",
   "transaction": nil,
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "product_type"=>"eservice",
+  "sale_mode"=>"B2C",
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -293,6 +336,8 @@ invoice.items.retrieve("oc_it_1461938887kzsf607ad4cf")
   "tax_rate": 22.0,
   "tax_amount": 4378,
   "gross_amount": 24278,
+  "declare_in_region"=>"IT",
+  "tax"=>"VAT",
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -327,10 +372,13 @@ $ curl https://api.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_it
 {
   "id": "oc_it_14621841535d5d3284b1a2",
   "object": "item",
+  "status"=>"draft",
   "transaction": nil,
   "invoice": "oc_in_1462181488gsc8cf8fafbd",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "product_type"=>"eservice",
+  "sale_mode"=>"B2C",
   "description": "Entreprise Plan",
   "unit_extratax_amount": 1000,
   "currency": "EUR",
@@ -339,6 +387,8 @@ $ curl https://api.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_it
   "tax_rate": 22.0,
   "tax_amount": 1100,
   "gross_amount": 6100,
+  "declare_in_region"=>"IT",
+  "tax"=>"VAT",
   "item_exchange": null
 }
 ```
@@ -369,10 +419,13 @@ item.save
 #<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
   "id": "oc_it_14621841535d5d3284b1a2",
   "object": "item",
+  "status"=>"draft",
   "transaction": nil,
   "invoice": "oc_in_1462181488gsc8cf8fafbd",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+  "product_type"=>"eservice",
+  "sale_mode"=>"B2C",
   "description": "Entreprise Plan",
   "unit_extratax_amount": 1000,
   "currency": "EUR",
@@ -381,6 +434,8 @@ item.save
   "tax_rate": 22.0,
   "tax_amount": 1100,
   "gross_amount": 6100,
+  "declare_in_region"=>"IT",
+  "tax"=>"VAT",
   "item_exchange": null
 }
 ```
@@ -437,10 +492,13 @@ $ curl https://api.octobat.com/transactions/oc_txn_1459936947icq9005f4668/items 
     {
       "id": "oc_it_1460568443g3wu6b48fc3e",
       "object": "item",
+      "status": "draft",
       "transaction": "oc_txn_14605672518yko2fd30d23",
       "invoice": nil,
       "credit_note": nil,
       "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+      "product_type": "eservice",
+      "sale_mode": "B2C",
       "description": "Entreprise Plan",
       "unit_extratax_amount": 19900,
       "currency": "USD",
@@ -449,6 +507,8 @@ $ curl https://api.octobat.com/transactions/oc_txn_1459936947icq9005f4668/items 
       "tax_rate": 22.0,
       "tax_amount": 4378,
       "gross_amount": 24278,
+      "declare_in_region": "IT",
+      "tax": "VAT",
       "item_exchange": {
         "exchange_rate": 0.8864,
         "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -489,10 +549,13 @@ transaction.items.all
     #<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
       "id": "oc_it_1460568443g3wu6b48fc3e",
       "object": "item",
+      "status": "draft",
       "transaction": "oc_txn_14605672518yko2fd30d23",
       "invoice": nil,
       "credit_note": nil,
       "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+      "product_type": "eservice",
+      "sale_mode": "B2C",
       "description": "Entreprise Plan",
       "unit_extratax_amount": 19900,
       "currency": "USD",
@@ -501,6 +564,8 @@ transaction.items.all
       "tax_rate": 22.0,
       "tax_amount": 4378,
       "gross_amount": 24278,
+      "declare_in_region": "IT",
+      "tax": "VAT",
       "item_exchange": {
         "exchange_rate": 0.8864,
         "exchange_date": "2016-04-13T17:27:24.228Z",

@@ -44,7 +44,7 @@ This is the payment source of a transaction.
     </tr>
     <tr>
       <td class="attribute"><strong>details</strong><br/><span class="details">json</span></td>
-      <td><p>iban...........................????????????????</p></td>
+      <td><p>-</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>country</strong><br/><span class="details">string</span></td>
@@ -128,15 +128,15 @@ customer.payment_sources.create(
   <tbody>
     <tr class="first-row">
       <td class="attribute"><strong>source</strong><br/><span class="details">optional</span></td>
-      <td><p>Source.................</p></td>
+      <td><p>-</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>payment_source_type</strong><br/><span class="details">optional</span></td>
-      <td><p>payment_source_type..................</p></td>
+      <td><p>-</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>details</strong><br/><span class="details">optional</span></td>
-      <td><p>details...............</p></td>
+      <td><p>-</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>country</strong><br/><span class="details">optional</span></td>
