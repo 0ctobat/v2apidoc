@@ -9,9 +9,10 @@ Either attached to a document or a transaction.
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
   "status": "draft",
+  "confirmed_on": null,
   "transaction": "oc_txn_14605672518yko2fd30d23",
-  "invoice": nil,
-  "credit_note": nil,
+  "invoice": null,
+  "credit_note": null,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type": "eservice",
   "sale_mode": "B2C",
@@ -52,6 +53,10 @@ Either attached to a document or a transaction.
     <tr>
       <td class="attribute"><strong>status</strong><br/><span class="details">string</span></td>
       <td><p>Depending on the invoice, credit note or transaction status.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>confirmed_on</strong><br/><span class="details">date</span></td>
+      <td><p>If the item is confirmed, the date on which it has been approved for accounting or tax purposes</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>transaction</strong><br/><span class="details">string</span></td>
@@ -153,6 +158,7 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
   "status"=>"draft",
+  "confirmed_on": nil,
   "transaction": nil,
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
@@ -201,6 +207,7 @@ invoice.items.create(
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
   "status"=>"draft",
+  "confirmed_on": nil,
   "transaction": nil,
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
@@ -294,9 +301,10 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_it
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
   "status"=>"draft",
-  "transaction": nil,
+  "confirmed_on": null,
+  "transaction": null,
   "invoice": "oc_in_14619363114yke51e2ce5f",
-  "credit_note": nil,
+  "credit_note": null,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type"=>"eservice",
   "sale_mode"=>"B2C",
@@ -346,6 +354,7 @@ invoice.items.retrieve("oc_it_1461938887kzsf607ad4cf")
   "id": "oc_it_1460568443g3wu6b48fc3e",
   "object": "item",
   "status"=>"draft",
+  "confirmed_on": nil,
   "transaction": nil,
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
@@ -402,9 +411,10 @@ $ curl https://api.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_it
   "id": "oc_it_14621841535d5d3284b1a2",
   "object": "item",
   "status"=>"draft",
-  "transaction": nil,
+  "confirmed_on": null,
+  "transaction": null,
   "invoice": "oc_in_1462181488gsc8cf8fafbd",
-  "credit_note": nil,
+  "credit_note": null,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type"=>"eservice",
   "sale_mode"=>"B2C",
@@ -450,6 +460,7 @@ item.save
   "id": "oc_it_14621841535d5d3284b1a2",
   "object": "item",
   "status"=>"draft",
+  "confirmed_on": nil,
   "transaction": nil,
   "invoice": "oc_in_1462181488gsc8cf8fafbd",
   "credit_note": nil,
@@ -524,9 +535,10 @@ $ curl https://api.octobat.com/transactions/oc_txn_1459936947icq9005f4668/items 
       "id": "oc_it_1460568443g3wu6b48fc3e",
       "object": "item",
       "status": "draft",
+      "confirmed_on": null,
       "transaction": "oc_txn_14605672518yko2fd30d23",
-      "invoice": nil,
-      "credit_note": nil,
+      "invoice": null,
+      "credit_note": null,
       "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
       "product_type": "eservice",
       "sale_mode": "B2C",
@@ -586,6 +598,7 @@ transaction.items.all
       "id": "oc_it_1460568443g3wu6b48fc3e",
       "object": "item",
       "status": "draft",
+      "confirmed_on": nil,
       "transaction": "oc_txn_14605672518yko2fd30d23",
       "invoice": nil,
       "credit_note": nil,

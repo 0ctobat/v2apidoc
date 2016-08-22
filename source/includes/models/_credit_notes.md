@@ -49,6 +49,7 @@
         "id": "oc_it_146133143279h39ba598f5",
         "object": "item",
         "status": "confirmed",
+        "confirmed_on": "2016-05-03",
         "transaction": null,
         "invoice": null,
         "credit_note": "oc_cn_1462279788aw2y99365ac5",
@@ -64,7 +65,9 @@
         "tax_amount": 4378,
         "gross_amount": 24278,
         "declare_in_region": "FR",
-        "tax": "VAT"
+        "tax": "VAT",
+        "item_exchange": null,
+        "item_workspace_currency_exchange": null
       },
       {...},
       {...}
@@ -377,6 +380,7 @@ $ curl https://api.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
         "id": "oc_it_146133143279h39ba598f5",
         "object": "item",
         "status": "confirmed",
+        "confirmed_on": "2016-05-03",
         "transaction": null,
         "invoice": null,
         "credit_note": "oc_cn_1462279788aw2y99365ac5",
@@ -392,7 +396,9 @@ $ curl https://api.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
         "tax_amount": 4378,
         "gross_amount": 24278,
         "declare_in_region": "FR",
-        "tax": "VAT"
+        "tax": "VAT",
+        "item_exchange": null,
+        "item_workspace_currency_exchange": null
       },
       {...},
       {...}
@@ -467,6 +473,7 @@ credit_note.save
         "id": "oc_it_146133143279h39ba598f5",
         "object": "item",
         "status": "confirmed",
+        "confirmed_on": "2016-05-03",
         "transaction": nil,
         "invoice": nil,
         "credit_note": "oc_cn_1462279788aw2y99365ac5",
@@ -482,7 +489,9 @@ credit_note.save
         "tax_amount": 4378,
         "gross_amount": 24278,
         "declare_in_region": "FR",
-        "tax": "VAT"
+        "tax": "VAT",
+        "item_exchange": nil,
+        "item_workspace_currency_exchange": nil
       },
       {...},
       {...}
@@ -621,6 +630,7 @@ credit_note.send
         "id": "oc_it_146133143279h39ba598f5",
         "object": "item",
         "status": "confirmed",
+        "confirmed_on": "2015-05-03",
         "transaction": nil,
         "invoice": nil,
         "credit_note": "oc_cn_1462279788aw2y99365ac5",
@@ -636,7 +646,9 @@ credit_note.send
         "tax_amount": 4378,
         "gross_amount": 24278,
         "declare_in_region": "FR",
-        "tax": "VAT"
+        "tax": "VAT",
+        "item_exchange": nil,
+        "item_workspace_currency_exchange": nil
       },
       {...},
       {...}
@@ -734,6 +746,7 @@ $ curl https://api.octobat.com/credit_notes \
             "id": "oc_it_146133143279h39ba598f5",
             "object": "item",
             "status": "confirmed",
+            "confirmed_on": "2016-05-03",
             "transaction": null,
             "invoice": null,
             "credit_note": "oc_cn_1462279788aw2y99365ac5",
@@ -749,7 +762,9 @@ $ curl https://api.octobat.com/credit_notes \
             "tax_amount": 4378,
             "gross_amount": 24278,
             "declare_in_region": "FR",
-            "tax": "VAT"
+            "tax": "VAT",
+            "item_exchange": null,
+            "item_workspace_currency_exchange": null
           },
           {...},
           {...}
@@ -827,6 +842,7 @@ Octobat::CreditNote.all(
             "id": "oc_it_146133143279h39ba598f5",
             "object": "item",
             "status": "confirmed",
+            "confirmed_on": "2016-05-03",
             "transaction": nil,
             "invoice": nil,
             "credit_note": "oc_cn_1462279788aw2y99365ac5",
@@ -842,7 +858,9 @@ Octobat::CreditNote.all(
             "tax_amount": 4378,
             "gross_amount": 24278,
             "declare_in_region": "FR",
-            "tax": "VAT"
+            "tax": "VAT",
+            "item_exchange": nil,
+            "item_workspace_currency_exchange": nil
           },
           {...},
           {...}
