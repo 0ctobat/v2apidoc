@@ -29,6 +29,11 @@ Either attached to a document or a transaction.
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
     "exchanged_to_currency": "EUR"
+  },
+  "item_workspace_currency_exchange": {
+    "exchange_rate": 0.9526,
+    "exchange_date": "2016-04-11T17:27:24.228Z",
+    "exchanged_to_currency": "GBP"
   }
 }
 ```
@@ -114,7 +119,11 @@ Either attached to a document or a transaction.
     </tr>
     <tr>
       <td class="attribute"><strong>item_exchange</strong><br/><span class="details">hash</span></td>
-      <td><p>The exchange information if needed.</p></td>
+      <td><p>The tax currency exchange rate information if relevant.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>item_workspace_currency_exchange</strong><br/><span class="details">hash</span></td>
+      <td><p>The default workspace currency exchange information if relevant.</p></td>
     </tr>
   </tbody>
 </table>
@@ -164,6 +173,11 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
     "exchanged_to_currency": "EUR"
+  },
+  "item_workspace_currency_exchange": {
+    "exchange_rate": 0.9526,
+    "exchange_date": "2016-04-11T17:27:24.228Z",
+    "exchanged_to_currency": "GBP"
   }
 }
 ```
@@ -207,6 +221,11 @@ invoice.items.create(
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
     "exchanged_to_currency": "EUR"
+  },
+  "item_workspace_currency_exchange": {
+    "exchange_rate": 0.9526,
+    "exchange_date": "2016-04-11T17:27:24.228Z",
+    "exchanged_to_currency": "GBP"
   }
 }
 ```
@@ -295,6 +314,11 @@ $ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_it
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
     "exchanged_to_currency": "EUR"
+  },
+  "item_workspace_currency_exchange": {
+    "exchange_rate": 0.9526,
+    "exchange_date": "2016-04-11T17:27:24.228Z",
+    "exchanged_to_currency": "GBP"
   }
 }
 ```
@@ -342,6 +366,11 @@ invoice.items.retrieve("oc_it_1461938887kzsf607ad4cf")
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
     "exchanged_to_currency": "EUR"
+  },
+  "item_workspace_currency_exchange": {
+    "exchange_rate": 0.9526,
+    "exchange_date": "2016-04-11T17:27:24.228Z",
+    "exchanged_to_currency": "GBP"
   }
 }
 ```
@@ -389,7 +418,8 @@ $ curl https://api.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_it
   "gross_amount": 6100,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
-  "item_exchange": null
+  "item_exchange": null,
+  "item_workspace_currency_exchange": null
 }
 ```
 
@@ -436,7 +466,8 @@ item.save
   "gross_amount": 6100,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
-  "item_exchange": null
+  "item_exchange": null,
+  "item_workspace_currency_exchange": null
 }
 ```
 
@@ -513,6 +544,11 @@ $ curl https://api.octobat.com/transactions/oc_txn_1459936947icq9005f4668/items 
         "exchange_rate": 0.8864,
         "exchange_date": "2016-04-13T17:27:24.228Z",
         "exchanged_to_currency": "EUR"
+      },
+      "item_workspace_currency_exchange": {
+        "exchange_rate": 0.9526,
+        "exchange_date": "2016-04-11T17:27:24.228Z",
+        "exchanged_to_currency": "GBP"
       }
     },
     {...},
@@ -570,6 +606,11 @@ transaction.items.all
         "exchange_rate": 0.8864,
         "exchange_date": "2016-04-13T17:27:24.228Z",
         "exchanged_to_currency": "EUR"
+      },
+      "item_workspace_currency_exchange": {
+        "exchange_rate": 0.9526,
+        "exchange_date": "2016-04-11T17:27:24.228Z",
+        "exchanged_to_currency": "GBP"
       }
     },
     #<Octobat::Item[...] ...>,
