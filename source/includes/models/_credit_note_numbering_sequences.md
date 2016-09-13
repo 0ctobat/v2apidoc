@@ -9,7 +9,7 @@
   "object": "credit_note_numbering_sequence",
   "prefix": "CN-AAA-",
   "is_default": true,
-  "example": "CN-AAA-1"
+  "next_number": "CN-AAA-1"
 }
 ```
 
@@ -33,8 +33,8 @@
       <td><p>Only one numbering sequence can be the default one, which is selected if no numbering sequence is chosen during credit note creation.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>example</strong><br/><span class="details">string</span></td>
-      <td><p>An example of a credit note number that can be generated within this sequence.</p></td>
+      <td class="attribute"><strong>next_number</strong><br/><span class="details">string</span></td>
+      <td><p>The next credit note number that will be generated within this sequence.</p></td>
     </tr>
   </tbody>
 </table>
@@ -62,7 +62,7 @@ $ curl https://api.octobat.com/credit_note_numbering_sequences \
       "object": "credit_note_numbering_sequence",
       "prefix": "CN-AAA-",
       "is_default": true,
-      "example": "CN-AAA-1"
+      "next_number": "CN-AAA-1"
     },
     {...},
     {...}
@@ -92,7 +92,7 @@ Octobat::CreditNoteNumberingSequence.all
       "object": "credit_note_numbering_sequence",
       "prefix": "CN-AAA-",
       "is_default": true,
-      "example": "CN-AAA-1"
+      "next_number": "CN-AAA-1"
     },
     #<Octobat::CreditNoteNumberingSequence[...] ...>,
     #<Octobat::CreditNoteNumberingSequence[...] ...>

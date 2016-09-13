@@ -9,7 +9,7 @@
   "object": "invoice_numbering_sequence",
   "prefix": "AAA-",
   "is_default": true,
-  "example": "AAA-1"
+  "next_number": "AAA-1"
 }
 ```
 
@@ -33,8 +33,8 @@
       <td><p>Only one numbering sequence can be the default one, which is selected if no numbering sequence is chosen during invoice creation.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>example</strong><br/><span class="details">string</span></td>
-      <td><p>An example of an invoice number that can be generated within this sequence.</p></td>
+      <td class="attribute"><strong>next_number</strong><br/><span class="details">string</span></td>
+      <td><p>The next invoice number that will be generated within this sequence.</p></td>
     </tr>
   </tbody>
 </table>
@@ -61,7 +61,7 @@ $ curl https://api.octobat.com/invoice_numbering_sequences \
       "object": "invoice_numbering_sequence",
       "prefix": "AAA-",
       "is_default": true,
-      "example": "AAA-1"
+      "next_number": "AAA-1"
     },
     {...},
     {...}
@@ -90,7 +90,7 @@ Octobat::InvoiceNumberingSequence.all
       "object": "invoice_numbering_sequence",
       "prefix": "AAA-",
       "is_default": true,
-      "example": "AAA-1"
+      "next_number": "AAA-1"
     },
     #<Octobat::InvoiceNumberingSequence[...] ...>,
     #<Octobat::InvoiceNumberingSequence[...] ...>
