@@ -257,12 +257,12 @@ Octobat::Customer.create(
       <td><p>Customer's state.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>billing_address_country</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>billing_address_country</strong><br/><span class="badge-warning">required</span></td>
       <td><p>Two-letter ISO code representing the customer's country.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>business_type</strong><br/><span class="details">optional</span></td>
-      <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. An individual must be tagged as `B2C` while a business must be tagged as `B2B`.</p></td>
+      <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. An individual must be tagged as `B2C` while a business must be tagged as `B2B`.<br/>If the tax_number and the business_type are not filled, the business_type will be filled to `B2C`.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>tax_number</strong><br/><span class="details">optional</span></td>
@@ -524,7 +524,7 @@ This request accepts mostly the same arguments as the customer creation call.
       <td><p>Customer's state.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>billing_address_country</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>billing_address_country</strong><br/><span class="badge-warning">required</span></td>
       <td><p>Two-letter ISO code representing the customer's country.</p></td>
     </tr>
     <tr>
