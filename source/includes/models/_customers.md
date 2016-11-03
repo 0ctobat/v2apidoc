@@ -19,7 +19,7 @@
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -38,6 +38,9 @@
   }
 }
 ```
+
+Customer objects are required to create other Octobat objects such as invoices or transactions that must be attached to them. The API allows you to create, and update your customers. You can retrieve individual customers as well as a list of all your customers.
+
 
 ### Attributes
 <table>
@@ -92,7 +95,7 @@
     </tr>
     <tr>
       <td class="attribute"><strong>business_type</strong><br/><span class="details">string</span></td>
-      <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. An individual must be tagged as `B2C` while a business must be tagged as `B2B`.</p></td>
+      <td><p>The business_type of the customer is either <code>B2B</code> or <code>B2C</code>. Individuals or non-tax-registered companies must be tagged as `B2C` while tax-registered businesses must be tagged as `B2B`.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>tax_number</strong><br/><span class="details">string</span></td>
@@ -100,11 +103,11 @@
     </tr>
     <tr>
       <td class="attribute"><strong>octobat_billing_page</strong><br/><span class="details">string</span></td>
-      <td><p>The url of a page listing all customer's invoices.</p></td>
+      <td><p>The url of a page listing all customer's invoices, and where she can edit her billing details</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>payment_sources</strong><br/><span class="details">json</span></td>
-      <td><p>Contains a list of gateways names and identifiers which this customer is from.</p></td>
+      <td><p>Contains a list of means of payment attached to the customer.</p></td>
     </tr>
   </tbody>
 </table>
@@ -145,23 +148,11 @@ $ curl https://apiv2.octobat.com/customers \
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "tax_number": null,
-  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "tax_number": "FR60528551658",
+  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
-    "data": [
-      {
-        "id": "oc_ps_1459584112d83k4ef3e3bd",
-        "object": "payment_source",
-        "customer": "oc_cu_1459413729au6o6a9ae061",
-        "source": "card_1029383qsfqs",
-        "payment_source_type": "Credit Card",
-        "details": {},
-        "country": "FR",
-        "exp_month": 12,
-        "exp_year": 2017
-      }
-    ]
+    "data": []
   }
 }
 ```
@@ -182,7 +173,7 @@ Octobat::Customer.create(
   billing_address_state: null,
   billing_address_country: "France",
   business_type: "B2B",
-  tax_number: null
+  tax_number: "FR60528551658"
 )
 
 # Example response
@@ -200,23 +191,11 @@ Octobat::Customer.create(
   "billing_address_state": null,
   "billing_address_country": "France",
   "business_type": "B2B",
-  "tax_number": null,
-  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "tax_number": "FR60528551658",
+  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
-    "data": [
-      {
-       "id": "oc_ps_1459584112d83k4ef3e3bd",
-       "object": "payment_source",
-       "customer": "oc_cu_1459413729au6o6a9ae061",
-       "source": "card_1029383qsfqs",
-       "payment_source_type": "Credit Card",
-       "details": {},
-       "country": "FR",
-       "exp_month": 12,
-       "exp_year": 2017
-      }
-    ]
+    "data": []
   }
 }
 ```
@@ -302,7 +281,7 @@ $ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -348,7 +327,7 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -414,7 +393,7 @@ $ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -464,7 +443,7 @@ customer.save
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -574,7 +553,7 @@ $ curl https://apiv2.octobat.com/customers \
       "billing_address_country": "France",
       "business_type": "B2B",
       "tax_number": null,
-      "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+      "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
       "payment_sources" : {
         "object": "list",
         "data": [
@@ -630,7 +609,7 @@ Octobat::Customer.all
       "billing_address_country": "France",
       "business_type": "B2B",
       "tax_number": null,
-      "octobat_billing_page": "https://b.octobat.com/c/1421878635hksc26e4de79",
+      "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
       "payment_sources" : {
         "object": "list",
         "data": [

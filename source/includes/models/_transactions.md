@@ -4,7 +4,25 @@ This is a transaction. It triggers when there is a payment or a refund.
 ## The transaction object
 > Example object
 
-```json
+```shell
+{
+  "id": "oc_txn_1459936947icq9005f4668",
+  "object": "transaction",
+  "customer": "oc_cu_1459413729au6o6a9ae061",
+  "payment_source": "oc_ps_1459584112d83k4ef3e3bd",
+  "payment_recipient": "oc_pr_14597887132yzs440d46e9",
+  "invoice": null,
+  "credit_note": null,
+  "livemode": true,
+  "status": "succeeded",
+  "transaction_date": "2016-03-31T00:00:00.000Z",
+  "flow_type": "payment",
+  "amount": 2500,
+  "currency": "EUR"
+}
+```
+
+```ruby
 {
   "id": "oc_txn_1459936947icq9005f4668",
   "object": "transaction",
