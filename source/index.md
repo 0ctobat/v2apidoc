@@ -21,6 +21,8 @@ includes:
   - models/_invoice_numbering_sequences.md
   - models/_credit_note_numbering_sequences.md
 
+  - models/_tax_evidences.md
+
 
 search: false
 ---

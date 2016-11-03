@@ -987,6 +987,189 @@ Returns the full invoice object if the update succeeded. Returns an error if upd
 
 
 
+## Cancel and replace a confirmed invoice
+```shell
+# Definition
+PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/cancel_and_replace
+
+# Example request
+curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_replace \
+ -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
+ -X PATCH
+
+# Example response
+{
+  "id": "oc_in_1461320056h2qq350fdc3a",
+  "object": "invoice",
+  "livemode": true,
+  "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "document_template": "oc_dt_14611418085kha558d6ddf",
+  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
+  "pdf_file_url": null,
+  "invoice_number": "SP2016-200",
+  "invoice_date": "2016-04-26",
+  "description": "Subscription",
+  "payment_status": "unpaid",
+  "status": "draft",
+  "email_sent": false,
+  "last_sent_at": null,
+  "notes": "",
+  "language": "fr",
+  "currency": "EUR",
+  "customer_name": "Zuuno SARL",
+  "customer_address_line_1": "25 rue du Petit Musc",
+  "customer_address_line_2": null,
+  "customer_address_city": "Paris",
+  "customer_address_state": null,
+  "customer_address_zip": "75004",
+  "customer_address_country": "France",
+  "customer_country_code": "FR",
+  "customer_tax_number": "FR60528551658",
+  "customer_business_type": "B2B",
+  "supplier_name": "Octobat SAS",
+  "supplier_address_line_1": "230 rue du Général Leclerc",
+  "supplier_address_line_2": "",
+  "supplier_address_city": "Ermont",
+  "supplier_address_state": null,
+  "supplier_address_zip": "95120",
+  "supplier_address_country": "France",
+  "supplier_tax_number": null,
+  "legal_fields": {},
+  "cancel_and_replace_invoice": "oc_in_1476088610jx98e4b8b8d3",
+  "items": {
+    "object":"list",
+    "data": [
+      {
+        "id": "oc_it_146133143279h39ba598f5",
+        "object": "item",
+        "status": "draft",
+        "confirmed_on": null,
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "transaction": null,
+        "invoice": "oc_in_1461320056h2qq350fdc3a",
+        "credit_note": null,
+        "product_type": "standard",
+        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+        "sale_mode": "B2C",
+        "description": "Entreprise Plan",
+        "unit_extratax_amount": 19900,
+        "currency": "EUR",
+        "quantity": 1,
+        "extratax_amount": 19900,
+        "tax_rate": 22.0,
+        "tax_amount": 4378,
+        "gross_amount": 24278,
+        "declare_in_region": "FR",
+        "tax": "VAT",
+        "item_exchange": null,
+        "item_workspace_currency_exchange": null
+      },
+      {...},
+      {...}
+    ]
+  }
+}
+```
+
+
+```ruby
+# Definition
+invoice = Octobat::Invoice.retrieve({INVOICE_ID})
+invoice.cancel_and_replace
+
+# Example request
+>> require "octobat"
+Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
+
+invoice = Octobat::Invoice.retrieve("oc_in_1476088610jx98e4b8b8d3")
+invoice.cancel_and_replace()
+
+# Example response
+#<Octobat::Invoice id=oc_in_1461320056h2qq350fdc3a 0x00000a> JSON: {{
+  "id": "oc_in_1461320056h2qq350fdc3a",
+  "object": "invoice",
+  "livemode": true,
+  "customer": "oc_cu_1459413729au6o6a9ae061",
+  "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
+  "document_template": "oc_dt_14611418085kha558d6ddf",
+  "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
+  "pdf_file_url": nil,
+  "invoice_number": "SP2016-200",
+  "invoice_date": "2016-04-26",
+  "description": "Subscription",
+  "payment_status": "unpaid",
+  "status": "draft",
+  "email_sent": false,
+  "last_sent_at": nil,
+  "notes": "",
+  "language": "fr",
+  "currency": "EUR",
+  "customer_name": "Zuuno SARL",
+  "customer_address_line_1": "25 rue du Petit Musc",
+  "customer_address_line_2": nil,
+  "customer_address_city": "Paris",
+  "customer_address_state": nil,
+  "customer_address_zip": "75004",
+  "customer_address_country": "France",
+  "customer_country_code": "FR",
+  "customer_tax_number": "FR60528551658",
+  "customer_business_type": "B2B",
+  "supplier_name": "Octobat SAS",
+  "supplier_address_line_1": "230 rue du Général Leclerc",
+  "supplier_address_line_2": "",
+  "supplier_address_city": "Ermont",
+  "supplier_address_state": nil,
+  "supplier_address_zip": "95120",
+  "supplier_address_country": "France",
+  "supplier_tax_number": nil,
+  "legal_fields": {},
+  "cancel_and_replace_invoice": "oc_in_1476088610jx98e4b8b8d3",
+  "items": {
+    "object":"list",
+    "object":"list",
+    "data": [
+      {
+        "id": "oc_it_146133143279h39ba598f5",
+        "object": "item",
+        "status": "draft",
+        "confirmed_on": nil,
+        "customer": "oc_cu_1459413729au6o6a9ae061",
+        "transaction": nil,
+        "invoice": "oc_in_1461320056h2qq350fdc3a",
+        "credit_note": nil,
+        "product_type": "standard",
+        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
+        "sale_mode": "B2C",
+        "description": "Entreprise Plan",
+        "unit_extratax_amount": 19900,
+        "currency": "EUR",
+        "quantity": 1,
+        "extratax_amount": 19900,
+        "tax_rate": 22.0,
+        "tax_amount": 4378,
+        "gross_amount": 24278,
+        "declare_in_region": "FR",
+        "tax": "VAT",
+        "item_exchange": nil,
+        "item_workspace_currency_exchange": nil
+      },
+      {...},
+      {...}
+    ]
+  }
+}
+```
+
+Change the invoice status to 'cancelled', create a credit note with invoice items duplicated and create a new invoice with a 'draft' status and the same attributes than the 'cancelled' invoice.
+
+### Returns
+Returns the full 'draft' new invoice object if the cancel and replace succeeded. Returns an error if the cancel and replace action is not possible.
+
+
+
+
+
 ## Delete a draft invoice
 ```shell
 # Definition

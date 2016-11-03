@@ -161,7 +161,7 @@ Octobat::Transaction.create(
       <td><p>The ID of an existing customer that will be charged in this request.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>payment_source</strong><br/><span class="badge-warning">required</span></td>
+      <td class="attribute"><strong>payment_source</strong><br/><span class="details">optional, default is <strong>nil</strong></span></td>
       <td><p>The ID of an existing payment source.</p></td>
     </tr>
     <tr>

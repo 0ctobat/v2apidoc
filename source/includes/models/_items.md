@@ -249,24 +249,16 @@ invoice.items.create(
       <td><p>3-letter <a href="http://www.xe.com/iso4217.php#section2" target="_blank">ISO code for currency</a>.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>transaction</strong><br/><span class="details">optional, either <strong>transaction</strong> or <strong>invoice</strong> or <strong>credit_note</strong> is required</span></td>
-      <td><p>The ID of an existing transaction.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>invoice</strong><br/><span class="details">optional, either <strong>invoice</strong> or <strong>transaction</strong> or <strong>credit_note</strong> is required</span></td>
-      <td><p>The ID of an existing invoice.</p></td>
-    </tr>
-    <tr>
-      <td class="attribute"><strong>credit_note</strong><br/><span class="details">optional, either <strong>credit_note</strong> or <strong>transaction</strong> or <strong>invoice</strong> is required</span></td>
-      <td><p>The ID of an existing credit note.</p></td>
-    </tr>
-    <tr>
       <td class="attribute"><strong>tax_evidence</strong><br/><span class="details">optional, either <strong>tax_evidence</strong> or <strong>tax_rate</strong> is required</span></td>
       <td><p>The ID of an existing tax evidence. This is where customer and supplier transaction evidences are stored. The tax rate applied to the item is automatically calculated thanks to the evidences.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>tax_rate</strong><br/><span class="details">optional, either <strong>tax_rate</strong> or <strong>tax_evidence</strong> is required</span></td>
       <td><p>The tax rate that you want apply to the item.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>product_type</strong><br/><span class="details">optional, default is in the "tax settings" section. If the <strong>tax_evidence</strong> argument is filled, it will have priority.</span></td>
+      <td><p>The product type is either <code>eservice</code>, <code>ebook</code> or <code>standard</code>.</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>quantity</strong><br/><span class="details">optional, default is 1</span></td>
@@ -281,7 +273,7 @@ invoice.items.create(
 
 
 ### Returns
-Returns the item object if the creation succeeds. Returns an error if parameters are invalid
+Returns the item object if the creation succeeds. Returns an error if parameters are invalid.
 
 
 
