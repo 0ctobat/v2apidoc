@@ -85,12 +85,12 @@ This is a transaction. It triggers when there is a payment or a refund.
 
 ```
 # Definition
-POST https://api.octobat.com/transactions
+POST https://apiv2.octobat.com/transactions
 ```
 
 ```shell
 # Example Request
-$ curl https://api.octobat.com/transactions \
+$ curl https://apiv2.octobat.com/transactions \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_1459413729au6o6a9ae061" \
    -d payment_source="oc_ps_1459584112d83k4ef3e3bd" \
@@ -208,10 +208,10 @@ Returns the transaction object if the creation succeeds. Returns an error if par
 ## Retrieve a transaction
 ```shell
 # Definition
-GET https://api.octobat.com/transactions/{TRANSACTION_ID}
+GET https://apiv2.octobat.com/transactions/{TRANSACTION_ID}
 
 # Example Request
-$ curl https://api.octobat.com/transactions/oc_txn_1459957855kw89e9c7e960 \
+$ curl https://apiv2.octobat.com/transactions/oc_txn_1459957855kw89e9c7e960 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response
@@ -282,10 +282,10 @@ Returns a transaction object if a valid identifier was provided.
 
 ```shell
 # Definition
-GET https://api.octobat.com/transactions/
+GET https://apiv2.octobat.com/transactions/
 
 # Example request
-$ curl https://api.octobat.com/transactions \
+$ curl https://apiv2.octobat.com/transactions \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response

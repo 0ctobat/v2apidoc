@@ -33,7 +33,7 @@ gem "octobat"
 
 ```global
 API Endpoint
-https://api.octobat.com
+https://apiv2.octobat.com
 ```
 
 The Octobat API is organized around REST. Our API is designed to have predictable, resource-oriented URLs and to use HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP verbs, which can be understood by off-the-shelf HTTP clients.
@@ -47,7 +47,7 @@ To make the Octobat API as secure as possible. Authentication is performed throu
 
 ```shell
 # Example request
-$ curl https://api.octobat.com/customers \
+$ curl https://apiv2.octobat.com/customers \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # curl uses the -u flag to pass basic auth credentials
@@ -99,7 +99,7 @@ Octobat uses conventional HTTP response codes to indicate success or failure of 
 # Pagination
 ```shell
 # Example request
-$ curl https://api.octobat.com/customers?limit=3 \
+$ curl https://apiv2.octobat.com/customers?limit=3 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response
@@ -193,7 +193,7 @@ Attribute | Type
 
 ```shell
 # Example request
-$ curl https://api.octobat.com/customers?include[]=invoices \
+$ curl https://apiv2.octobat.com/customers?include[]=invoices \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 ```
 

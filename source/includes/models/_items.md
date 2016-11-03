@@ -138,14 +138,14 @@ Either attached to a document or a transaction.
 
 ```
 # Definition
-POST https://api.octobat.com/transactions/{TRANSACTION_ID}/items
-POST https://api.octobat.com/invoices/{INVOICE_ID}/items
-POST https://api.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
+POST https://apiv2.octobat.com/transactions/{TRANSACTION_ID}/items
+POST https://apiv2.octobat.com/invoices/{INVOICE_ID}/items
+POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
 ```
 
 ```shell
 # Example Request
-$ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
+$ curl https://apiv2.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d tax_evidence="oc_tev_1460565379am3be8f5ef71" \
    -d quantity=1 \
@@ -288,12 +288,12 @@ Returns the item object if the creation succeeds. Returns an error if parameters
 ## Retrieve an item
 ```shell
 # Definition
-GET https://api.octobat.com/invoices/{INVOICE_ID}/items/{ITEM_ID}/
-GET https://api.octobat.com/transactions/{TRANSACTION_ID}/items/{ITEM_ID}/
-GET https://api.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items/{ITEM_ID}/
+GET https://apiv2.octobat.com/invoices/{INVOICE_ID}/items/{ITEM_ID}/
+GET https://apiv2.octobat.com/transactions/{TRANSACTION_ID}/items/{ITEM_ID}/
+GET https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items/{ITEM_ID}/
 
 # Example Request
-$ curl https://api.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_it_1461938887kzsf607ad4cf \
+$ curl https://apiv2.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_it_1461938887kzsf607ad4cf \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response
@@ -396,12 +396,12 @@ Returns an item object if a valid identifier was provided.
 
 ```shell
 # Definition
-PATCH https://api.octobat.com/transactions/{TRANSACTION_ID}/items/{ITEM_ID}
-PATCH https://api.octobat.com/invoices/{INVOICE_ID}/items/{ITEM_ID}
-PATCH https://api.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items/{ITEM_ID}
+PATCH https://apiv2.octobat.com/transactions/{TRANSACTION_ID}/items/{ITEM_ID}
+PATCH https://apiv2.octobat.com/invoices/{INVOICE_ID}/items/{ITEM_ID}
+PATCH https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items/{ITEM_ID}
 
 # Example request
-$ curl https://api.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_it_14621841535d5d3284b1a2 \
+$ curl https://apiv2.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_it_14621841535d5d3284b1a2 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d quantity=5 \
    -d unit_extratax_amount=1000 \
@@ -516,12 +516,12 @@ Returns the item object if the update succeeded. Returns an error if update para
 
 ```shell
 # Definition
-GET https://api.octobat.com/transactions/{TRANSACTION_ID}/items/
-GET https://api.octobat.com/invoices/{INVOICE_ID}/items/
-GET https://api.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items/
+GET https://apiv2.octobat.com/transactions/{TRANSACTION_ID}/items/
+GET https://apiv2.octobat.com/invoices/{INVOICE_ID}/items/
+GET https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items/
 
 # Example request
-$ curl https://api.octobat.com/transactions/oc_txn_1459936947icq9005f4668/items \
+$ curl https://apiv2.octobat.com/transactions/oc_txn_1459936947icq9005f4668/items \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response

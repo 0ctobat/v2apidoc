@@ -169,7 +169,7 @@
 POST https://www.octobat.com/api/credit_notes
 
 # Example request
-$ curl https://api.octobat.com/credit_notes \
+$ curl https://apiv2.octobat.com/credit_notes \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_1459413729au6o6a9ae061" \
    -d description='Refund Subscription' \
@@ -327,7 +327,7 @@ Returns the full credit note object if the creation succeeded. Returns an error 
 PATCH https://www.octobat.com/api/credit_notes/{CREDIT_NOTE_ID}
 
 # Example request
-$ curl https://api.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
+$ curl https://apiv2.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer_name="Zuuno SARL" \
    -d customer_business_type="B2B" \
@@ -686,10 +686,10 @@ You can record a refund linked to a credit note creating a transaction with the 
 ## List all credit notes
 ```shell
 # Definition
-GET https://api.octobat.com/credit_notes/
+GET https://apiv2.octobat.com/credit_notes/
 
 # Example request
-$ curl https://api.octobat.com/credit_notes \
+$ curl https://apiv2.octobat.com/credit_notes \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_1459413729au6o6a9ae061" \
 

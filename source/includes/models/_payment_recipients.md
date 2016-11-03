@@ -46,10 +46,10 @@
 
 ```shell
 # Definition
-GET https://api.octobat.com/payment_recipients/
+GET https://apiv2.octobat.com/payment_recipients/
 
 # Example request
-$ curl https://api.octobat.com/payment_recipients \
+$ curl https://apiv2.octobat.com/payment_recipients \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response

@@ -175,7 +175,7 @@
 POST https://www.octobat.com/api/invoices
 
 # Example request
-$ curl https://api.octobat.com/invoices \
+$ curl https://apiv2.octobat.com/invoices \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_1459413729au6o6a9ae061" \
    -d payment_recipients[]="oc_pr_1461595230igdu5ce59471" \
@@ -335,7 +335,7 @@ Returns the full invoice object if the creation succeeded. Returns an error if p
 PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}
 
 # Example request
-$ curl https://api.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
+$ curl https://apiv2.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer_name="Zuuno SARL" \
    -d customer_business_type="B2B" \
@@ -1044,10 +1044,10 @@ You can record a payment linked to an invoice creating a transaction with the in
 ## List all invoices
 ```shell
 # Definition
-GET https://api.octobat.com/invoices/
+GET https://apiv2.octobat.com/invoices/
 
 # Example request
-$ curl https://api.octobat.com/invoices \
+$ curl https://apiv2.octobat.com/invoices \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_1459413729au6o6a9ae061" \
    -d status="draft" \

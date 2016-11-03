@@ -44,10 +44,10 @@
 
 ```shell
 # Definition
-GET https://api.octobat.com/credit_note_numbering_sequences/
+GET https://apiv2.octobat.com/credit_note_numbering_sequences/
 
 # Example request
-$ curl https://api.octobat.com/credit_note_numbering_sequences \
+$ curl https://apiv2.octobat.com/credit_note_numbering_sequences \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response

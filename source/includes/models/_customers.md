@@ -114,12 +114,12 @@
 
 ```
 # Definition
-POST https://api.octobat.com/customers
+POST https://apiv2.octobat.com/customers
 ```
 
 ```shell
 # Example Request
-$ curl https://api.octobat.com/customers \
+$ curl https://apiv2.octobat.com/customers \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d email="contact@octobat.com" \
    -d name="Octobat Inc." \
@@ -280,10 +280,10 @@ Returns the customer object if the creation succeeds. Returns an error if parame
 ## Retrieve a customer
 ```shell
 # Definition
-GET https://api.octobat.com/customers/{CUSTOMER_ID}
+GET https://apiv2.octobat.com/customers/{CUSTOMER_ID}
 
 # Example Request
-$ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
+$ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response
@@ -391,10 +391,10 @@ Returns a customer object if a valid identifier was provided.
 
 ```shell
 # Definition
-PATCH https://api.octobat.com/customers/{CUSTOMER_ID}
+PATCH https://apiv2.octobat.com/customers/{CUSTOMER_ID}
 
 # Example request
-$ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
+$ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d email="admin@octobat.com"
 
@@ -546,10 +546,10 @@ Returns the customer object if the update succeeded. Returns an error if update 
 
 ```shell
 # Definition
-GET https://api.octobat.com/customers/
+GET https://apiv2.octobat.com/customers/
 
 # Example request
-$ curl https://api.octobat.com/customers \
+$ curl https://apiv2.octobat.com/customers \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response

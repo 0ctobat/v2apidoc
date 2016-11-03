@@ -66,12 +66,12 @@ This is the payment source of a transaction.
 
 ```
 # Definition
-POST https://api.octobat.com/customers/{CUSTOMER_ID}/payment_sources
+POST https://apiv2.octobat.com/customers/{CUSTOMER_ID}/payment_sources
 ```
 
 ```shell
 # Example Request
-$ curl https://api.octobat.com/customers/{CUSTOMER_ID}/payment_sources \
+$ curl https://apiv2.octobat.com/customers/{CUSTOMER_ID}/payment_sources \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d source="card_1029383qsfqs" \
    -d payment_source_type="Credit Card" \
@@ -161,10 +161,10 @@ Returns the payment source object if the creation succeeds. Returns an error if 
 ## Retrieve an existing payment source
 ```shell
 # Definition
-GET https://api.octobat.com/customers/{CUSTOMER_ID}/payment_sources/{PAYMENT_SOURCE_ID}
+GET https://apiv2.octobat.com/customers/{CUSTOMER_ID}/payment_sources/{PAYMENT_SOURCE_ID}
 
 # Example Request
-$ curl https://api.octobat.com/customers/oc_cu_1421878635hksc26e4de79/payment_sources/oc_ps_1459584051gau52bfe848c \
+$ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79/payment_sources/oc_ps_1459584051gau52bfe848c \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response
@@ -228,10 +228,10 @@ Returns a payment source object if a valid identifier was provided.
 
 ```shell
 # Definition
-GET https://api.octobat.com/customers/{CUSTOMER_ID}/payment_sources/
+GET https://apiv2.octobat.com/customers/{CUSTOMER_ID}/payment_sources/
 
 # Example request
-$ curl https://api.octobat.com/customers/oc_cu_1459413729au6o6a9ae061/payment_sources \
+$ curl https://apiv2.octobat.com/customers/oc_cu_1459413729au6o6a9ae061/payment_sources \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
 
 # Example response
