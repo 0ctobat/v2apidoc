@@ -19,7 +19,7 @@
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -149,7 +149,7 @@ $ curl https://apiv2.octobat.com/customers \
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": "FR60528551658",
-  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": []
@@ -192,7 +192,7 @@ Octobat::Customer.create(
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": "FR60528551658",
-  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": []
@@ -281,7 +281,7 @@ $ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -327,7 +327,7 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -393,7 +393,7 @@ $ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -443,7 +443,7 @@ customer.save
   "billing_address_country": "France",
   "business_type": "B2B",
   "tax_number": null,
-  "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+  "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -553,7 +553,7 @@ $ curl https://apiv2.octobat.com/customers \
       "billing_address_country": "France",
       "business_type": "B2B",
       "tax_number": null,
-      "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+      "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
       "payment_sources" : {
         "object": "list",
         "data": [
@@ -609,7 +609,7 @@ Octobat::Customer.all
       "billing_address_country": "France",
       "business_type": "B2B",
       "tax_number": null,
-      "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+      "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
       "payment_sources" : {
         "object": "list",
         "data": [
