@@ -136,7 +136,7 @@ $ curl https://apiv2.octobat.com/customers?limit=3 \
       "billing_address_country": "France",
       "business_type": "B2C",
       "tax_number": null,
-      "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+      "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
       "created_at": "2015-07-12T11:22:29Z",
       "updated_at": "2015-07-12T11:22:29Z"
     },
@@ -173,7 +173,7 @@ Octobat::Customer.all(limit: 3)
      "billing_address_country": "France",
      "business_type": "B2C",
      "tax_number": null,
-     "octobat_billing_page": "https://bp.octobat.com/c/1421878635hksc26e4de79",
+     "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
      "created_at": "2015-07-12T11:22:29Z",
      "updated_at": "2015-07-12T11:22:29Z"
     },
