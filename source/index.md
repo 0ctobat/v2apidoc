@@ -208,8 +208,17 @@ Attribute | Type
 
 # Source objects
 Potentially Synchronized objects —including Customer, Invoice, Credit Note, Item and Transaction— have a sources parameter.
+
 Sources references the external data this Octobat object has been created from. As an Octobat object may have been populated from several external objects, `sources` is always represented as an array of JSON-encoded hashes - each nested hash being a single reference -.
-As an example, a customer created in Octobat from a Stripe customer includes a reference to this last one in the following form: `{'gateway': 'stripe', 'source_type': 'customer', 'identifier': 'cus_xxxxxxxx'}`, so the full `sources` attribute value would be: `[{'gateway': 'stripe', 'source_type': 'customer', 'identifier': 'cus_xxxxxxxx'}]`.
+
+As an example, a customer created in Octobat from a Stripe customer includes a reference to this last one in the following form:
+
+`{'gateway': 'stripe', 'source_type': 'customer', 'identifier': 'cus_xxxxxxxx'}`,
+
+so the full `sources` attribute value would be:
+
+`[{'gateway': 'stripe', 'source_type': 'customer', 'identifier': 'cus_xxxxxxxx'}]`.
+
 
 Nested JSON-encoded hashes have always the same structure with the following keys:
 
