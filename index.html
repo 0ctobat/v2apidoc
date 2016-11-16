@@ -223,6 +223,35 @@ Like Stripe, Octobat uses cursor-based pagination using the parameter <code clas
 <td><strong>boolean</strong> The total count of all recipients that match your filters, as if there was no pagination.</td>
 </tr>
 </tbody></table>
+<h1 id='source-objects'>Source objects</h1>
+<p>Potentially Synchronized objects —including Customer, Invoice, Credit Note, Item and Transaction— have a sources parameter.
+Sources references the external data this Octobat object has been created from. As an Octobat object may have been populated from several external objects, <code class="prettyprint">sources</code> is always represented as an array of JSON-encoded hashes - each nested hash being a single reference -.
+As an example, a customer created in Octobat from a Stripe customer includes a reference to this last one in the following form: <code class="prettyprint">{&#39;gateway&#39;: &#39;stripe&#39;, &#39;source_type&#39;: &#39;customer&#39;, &#39;identifier&#39;: &#39;cus_xxxxxxxx&#39;}</code>, so the full <code class="prettyprint">sources</code> attribute value would be: <code class="prettyprint">[{&#39;gateway&#39;: &#39;stripe&#39;, &#39;source_type&#39;: &#39;customer&#39;, &#39;identifier&#39;: &#39;cus_xxxxxxxx&#39;}]</code>.</p>
+
+<p>Nested JSON-encoded hashes have always the same structure with the following keys:</p>
+<h3 id='inner-sources-attributes'>Inner sources attributes</h3>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>gateway</strong></td>
+<td><strong>string</strong>  The integration this object came from. Examples: <code class="prettyprint">stripe</code>, <code class="prettyprint">gocardless</code></td>
+</tr>
+<tr>
+<td><strong>source_type</strong></td>
+<td><strong>string</strong> The platform object type. For instance, a Stripe payment is called: <code class="prettyprint">charge</code></td>
+</tr>
+<tr>
+<td><strong>identifier</strong></td>
+<td><strong>string</strong> The platform object identifier, that you can request on.</td>
+</tr>
+</tbody></table>
+
+<p>Sources are always serialized and sent back upon API requests and webhooks.
+A common useful case is to link the payment platform charge or subscription object to the corresponding invoice or items created in Octobat.</p>
 <h1 id='expandable-objects'>Expandable objects</h1><pre><code class="highlight shell"><span class="c"># Example request</span>
 <span class="gp">$ </span>curl https://apiv2.octobat.com/customers?expand[]<span class="o">=</span>invoices <span class="se">\</span>
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt:
@@ -282,6 +311,7 @@ This parameter is available on all API requests, and applies to the response of 
   </span><span class="s2">"business_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B2B"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"tax_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"octobat_billing_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"payment_sources"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -366,6 +396,10 @@ This parameter is available on all API requests, and applies to the response of 
       <td><p>The url of a page listing all customer&rsquo;s invoices, and where she can edit her billing details</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration&rsquo;s objects this customer has been created from</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>payment_sources</strong><br/><span class="details">json</span></td>
       <td><p>Contains a list of means of payment attached to the customer.</p></td>
     </tr>
@@ -403,6 +437,7 @@ POST https://apiv2.octobat.com/customers
   <span class="s2">"business_type"</span>: <span class="s2">"B2B"</span>,
   <span class="s2">"tax_number"</span>: <span class="s2">"FR60528551658"</span>,
   <span class="s2">"octobat_billing_page"</span>: <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"payment_sources"</span> : <span class="o">{</span>
     <span class="s2">"object"</span>: <span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[]</span>
@@ -444,6 +479,7 @@ POST https://apiv2.octobat.com/customers
   <span class="s2">"business_type"</span><span class="p">:</span> <span class="s2">"B2B"</span><span class="p">,</span>
   <span class="s2">"tax_number"</span><span class="p">:</span> <span class="s2">"FR60528551658"</span><span class="p">,</span>
   <span class="s2">"octobat_billing_page"</span><span class="p">:</span> <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"payment_sources"</span> <span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[]</span>
@@ -525,6 +561,7 @@ GET https://apiv2.octobat.com/customers/<span class="o">{</span>CUSTOMER_ID<span
   <span class="s2">"business_type"</span>: <span class="s2">"B2B"</span>,
   <span class="s2">"tax_number"</span>: null,
   <span class="s2">"octobat_billing_page"</span>: <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"payment_sources"</span> : <span class="o">{</span>
     <span class="s2">"object"</span>: <span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[</span>
@@ -569,6 +606,7 @@ GET https://apiv2.octobat.com/customers/<span class="o">{</span>CUSTOMER_ID<span
   <span class="s2">"business_type"</span><span class="p">:</span> <span class="s2">"B2B"</span><span class="p">,</span>
   <span class="s2">"tax_number"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s2">"octobat_billing_page"</span><span class="p">:</span> <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"payment_sources"</span> <span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -625,6 +663,7 @@ PATCH https://apiv2.octobat.com/customers/<span class="o">{</span>CUSTOMER_ID<sp
   <span class="s2">"business_type"</span>: <span class="s2">"B2B"</span>,
   <span class="s2">"tax_number"</span>: null,
   <span class="s2">"octobat_billing_page"</span>: <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"payment_sources"</span> : <span class="o">{</span>
     <span class="s2">"object"</span>: <span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[</span>
@@ -673,6 +712,7 @@ PATCH https://apiv2.octobat.com/customers/<span class="o">{</span>CUSTOMER_ID<sp
   <span class="s2">"business_type"</span><span class="p">:</span> <span class="s2">"B2B"</span><span class="p">,</span>
   <span class="s2">"tax_number"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s2">"octobat_billing_page"</span><span class="p">:</span> <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"payment_sources"</span> <span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -775,6 +815,7 @@ GET https://apiv2.octobat.com/customers/
       <span class="s2">"business_type"</span>: <span class="s2">"B2B"</span>,
       <span class="s2">"tax_number"</span>: null,
       <span class="s2">"octobat_billing_page"</span>: <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span>,
+      <span class="s2">"sources"</span>: <span class="o">[]</span>,
       <span class="s2">"payment_sources"</span> : <span class="o">{</span>
         <span class="s2">"object"</span>: <span class="s2">"list"</span>,
         <span class="s2">"data"</span>: <span class="o">[</span>
@@ -829,6 +870,7 @@ GET https://apiv2.octobat.com/customers/
       <span class="s2">"business_type"</span><span class="p">:</span> <span class="s2">"B2B"</span><span class="p">,</span>
       <span class="s2">"tax_number"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
       <span class="s2">"octobat_billing_page"</span><span class="p">:</span> <span class="s2">"https://repo.octobat.com/c/1421878635hksc26e4de79"</span><span class="p">,</span>
+      <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
       <span class="s2">"payment_sources"</span> <span class="p">:</span> <span class="p">{</span>
         <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"list"</span><span class="p">,</span>
         <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -899,6 +941,7 @@ GET https://apiv2.octobat.com/customers/
   </span><span class="s2">"supplier_tax_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"legal_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
   </span><span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -924,6 +967,7 @@ GET https://apiv2.octobat.com/customers/
         </span><span class="s2">"gross_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">24278</span><span class="p">,</span><span class="w">
         </span><span class="s2">"declare_in_region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"item_exchange"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
@@ -1017,6 +1061,10 @@ GET https://apiv2.octobat.com/customers/
       <td><p>ID of the invoice cancelled and replaced by this invoice.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration&rsquo;s objects this invoice has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>items</strong><br/><span class="details">list</span></td>
       <td><p>Invoice items.</p></td>
     </tr>
@@ -1075,7 +1123,8 @@ POST https://www.octobat.com/api/invoices
   <span class="s2">"supplier_address_country"</span>: <span class="s2">"France"</span>,
   <span class="s2">"supplier_tax_number"</span>: null,
   <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
-  <span class="s2">"cancel_and_replace_invoice"</span>: null,
+  <span class="s2">"cancel_and_replace_invoice"</span>: null
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"items"</span>: <span class="o">{</span><span class="s2">"object"</span><span class="o">=</span>&gt;<span class="s2">"list"</span>, <span class="s2">"data"</span><span class="o">=</span>&gt;[]<span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -1134,6 +1183,7 @@ POST https://www.octobat.com/api/invoices
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"object"</span><span class="o">=&gt;</span><span class="s2">"list"</span><span class="p">,</span> <span class="s2">"data"</span><span class="o">=&gt;</span><span class="p">[]}</span>
 <span class="p">}</span>
 </code></pre>
@@ -1221,6 +1271,7 @@ PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<sp
   <span class="s2">"supplier_tax_number"</span>: null,
   <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
   <span class="s2">"cancel_and_replace_invoice"</span>: null,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"items"</span>: <span class="o">{</span><span class="s2">"object"</span><span class="o">=</span>&gt;<span class="s2">"list"</span>, <span class="s2">"data"</span><span class="o">=</span>&gt;[]<span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -1282,6 +1333,7 @@ PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<sp
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"object"</span><span class="o">=&gt;</span><span class="s2">"list"</span><span class="p">,</span> <span class="s2">"data"</span><span class="o">=&gt;</span><span class="p">[]}</span>
 <span class="p">}</span>
 </code></pre>
@@ -1396,6 +1448,7 @@ POST https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<spa
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -1420,6 +1473,7 @@ POST https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<spa
         <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
         <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
         <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
         <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
       <span class="p">},</span>
@@ -1492,6 +1546,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm <span
   <span class="s2">"supplier_tax_number"</span>: null,
   <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
   <span class="s2">"cancel_and_replace_invoice"</span>: null,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"items"</span>: <span class="o">{</span>
     <span class="s2">"object"</span>:<span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[</span>
@@ -1516,6 +1571,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm <span
         <span class="s2">"gross_amount"</span>: 24278,
         <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
         <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+        <span class="s2">"sources"</span>: <span class="o">[]</span>,
         <span class="s2">"item_exchange"</span>: null,
         <span class="s2">"item_workspace_currency_exchange"</span>: null
       <span class="o">}</span>,
@@ -1576,6 +1632,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm <span
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -1600,6 +1657,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm <span
         <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
         <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
         <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
         <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
       <span class="p">},</span>
@@ -1660,6 +1718,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel <span 
   <span class="s2">"supplier_tax_number"</span>: null,
   <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
   <span class="s2">"cancel_and_replace_invoice"</span>: null,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"items"</span>: <span class="o">{</span>
     <span class="s2">"object"</span>:<span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[</span>
@@ -1684,6 +1743,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel <span 
         <span class="s2">"gross_amount"</span>: 24278,
         <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
         <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+        <span class="s2">"sources"</span>: <span class="o">[]</span>,
         <span class="s2">"item_exchange"</span>: null,
         <span class="s2">"item_workspace_currency_exchange"</span>: null
       <span class="o">}</span>,
@@ -1744,6 +1804,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel <span 
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -1768,6 +1829,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel <span 
         <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
         <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
         <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
         <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
       <span class="p">},</span>
@@ -1829,6 +1891,7 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
   <span class="s2">"supplier_tax_number"</span>: null,
   <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
   <span class="s2">"cancel_and_replace_invoice"</span>: <span class="s2">"oc_in_1476088610jx98e4b8b8d3"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"items"</span>: <span class="o">{</span>
     <span class="s2">"object"</span>:<span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[</span>
@@ -1854,6 +1917,7 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
         <span class="s2">"gross_amount"</span>: 24278,
         <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
         <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+        <span class="s2">"sources"</span>: <span class="o">[]</span>,
         <span class="s2">"item_exchange"</span>: null,
         <span class="s2">"item_workspace_currency_exchange"</span>: null
       <span class="o">}</span>,
@@ -1913,6 +1977,7 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
   <span class="s2">"supplier_address_country"</span><span class="p">:</span> <span class="s2">"France"</span><span class="p">,</span>
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span> <span class="s2">"oc_in_1476088610jx98e4b8b8d3"</span><span class="p">,</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
@@ -1940,6 +2005,7 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
         <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
         <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
         <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
         <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
       <span class="p">},</span>
@@ -2046,6 +2112,7 @@ GET https://apiv2.octobat.com/invoices/
       <span class="s2">"supplier_address_country"</span>: <span class="s2">"France"</span>,
       <span class="s2">"supplier_tax_number"</span>: null,
       <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
+      <span class="s2">"sources"</span>: <span class="o">[]</span>,
       <span class="s2">"cancel_and_replace_invoice"</span>: null,
       <span class="s2">"items"</span>: <span class="o">{</span>
         <span class="s2">"object"</span>:<span class="s2">"list"</span>,
@@ -2071,6 +2138,7 @@ GET https://apiv2.octobat.com/invoices/
             <span class="s2">"gross_amount"</span>: 24278,
             <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
             <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+            <span class="s2">"sources"</span>: <span class="o">[]</span>,
             <span class="s2">"item_exchange"</span>: null,
             <span class="s2">"item_workspace_currency_exchange"</span>: null
           <span class="o">}</span>,
@@ -2143,6 +2211,7 @@ GET https://apiv2.octobat.com/invoices/
       <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
       <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
       <span class="s2">"cancel_and_replace_invoice"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+      <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
       <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
         <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -2167,6 +2236,7 @@ GET https://apiv2.octobat.com/invoices/
             <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
             <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
             <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+            <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
             <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
             <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
           <span class="p">},</span>
@@ -2256,6 +2326,7 @@ GET https://apiv2.octobat.com/invoices/
   </span><span class="s2">"supplier_address_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"France"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"supplier_tax_number"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
   </span><span class="s2">"legal_fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -2280,6 +2351,7 @@ GET https://apiv2.octobat.com/invoices/
         </span><span class="s2">"gross_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">24278</span><span class="p">,</span><span class="w">
         </span><span class="s2">"declare_in_region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FR"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="s2">"item_exchange"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
       </span><span class="p">},</span><span class="w">
@@ -2369,6 +2441,10 @@ GET https://apiv2.octobat.com/invoices/
       <td><p>Fields depending on the supplier country.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration&rsquo;s objects this credit note has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>items</strong><br/><span class="details">list</span></td>
       <td><p>Credit note items.</p></td>
     </tr>
@@ -2425,6 +2501,7 @@ POST https://www.octobat.com/api/credit_notes
   <span class="s2">"supplier_address_country"</span>: <span class="s2">"France"</span>,
   <span class="s2">"supplier_tax_number"</span>: null,
   <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"items"</span>: <span class="o">{</span>
     <span class="s2">"object"</span>:<span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[]</span>
@@ -2484,6 +2561,7 @@ POST https://www.octobat.com/api/credit_notes
   <span class="s2">"supplier_address_country"</span><span class="p">:</span> <span class="s2">"France"</span><span class="p">,</span>
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[]</span>
@@ -2571,6 +2649,7 @@ PATCH https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NO
   <span class="s2">"supplier_address_country"</span>: <span class="s2">"France"</span>,
   <span class="s2">"supplier_tax_number"</span>: <span class="s2">"FR60528551658"</span>,
   <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"items"</span>: <span class="o">{</span>
     <span class="s2">"object"</span>:<span class="s2">"list"</span>,
     <span class="s2">"data"</span>: <span class="o">[</span>
@@ -2595,6 +2674,7 @@ PATCH https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NO
         <span class="s2">"gross_amount"</span>: 24278,
         <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
         <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+        <span class="s2">"sources"</span>: <span class="o">[]</span>,
         <span class="s2">"item_exchange"</span>: null,
         <span class="s2">"item_workspace_currency_exchange"</span>: null
       <span class="o">}</span>,
@@ -2661,6 +2741,7 @@ PATCH https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NO
   <span class="s2">"supplier_address_country"</span><span class="p">:</span> <span class="s2">"France"</span><span class="p">,</span>
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="s2">"FR60528551658"</span><span class="p">,</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
     <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -2685,6 +2766,7 @@ PATCH https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NO
         <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
         <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
         <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
         <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
       <span class="p">},</span>
@@ -2803,6 +2885,7 @@ POST https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NOT
   <span class="s2">"supplier_address_zip"</span><span class="p">:</span> <span class="s2">"95120"</span><span class="p">,</span>
   <span class="s2">"supplier_address_country"</span><span class="p">:</span> <span class="s2">"France"</span><span class="p">,</span>
   <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="s2">"FR60528551658"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
   <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
@@ -2828,6 +2911,7 @@ POST https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NOT
         <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
         <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
         <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+        <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
         <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
       <span class="p">},</span>
@@ -2908,6 +2992,7 @@ GET https://apiv2.octobat.com/credit_notes/
       <span class="s2">"supplier_address_country"</span>: <span class="s2">"France"</span>,
       <span class="s2">"supplier_tax_number"</span>: null,
       <span class="s2">"legal_fields"</span>: <span class="o">{}</span>,
+      <span class="s2">"sources"</span>: <span class="o">[]</span>,
       <span class="s2">"items"</span>: <span class="o">{</span>
         <span class="s2">"object"</span>:<span class="s2">"list"</span>,
         <span class="s2">"data"</span>: <span class="o">[</span>
@@ -2932,6 +3017,7 @@ GET https://apiv2.octobat.com/credit_notes/
             <span class="s2">"gross_amount"</span>: 24278,
             <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
             <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+            <span class="s2">"sources"</span>: <span class="o">[]</span>,
             <span class="s2">"item_exchange"</span>: null,
             <span class="s2">"item_workspace_currency_exchange"</span>: null
           <span class="o">}</span>,
@@ -3001,6 +3087,7 @@ GET https://apiv2.octobat.com/credit_notes/
       <span class="s2">"supplier_address_country"</span><span class="p">:</span> <span class="s2">"France"</span><span class="p">,</span>
       <span class="s2">"supplier_tax_number"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
       <span class="s2">"legal_fields"</span><span class="p">:</span> <span class="p">{},</span>
+      <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
       <span class="s2">"items"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"object"</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
         <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
@@ -3025,6 +3112,7 @@ GET https://apiv2.octobat.com/credit_notes/
             <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
             <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
             <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+            <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
             <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
             <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="kp">nil</span>
           <span class="p">},</span>
@@ -3349,6 +3437,7 @@ POST https://api.octobat.com/tax_evidences
   </span><span class="s2">"gross_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">24278</span><span class="p">,</span><span class="w">
   </span><span class="s2">"declare_in_region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IT"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAT"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"sources"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
   </span><span class="s2">"item_exchange"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"exchange_rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8864</span><span class="p">,</span><span class="w">
     </span><span class="s2">"exchange_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-04-13T17:27:24.228Z"</span><span class="p">,</span><span class="w">
@@ -3449,6 +3538,10 @@ POST https://api.octobat.com/tax_evidences
       <td><p>The tax currency exchange rate information if relevant.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration&rsquo;s objects this item has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>item_workspace_currency_exchange</strong><br/><span class="details">hash</span></td>
       <td><p>The default workspace currency exchange information if relevant.</p></td>
     </tr>
@@ -3490,6 +3583,7 @@ POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
   <span class="s2">"gross_amount"</span>: 24278,
   <span class="s2">"declare_in_region"</span><span class="o">=</span>&gt;<span class="s2">"IT"</span>,
   <span class="s2">"tax"</span><span class="o">=</span>&gt;<span class="s2">"VAT"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"item_exchange"</span>: <span class="o">{</span>
     <span class="s2">"exchange_rate"</span>: 0.8864,
     <span class="s2">"exchange_date"</span>: <span class="s2">"2016-04-13T17:27:24.228Z"</span>,
@@ -3537,6 +3631,7 @@ POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
   <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
   <span class="s2">"declare_in_region"</span><span class="o">=&gt;</span><span class="s2">"IT"</span><span class="p">,</span>
   <span class="s2">"tax"</span><span class="o">=&gt;</span><span class="s2">"VAT"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"exchange_rate"</span><span class="p">:</span> <span class="mi">0</span><span class="o">.</span><span class="mi">8864</span><span class="p">,</span>
     <span class="s2">"exchange_date"</span><span class="p">:</span> <span class="s2">"2016-04-13T17:27:24.228Z"</span><span class="p">,</span>
@@ -3554,7 +3649,11 @@ POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
   <tbody>
     <tr class="first-row">
       <td class="attribute"><strong>unit_extratax_amount</strong><br/><span class="badge-warning">required</span></td>
-      <td><p>The unit price of the item without tax.</p></td>
+      <td><p>The unit price of the item without tax. Tax-included amount will be computed then. You can choose either to fill `unit_extratax_amount` or `unit_gross_amount` to fix the item price, but filling both will return an error</p></td>
+    </tr>
+    <tr class="first-row">
+      <td class="attribute"><strong>unit_gross_amount</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>The unit price of the item with tax included. Extratax amount will be computed then. You can choose either to fill `unit_extratax_amount` or `unit_gross_amount` to fix the item price, but filling both will return an error</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>currency</strong><br/><span class="badge-warning">required</span></td>
@@ -3615,6 +3714,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
   <span class="s2">"gross_amount"</span>: 24278,
   <span class="s2">"declare_in_region"</span><span class="o">=</span>&gt;<span class="s2">"IT"</span>,
   <span class="s2">"tax"</span><span class="o">=</span>&gt;<span class="s2">"VAT"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"item_exchange"</span>: <span class="o">{</span>
     <span class="s2">"exchange_rate"</span>: 0.8864,
     <span class="s2">"exchange_date"</span>: <span class="s2">"2016-04-13T17:27:24.228Z"</span>,
@@ -3666,6 +3766,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
   <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
   <span class="s2">"declare_in_region"</span><span class="o">=&gt;</span><span class="s2">"IT"</span><span class="p">,</span>
   <span class="s2">"tax"</span><span class="o">=&gt;</span><span class="s2">"VAT"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"exchange_rate"</span><span class="p">:</span> <span class="mi">0</span><span class="o">.</span><span class="mi">8864</span><span class="p">,</span>
     <span class="s2">"exchange_date"</span><span class="p">:</span> <span class="s2">"2016-04-13T17:27:24.228Z"</span><span class="p">,</span>
@@ -3715,6 +3816,7 @@ PATCH https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE
   <span class="s2">"gross_amount"</span>: 6100,
   <span class="s2">"declare_in_region"</span><span class="o">=</span>&gt;<span class="s2">"IT"</span>,
   <span class="s2">"tax"</span><span class="o">=</span>&gt;<span class="s2">"VAT"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>,
   <span class="s2">"item_exchange"</span>: null,
   <span class="s2">"item_workspace_currency_exchange"</span>: null
 <span class="o">}</span>
@@ -3762,6 +3864,7 @@ PATCH https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE
   <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">6100</span><span class="p">,</span>
   <span class="s2">"declare_in_region"</span><span class="o">=&gt;</span><span class="s2">"IT"</span><span class="p">,</span>
   <span class="s2">"tax"</span><span class="o">=&gt;</span><span class="s2">"VAT"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="n">null</span>
 <span class="p">}</span>
@@ -3829,6 +3932,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
       <span class="s2">"gross_amount"</span>: 24278,
       <span class="s2">"declare_in_region"</span>: <span class="s2">"IT"</span>,
       <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+      <span class="s2">"sources"</span>: <span class="o">[]</span>,
       <span class="s2">"item_exchange"</span>: <span class="o">{</span>
         <span class="s2">"exchange_rate"</span>: 0.8864,
         <span class="s2">"exchange_date"</span>: <span class="s2">"2016-04-13T17:27:24.228Z"</span>,
@@ -3890,6 +3994,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
       <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
       <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"IT"</span><span class="p">,</span>
       <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+      <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
       <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">"exchange_rate"</span><span class="p">:</span> <span class="mi">0</span><span class="o">.</span><span class="mi">8864</span><span class="p">,</span>
         <span class="s2">"exchange_date"</span><span class="p">:</span> <span class="s2">"2016-04-13T17:27:24.228Z"</span><span class="p">,</span>
@@ -3930,7 +4035,8 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
   <span class="s2">"transaction_date"</span>: <span class="s2">"2016-03-31T00:00:00.000Z"</span>,
   <span class="s2">"flow_type"</span>: <span class="s2">"payment"</span>,
   <span class="s2">"amount"</span>: 2500,
-  <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>
+  <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>
 <span class="o">}</span>
 </code></pre>
 <pre><code class="highlight ruby"><span class="p">{</span>
@@ -3946,7 +4052,8 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
   <span class="s2">"transaction_date"</span><span class="p">:</span> <span class="s2">"2016-03-31T00:00:00.000Z"</span><span class="p">,</span>
   <span class="s2">"flow_type"</span><span class="p">:</span> <span class="s2">"payment"</span><span class="p">,</span>
   <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span>
-  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span>
+  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[]</span>
 <span class="p">}</span>
 </code></pre>
 <h3 id='attributes'>Attributes</h3>
@@ -4001,6 +4108,10 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
       <td><p>The total amount that the customer has paid.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration&rsquo;s objects this transaction has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>currency</strong><br/><span class="details">string</span></td>
       <td><p>Three-letter ISO code representing the currency of the transaction.</p></td>
     </tr>
@@ -4035,7 +4146,8 @@ POST https://apiv2.octobat.com/transactions
   <span class="s2">"transaction_date"</span>: <span class="s2">"2016-03-31T00:00:00.000Z"</span>,
   <span class="s2">"flow_type"</span>: <span class="s2">"payment"</span>,
   <span class="s2">"amount"</span>: 2500,
-  <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>
+  <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>
 <span class="o">}</span>
 </code></pre>
 <pre><code class="highlight ruby"><span class="c1"># Example request</span>
@@ -4067,7 +4179,8 @@ POST https://apiv2.octobat.com/transactions
   <span class="s2">"transaction_date"</span><span class="p">:</span> <span class="s2">"2016-03-31T00:00:00.000Z"</span><span class="p">,</span>
   <span class="s2">"flow_type"</span><span class="p">:</span> <span class="s2">"payment"</span><span class="p">,</span>
   <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span>
-  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span>
+  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[]</span>
 <span class="p">}</span>
 </code></pre>
 <h3 id='arguments'>Arguments</h3>
@@ -4138,7 +4251,8 @@ GET https://apiv2.octobat.com/transactions/<span class="o">{</span>TRANSACTION_I
   <span class="s2">"transaction_date"</span>: <span class="s2">"2016-03-31T00:00:00.000Z"</span>,
   <span class="s2">"flow_type"</span>: <span class="s2">"payment"</span>,
   <span class="s2">"amount"</span>: 2500,
-  <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>
+  <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>,
+  <span class="s2">"sources"</span>: <span class="o">[]</span>
 <span class="o">}</span>
 </code></pre>
 <pre><code class="highlight ruby"><span class="c1"># Definition</span>
@@ -4164,7 +4278,8 @@ GET https://apiv2.octobat.com/transactions/<span class="o">{</span>TRANSACTION_I
   <span class="s2">"transaction_date"</span><span class="p">:</span> <span class="s2">"2016-03-31T00:00:00.000Z"</span><span class="p">,</span>
   <span class="s2">"flow_type"</span><span class="p">:</span> <span class="s2">"payment"</span><span class="p">,</span>
   <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span>
-  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span>
+  <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span><span class="p">,</span>
+  <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[]</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -4207,7 +4322,8 @@ GET https://apiv2.octobat.com/transactions/
       <span class="s2">"transaction_date"</span>: <span class="s2">"2016-03-31T00:00:00.000Z"</span>,
       <span class="s2">"flow_type"</span>: <span class="s2">"payment"</span>,
       <span class="s2">"amount"</span>: 1500,
-      <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>
+      <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>,
+      <span class="s2">"sources"</span>: <span class="o">[]</span>
     <span class="o">}</span>,
     <span class="o">{</span>...<span class="o">}</span>,
     <span class="o">{</span>...<span class="o">}</span>
@@ -4243,7 +4359,8 @@ GET https://apiv2.octobat.com/transactions/
       <span class="s2">"transaction_date"</span><span class="p">:</span> <span class="s2">"2016-03-31T00:00:00.000Z"</span><span class="p">,</span>
       <span class="s2">"flow_type"</span><span class="p">:</span> <span class="s2">"payment"</span><span class="p">,</span>
       <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">1500</span><span class="p">,</span>
-      <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span>
+      <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span><span class="p">,</span>
+      <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[]</span>
     <span class="p">},</span>
     <span class="c1">#&lt;Octobat::Transaction[...] ...&gt;,</span>
     <span class="c1">#&lt;Octobat::Transaction[...] ...&gt;</span>
