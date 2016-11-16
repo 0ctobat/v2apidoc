@@ -224,9 +224,17 @@ Like Stripe, Octobat uses cursor-based pagination using the parameter <code clas
 </tr>
 </tbody></table>
 <h1 id='source-objects'>Source objects</h1>
-<p>Potentially Synchronized objects —including Customer, Invoice, Credit Note, Item and Transaction— have a sources parameter.
-Sources references the external data this Octobat object has been created from. As an Octobat object may have been populated from several external objects, <code class="prettyprint">sources</code> is always represented as an array of JSON-encoded hashes - each nested hash being a single reference -.
-As an example, a customer created in Octobat from a Stripe customer includes a reference to this last one in the following form: <code class="prettyprint">{&#39;gateway&#39;: &#39;stripe&#39;, &#39;source_type&#39;: &#39;customer&#39;, &#39;identifier&#39;: &#39;cus_xxxxxxxx&#39;}</code>, so the full <code class="prettyprint">sources</code> attribute value would be: <code class="prettyprint">[{&#39;gateway&#39;: &#39;stripe&#39;, &#39;source_type&#39;: &#39;customer&#39;, &#39;identifier&#39;: &#39;cus_xxxxxxxx&#39;}]</code>.</p>
+<p>Potentially Synchronized objects —including Customer, Invoice, Credit Note, Item and Transaction— have a sources parameter.</p>
+
+<p>Sources references the external data this Octobat object has been created from. As an Octobat object may have been populated from several external objects, <code class="prettyprint">sources</code> is always represented as an array of JSON-encoded hashes - each nested hash being a single reference -.</p>
+
+<p>As an example, a customer created in Octobat from a Stripe customer includes a reference to this last one in the following form:</p>
+
+<p><code class="prettyprint">{&#39;gateway&#39;: &#39;stripe&#39;, &#39;source_type&#39;: &#39;customer&#39;, &#39;identifier&#39;: &#39;cus_xxxxxxxx&#39;}</code>,</p>
+
+<p>so the full <code class="prettyprint">sources</code> attribute value would be:</p>
+
+<p><code class="prettyprint">[{&#39;gateway&#39;: &#39;stripe&#39;, &#39;source_type&#39;: &#39;customer&#39;, &#39;identifier&#39;: &#39;cus_xxxxxxxx&#39;}]</code>.</p>
 
 <p>Nested JSON-encoded hashes have always the same structure with the following keys:</p>
 <h3 id='inner-sources-attributes'>Inner sources attributes</h3>
