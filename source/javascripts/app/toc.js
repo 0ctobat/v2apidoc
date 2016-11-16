@@ -23,7 +23,7 @@
     }).data('toc-tocify');
 
     $('<div class="menu-title1">TOPICS</div>').insertBefore('#tocify-header0');
-    $('<div class="menu-title2">RESOURCES</div>').insertBefore('#tocify-header6');
+    $('<div class="menu-title2">RESOURCES</div>').insertBefore('#tocify-header7');
 
     $("#nav-button").click(function() {
       $(".tocify-wrapper").toggleClass('open');
