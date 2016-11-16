@@ -42,6 +42,7 @@
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -66,6 +67,7 @@
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": null,
         "item_workspace_currency_exchange": null
       },
@@ -156,6 +158,10 @@
       <td><p>Fields depending on the supplier country.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration's objects this credit note has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>items</strong><br/><span class="details">list</span></td>
       <td><p>Credit note items.</p></td>
     </tr>
@@ -216,6 +222,7 @@ $ curl https://apiv2.octobat.com/credit_notes \
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
+  "sources": [],
   "items": {
     "object":"list",
     "data": []
@@ -278,6 +285,7 @@ Octobat::CreditNote.create(
   "supplier_address_country": "France",
   "supplier_tax_number": nil,
   "legal_fields": {},
+  "sources": [],
   "items": {
     "object":"list",
     "data": []
@@ -373,6 +381,7 @@ $ curl https://apiv2.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
   "supplier_address_country": "France",
   "supplier_tax_number": "FR60528551658",
   "legal_fields": {},
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -397,6 +406,7 @@ $ curl https://apiv2.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": null,
         "item_workspace_currency_exchange": null
       },
@@ -466,6 +476,7 @@ credit_note.save
   "supplier_address_country": "France",
   "supplier_tax_number": "FR60528551658",
   "legal_fields": {},
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -490,6 +501,7 @@ credit_note.save
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": nil,
         "item_workspace_currency_exchange": nil
       },
@@ -622,6 +634,7 @@ credit_note.send
   "supplier_address_zip": "95120",
   "supplier_address_country": "France",
   "supplier_tax_number": "FR60528551658",
+  "sources": [],
   "legal_fields": {},
   "items": {
     "object":"list",
@@ -647,6 +660,7 @@ credit_note.send
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": nil,
         "item_workspace_currency_exchange": nil
       },
@@ -739,6 +753,7 @@ $ curl https://apiv2.octobat.com/credit_notes \
       "supplier_address_country": "France",
       "supplier_tax_number": null,
       "legal_fields": {},
+      "sources": [],
       "items": {
         "object":"list",
         "data": [
@@ -763,6 +778,7 @@ $ curl https://apiv2.octobat.com/credit_notes \
             "gross_amount": 24278,
             "declare_in_region": "FR",
             "tax": "VAT",
+            "sources": [],
             "item_exchange": null,
             "item_workspace_currency_exchange": null
           },
@@ -835,6 +851,7 @@ Octobat::CreditNote.all(
       "supplier_address_country": "France",
       "supplier_tax_number": nil,
       "legal_fields": {},
+      "sources": [],
       "items": {
         "object":"list",
         "data": [
@@ -859,6 +876,7 @@ Octobat::CreditNote.all(
             "gross_amount": 24278,
             "declare_in_region": "FR",
             "tax": "VAT",
+            "sources": [],
             "item_exchange": nil,
             "item_workspace_currency_exchange": nil
           },

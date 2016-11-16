@@ -43,6 +43,7 @@
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -68,6 +69,7 @@
         "gross_amount": 24278,
         "declare_in_region": "IT",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": null,
         "item_workspace_currency_exchange": null
       },
@@ -162,6 +164,10 @@
       <td><p>ID of the invoice cancelled and replaced by this invoice.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration's objects this invoice has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>items</strong><br/><span class="details">list</span></td>
       <td><p>Invoice items.</p></td>
     </tr>
@@ -224,7 +230,8 @@ $ curl https://apiv2.octobat.com/invoices \
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
-  "cancel_and_replace_invoice": null,
+  "cancel_and_replace_invoice": null
+  "sources": [],
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -286,6 +293,7 @@ Octobat::Invoice.create(
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "sources": [],
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -382,6 +390,7 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "sources": [],
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -446,6 +455,7 @@ invoice.save
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "sources": [],
   "items": {"object"=>"list", "data"=>[]}
 }
 ```
@@ -572,6 +582,7 @@ invoice.send
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -596,6 +607,7 @@ invoice.send
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": nil,
         "item_workspace_currency_exchange": nil
       },
@@ -678,6 +690,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -702,6 +715,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": null,
         "item_workspace_currency_exchange": null
       },
@@ -765,6 +779,7 @@ invoice.confirm()
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -789,6 +804,7 @@ invoice.confirm()
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": nil,
         "item_workspace_currency_exchange": nil
       },
@@ -856,6 +872,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel \
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -880,6 +897,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel \
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": null,
         "item_workspace_currency_exchange": null
       },
@@ -943,6 +961,7 @@ invoice.cancel()
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -967,6 +986,7 @@ invoice.cancel()
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": nil,
         "item_workspace_currency_exchange": nil
       },
@@ -1037,6 +1057,7 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": "oc_in_1476088610jx98e4b8b8d3",
+  "sources": [],
   "items": {
     "object":"list",
     "data": [
@@ -1062,6 +1083,7 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": null,
         "item_workspace_currency_exchange": null
       },
@@ -1124,6 +1146,7 @@ invoice.cancel_and_replace()
   "supplier_address_country": "France",
   "supplier_tax_number": nil,
   "legal_fields": {},
+  "sources": [],
   "cancel_and_replace_invoice": "oc_in_1476088610jx98e4b8b8d3",
   "items": {
     "object":"list",
@@ -1151,6 +1174,7 @@ invoice.cancel_and_replace()
         "gross_amount": 24278,
         "declare_in_region": "FR",
         "tax": "VAT",
+        "sources": [],
         "item_exchange": nil,
         "item_workspace_currency_exchange": nil
       },
@@ -1282,6 +1306,7 @@ $ curl https://apiv2.octobat.com/invoices \
       "supplier_address_country": "France",
       "supplier_tax_number": null,
       "legal_fields": {},
+      "sources": [],
       "cancel_and_replace_invoice": null,
       "items": {
         "object":"list",
@@ -1307,6 +1332,7 @@ $ curl https://apiv2.octobat.com/invoices \
             "gross_amount": 24278,
             "declare_in_region": "FR",
             "tax": "VAT",
+            "sources": [],
             "item_exchange": null,
             "item_workspace_currency_exchange": null
           },
@@ -1382,6 +1408,7 @@ Octobat::Invoice.all(
       "supplier_tax_number": nil,
       "legal_fields": {},
       "cancel_and_replace_invoice": nil,
+      "sources": [],
       "items": {
         "object":"list",
         "data": [
@@ -1406,6 +1433,7 @@ Octobat::Invoice.all(
             "gross_amount": 24278,
             "declare_in_region": "FR",
             "tax": "VAT",
+            "sources": [],
             "item_exchange": nil,
             "item_workspace_currency_exchange": nil
           },

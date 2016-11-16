@@ -20,6 +20,7 @@
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [],
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -106,6 +107,10 @@ Customer objects are required to create other Octobat objects such as invoices o
       <td><p>The url of a page listing all customer's invoices, and where she can edit her billing details</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration's objects this customer has been created from</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>payment_sources</strong><br/><span class="details">json</span></td>
       <td><p>Contains a list of means of payment attached to the customer.</p></td>
     </tr>
@@ -150,6 +155,7 @@ $ curl https://apiv2.octobat.com/customers \
   "business_type": "B2B",
   "tax_number": "FR60528551658",
   "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [],
   "payment_sources" : {
     "object": "list",
     "data": []
@@ -193,6 +199,7 @@ Octobat::Customer.create(
   "business_type": "B2B",
   "tax_number": "FR60528551658",
   "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [],
   "payment_sources" : {
     "object": "list",
     "data": []
@@ -282,6 +289,7 @@ $ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [],
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -328,6 +336,7 @@ Octobat::Customer.retrieve("oc_cu_1421878635hksc26e4de79")
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [],
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -394,6 +403,7 @@ $ curl https://apiv2.octobat.com/customers/oc_cu_1421878635hksc26e4de79 \
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [],
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -444,6 +454,7 @@ customer.save
   "business_type": "B2B",
   "tax_number": null,
   "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+  "sources": [],
   "payment_sources" : {
     "object": "list",
     "data": [
@@ -554,6 +565,7 @@ $ curl https://apiv2.octobat.com/customers \
       "business_type": "B2B",
       "tax_number": null,
       "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+      "sources": [],
       "payment_sources" : {
         "object": "list",
         "data": [
@@ -610,6 +622,7 @@ Octobat::Customer.all
       "business_type": "B2B",
       "tax_number": null,
       "octobat_billing_page": "https://repo.octobat.com/c/1421878635hksc26e4de79",
+      "sources": [],
       "payment_sources" : {
         "object": "list",
         "data": [

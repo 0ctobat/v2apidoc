@@ -26,6 +26,7 @@ Either attached to a document or a transaction.
   "gross_amount": 24278,
   "declare_in_region": "IT",
   "tax": "VAT",
+  "sources": [],
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -127,6 +128,10 @@ Either attached to a document or a transaction.
       <td><p>The tax currency exchange rate information if relevant.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration's objects this item has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>item_workspace_currency_exchange</strong><br/><span class="details">hash</span></td>
       <td><p>The default workspace currency exchange information if relevant.</p></td>
     </tr>
@@ -175,6 +180,7 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
   "gross_amount": 24278,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
+  "sources": [],
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -224,6 +230,7 @@ invoice.items.create(
   "gross_amount": 24278,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
+  "sources": [],
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -242,7 +249,11 @@ invoice.items.create(
   <tbody>
     <tr class="first-row">
       <td class="attribute"><strong>unit_extratax_amount</strong><br/><span class="badge-warning">required</span></td>
-      <td><p>The unit price of the item without tax.</p></td>
+      <td><p>The unit price of the item without tax. Tax-included amount will be computed then. You can choose either to fill `unit_extratax_amount` or `unit_gross_amount` to fix the item price, but filling both will return an error</p></td>
+    </tr>
+    <tr class="first-row">
+      <td class="attribute"><strong>unit_gross_amount</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>The unit price of the item with tax included. Extratax amount will be computed then. You can choose either to fill `unit_extratax_amount` or `unit_gross_amount` to fix the item price, but filling both will return an error</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>currency</strong><br/><span class="badge-warning">required</span></td>
@@ -310,6 +321,7 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_
   "gross_amount": 24278,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
+  "sources": [],
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -363,6 +375,7 @@ invoice.items.retrieve("oc_it_1461938887kzsf607ad4cf")
   "gross_amount": 24278,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
+  "sources": [],
   "item_exchange": {
     "exchange_rate": 0.8864,
     "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -420,6 +433,7 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_
   "gross_amount": 6100,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
+  "sources": [],
   "item_exchange": null,
   "item_workspace_currency_exchange": null
 }
@@ -469,6 +483,7 @@ item.save
   "gross_amount": 6100,
   "declare_in_region"=>"IT",
   "tax"=>"VAT",
+  "sources": [],
   "item_exchange": null,
   "item_workspace_currency_exchange": null
 }
@@ -544,6 +559,7 @@ $ curl https://apiv2.octobat.com/transactions/oc_txn_1459936947icq9005f4668/item
       "gross_amount": 24278,
       "declare_in_region": "IT",
       "tax": "VAT",
+      "sources": [],
       "item_exchange": {
         "exchange_rate": 0.8864,
         "exchange_date": "2016-04-13T17:27:24.228Z",
@@ -607,6 +623,7 @@ transaction.items.all
       "gross_amount": 24278,
       "declare_in_region": "IT",
       "tax": "VAT",
+      "sources": [],
       "item_exchange": {
         "exchange_rate": 0.8864,
         "exchange_date": "2016-04-13T17:27:24.228Z",

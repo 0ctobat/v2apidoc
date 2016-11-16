@@ -205,6 +205,28 @@ Attribute | Type
 **has_before** | **boolean** Whether or not there are more elements available before this page. If `false`, this page is the beginning of the list.
 **total_count** | **boolean** The total count of all recipients that match your filters, as if there was no pagination.
 
+
+# Source objects
+Potentially Synchronized objects —including Customer, Invoice, Credit Note, Item and Transaction— have a sources parameter.
+Sources references the external data this Octobat object has been created from. As an Octobat object may have been populated from several external objects, `sources` is always represented as an array of JSON-encoded hashes - each nested hash being a single reference -.
+As an example, a customer created in Octobat from a Stripe customer includes a reference to this last one in the following form: `{'gateway': 'stripe', 'source_type': 'customer', 'identifier': 'cus_xxxxxxxx'}`, so the full `sources` attribute value would be: `[{'gateway': 'stripe', 'source_type': 'customer', 'identifier': 'cus_xxxxxxxx'}]`.
+
+Nested JSON-encoded hashes have always the same structure with the following keys:
+
+### Inner sources attributes
+Attribute | Type
+--------- | -----------
+**gateway** | **string**  The integration this object came from. Examples: `stripe`, `gocardless`
+**source_type** | **string** The platform object type. For instance, a Stripe payment is called: `charge`
+**identifier** | **string** The platform object identifier, that you can request on.
+
+
+Sources are always serialized and sent back upon API requests and webhooks.
+A common useful case is to link the payment platform charge or subscription object to the corresponding invoice or items created in Octobat.
+
+
+
+
 # Expandable objects
 
 ```shell

@@ -18,7 +18,8 @@ This is a transaction. It triggers when there is a payment or a refund.
   "transaction_date": "2016-03-31T00:00:00.000Z",
   "flow_type": "payment",
   "amount": 2500,
-  "currency": "EUR"
+  "currency": "EUR",
+  "sources": []
 }
 ```
 
@@ -36,7 +37,8 @@ This is a transaction. It triggers when there is a payment or a refund.
   "transaction_date": "2016-03-31T00:00:00.000Z",
   "flow_type": "payment",
   "amount": 2500,
-  "currency": "EUR"
+  "currency": "EUR",
+  "sources": []
 }
 ```
 
@@ -92,6 +94,10 @@ This is a transaction. It triggers when there is a payment or a refund.
       <td><p>The total amount that the customer has paid.</p></td>
     </tr>
     <tr>
+      <td class="attribute"><strong>sources</strong><br/><span class="details">array</span></td>
+      <td><p>References to the integration's objects this transaction has been created from.</p></td>
+    </tr>
+    <tr>
       <td class="attribute"><strong>currency</strong><br/><span class="details">string</span></td>
       <td><p>Three-letter ISO code representing the currency of the transaction.</p></td>
     </tr>
@@ -133,7 +139,8 @@ $ curl https://apiv2.octobat.com/transactions \
   "transaction_date": "2016-03-31T00:00:00.000Z",
   "flow_type": "payment",
   "amount": 2500,
-  "currency": "EUR"
+  "currency": "EUR",
+  "sources": []
 }
 ```
 
@@ -167,7 +174,8 @@ Octobat::Transaction.create(
   "transaction_date": "2016-03-31T00:00:00.000Z",
   "flow_type": "payment",
   "amount": 2500,
-  "currency": "EUR"
+  "currency": "EUR",
+  "sources": []
 }
 ```
 
@@ -246,7 +254,8 @@ $ curl https://apiv2.octobat.com/transactions/oc_txn_1459957855kw89e9c7e960 \
   "transaction_date": "2016-03-31T00:00:00.000Z",
   "flow_type": "payment",
   "amount": 2500,
-  "currency": "EUR"
+  "currency": "EUR",
+  "sources": []
 }
 ```
 
@@ -274,7 +283,8 @@ Octobat::Transaction.retrieve("oc_txn_1459957855kw89e9c7e960")
   "transaction_date": "2016-03-31T00:00:00.000Z",
   "flow_type": "payment",
   "amount": 2500,
-  "currency": "EUR"
+  "currency": "EUR",
+  "sources": []
 }
 ```
 
@@ -326,7 +336,8 @@ $ curl https://apiv2.octobat.com/transactions \
       "transaction_date": "2016-03-31T00:00:00.000Z",
       "flow_type": "payment",
       "amount": 1500,
-      "currency": "EUR"
+      "currency": "EUR",
+      "sources": []
     },
     {...},
     {...}
@@ -364,7 +375,8 @@ Octobat::Transaction.all
       "transaction_date": "2016-03-31T00:00:00.000Z",
       "flow_type": "payment",
       "amount": 1500,
-      "currency": "EUR"
+      "currency": "EUR",
+      "sources": []
     },
     #<Octobat::Transaction[...] ...>,
     #<Octobat::Transaction[...] ...>
