@@ -248,7 +248,7 @@ Octobat::TaxEvidence.create(
       <td><p>The sale mode is either <code>B2C</code> or <code>B2B</code>.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>product_type</strong><br/><span class="badge-warning">required</span></td>
+      <td class="attribute"><strong>product_type</strong><br/><span class="details">optional, default is your product_type setting.</span></td>
       <td><p>The product type is either <code>eservice</code>, <code>ebook</code> or <code>standard</code>.</p></td>
     </tr>
     <tr>
