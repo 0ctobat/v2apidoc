@@ -1057,7 +1057,7 @@ GET https://apiv2.octobat.com/customers/
   </tbody>
 </table>
 <h2 id='create-an-invoice'>Create an invoice</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-POST https://www.octobat.com/api/invoices
+POST https://apiv2.octobat.com/invoices
 
 <span class="c"># Example request</span>
 <span class="gp">$ </span>curl https://apiv2.octobat.com/invoices <span class="se">\</span>
@@ -1114,7 +1114,7 @@ POST https://www.octobat.com/api/invoices
   <span class="s2">"items"</span>: <span class="o">{</span><span class="s2">"object"</span><span class="o">=</span>&gt;<span class="s2">"list"</span>, <span class="s2">"data"</span><span class="o">=</span>&gt;[]<span class="o">}</span>
 <span class="o">}</span>
 </code></pre><pre class="highlight ruby"><code><span class="c1"># Definition</span>
-<span class="no">POST</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">www</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">invoices</span>
+<span class="no">POST</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">apiv2</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">invoices</span>
 
 <span class="c1"># Example request</span>
 <span class="o">&gt;&gt;</span> <span class="nb">require</span> <span class="s2">"octobat"</span>
@@ -1205,7 +1205,7 @@ POST https://www.octobat.com/api/invoices
 <h3 id='returns'>Returns</h3>
 <p>Returns the full invoice object if the creation succeeded. Returns an error if parameters are invalid</p>
 <h2 id='update-a-draft-invoice'>Update a draft invoice</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>
+PATCH https://apiv2.octobat.com/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>
 
 <span class="c"># Example request</span>
 <span class="gp">$ </span>curl https://apiv2.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a <span class="se">\</span>
@@ -1371,7 +1371,7 @@ PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<sp
 <h3 id='returns'>Returns</h3>
 <p>Returns the full invoice object if the update succeeded. Returns an error if the invoice has already been sent by email and is no longer updatable, or if the update fails</p>
 <h2 id='send-by-email'>Send by email</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-POST https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/send
+POST https://apiv2.octobat.com/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/send
 
 <span class="c"># Example request</span>
 
@@ -1479,7 +1479,7 @@ POST https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<spa
 <h3 id='returns'>Returns</h3>
 <p>Returns the full invoice object if the sending succeeded. Returns an error if the invoice customer email is empty or if the invoice hasn&rsquo;t a confirmed status.</p>
 <h2 id='confirm-a-draft-invoice'>Confirm a draft invoice</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/confirm
+PATCH https://apiv2.octobat.com/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/confirm
 
 <span class="c"># Example request</span>
 curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm <span class="se">\</span>
@@ -1649,7 +1649,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm <span
 <p>After creating a draft invoice and adding invoice items, you have to confirm it before sending it to the customer. At least one item must have attached to the invoice.
 Returns the full invoice object if the update succeeded. Returns an error if update parameters are invalid.</p>
 <h2 id='cancel-a-confirmed-invoice'>Cancel a confirmed invoice</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/cancel
+PATCH https://apiv2.octobat.com/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/cancel
 
 <span class="c"># Example request</span>
 curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel <span class="se">\</span>
@@ -1820,7 +1820,7 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel <span 
 <h3 id='returns'>Returns</h3>
 <p>Returns the full invoice object if the update succeeded. Returns an error if update parameters are invalid.</p>
 <h2 id='cancel-and-replace-a-confirmed-invoice'>Cancel and replace a confirmed invoice</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/cancel_and_replace
+PATCH https://apiv2.octobat.com/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>/cancel_and_replace
 
 <span class="c"># Example request</span>
 curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_replace <span class="se">\</span>
@@ -1994,7 +1994,7 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
 <h3 id='returns'>Returns</h3>
 <p>Returns the full &lsquo;draft&rsquo; new invoice object if the cancel and replace succeeded. Returns an error if the cancel and replace action is not possible.</p>
 <h2 id='delete-a-draft-invoice'>Delete a draft invoice</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-PATCH https://www.octobat.com/api/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>
+PATCH https://apiv2.octobat.com/invoices/<span class="o">{</span>INVOICE_ID<span class="o">}</span>
 
 <span class="c"># Example request</span>
 curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a <span class="se">\</span>
@@ -2124,7 +2124,7 @@ GET https://apiv2.octobat.com/invoices/
   <span class="o">]</span>
 <span class="o">}</span>
 </code></pre><pre class="highlight ruby"><code><span class="c1"># Definition</span>
-<span class="no">GET</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">www</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">invoices</span>
+<span class="no">GET</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">apiv2</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">invoices</span>
 
 <span class="c1"># Example request</span>
 <span class="o">&gt;&gt;</span> <span class="nb">require</span> <span class="s2">"octobat"</span>
@@ -2420,7 +2420,7 @@ GET https://apiv2.octobat.com/invoices/
   </tbody>
 </table>
 <h2 id='create-a-credit-note'>Create a credit note</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-POST https://www.octobat.com/api/credit_notes
+POST https://apiv2.octobat.com/credit_notes
 
 <span class="c"># Example request</span>
 <span class="gp">$ </span>curl https://apiv2.octobat.com/credit_notes <span class="se">\</span>
@@ -2477,7 +2477,7 @@ POST https://www.octobat.com/api/credit_notes
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre><pre class="highlight ruby"><code><span class="c1"># Definition</span>
-<span class="no">POST</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">www</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">credit_notes</span>
+<span class="no">POST</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">apiv2</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">credit_notes</span>
 
 <span class="c1"># Example request</span>
 <span class="o">&gt;&gt;</span> <span class="nb">require</span> <span class="s2">"octobat"</span>
@@ -2567,7 +2567,7 @@ POST https://www.octobat.com/api/credit_notes
 <h3 id='returns'>Returns</h3>
 <p>Returns the full credit note object if the creation succeeded. Returns an error if parameters are invalid.</p>
 <h2 id='update-a-credit-note'>Update a credit note</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-PATCH https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NOTE_ID<span class="o">}</span>
+PATCH https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_ID<span class="o">}</span>
 
 <span class="c"># Example request</span>
 <span class="gp">$ </span>curl https://apiv2.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 <span class="se">\</span>
@@ -2793,7 +2793,7 @@ PATCH https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NO
 <h3 id='returns'>Returns</h3>
 <p>Returns the full credit note object if the update succeeded. Returns an error if the credit note has already been sent by email and is no longer updatable, or if the update fails.</p>
 <h2 id='send-by-email'>Send by email</h2><pre class="highlight shell"><code><span class="c"># Definition</span>
-POST https://www.octobat.com/api/credit_notes/<span class="o">{</span>CREDIT_NOTE_ID<span class="o">}</span>/send
+POST https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_ID<span class="o">}</span>/send
 
 <span class="c"># Example request</span>
 
@@ -2994,7 +2994,7 @@ GET https://apiv2.octobat.com/credit_notes/
   <span class="o">]</span>
 <span class="o">}</span>
 </code></pre><pre class="highlight ruby"><code><span class="c1"># Definition</span>
-<span class="no">GET</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">www</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">credit_notes</span>
+<span class="no">GET</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">apiv2</span><span class="p">.</span><span class="nf">octobat</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">credit_notes</span>
 
 <span class="c1"># Example request</span>
 <span class="o">&gt;&gt;</span> <span class="nb">require</span> <span class="s2">"octobat"</span>
@@ -3239,9 +3239,9 @@ GET https://apiv2.octobat.com/credit_notes/
   </tbody>
 </table>
 <h2 id='create-a-tax-evidence'>Create a tax evidence</h2><pre class="highlight plaintext"><code># Definition
-POST https://api.octobat.com/tax_evidences
+POST https://apiv2.octobat.com/tax_evidences
 </code></pre><pre class="highlight shell"><code><span class="c"># Example Request</span>
-<span class="gp">$ </span>curl https://api.octobat.com/tax_evidences <span class="se">\</span>
+<span class="gp">$ </span>curl https://apiv2.octobat.com/tax_evidences <span class="se">\</span>
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: <span class="se">\</span>
    -d <span class="nv">customer</span><span class="o">=</span><span class="s2">"oc_cu_14760321296p4b6e6f113e"</span> <span class="se">\</span>
    -d <span class="nv">product_type</span><span class="o">=</span><span class="s2">"eservice"</span> <span class="se">\</span>
@@ -3367,9 +3367,9 @@ POST https://api.octobat.com/tax_evidences
 <h3 id='returns'>Returns</h3>
 <p>Returns the tax evidence object if the creation succeeds. Returns an error if parameters are invalid.</p>
 <h2 id='request-a-tax-evidence'>Request a tax evidence</h2><pre class="highlight plaintext"><code># Definition
-POST https://api.octobat.com/tax_evidence_requests
+POST https://apiv2.octobat.com/tax_evidence_requests
 </code></pre><pre class="highlight shell"><code><span class="c"># Example Request</span>
-<span class="gp">$ </span>curl https://api.octobat.com/tax_evidence_requests <span class="se">\</span>
+<span class="gp">$ </span>curl https://apiv2.octobat.com/tax_evidence_requests <span class="se">\</span>
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: <span class="se">\</span>
    -d <span class="nv">customer_billing_address_country</span><span class="o">=</span><span class="s2">"FR"</span> <span class="se">\</span>
    -d <span class="nv">ip_address</span><span class="o">=</span>8.8.8.8
