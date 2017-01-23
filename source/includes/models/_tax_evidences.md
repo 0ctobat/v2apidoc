@@ -296,13 +296,13 @@ $ curl https://api.octobat.com/tax_evidence_requests \
   "tax_zone": "EU",
   "declare_in_region": "FR",
   "applied_rate": 20.0,
-  "tax_details": {
-    "rate": "21.0",
+  "tax_details": [{
+    "rate": "20.0",
     "tax": "VAT",
     "name": "FR",
     "type": "country",
     "reduced": false
-  },
+  }],
   "tax_id_validation": null,
   "supplier_evidence": {
     "zip": "94080",
@@ -362,9 +362,13 @@ Octobat::TaxEvidenceRequest.create(
   "tax_zone": "EU",
   "declare_in_region": "FR",
   "applied_rate": 20.0,
-  "tax_details": [
-    ""
-  ],
+  "tax_details": [{
+    "rate": "20.0",
+    "tax": "VAT",
+    "name": "FR",
+    "type": "country",
+    "reduced": false
+  }],
   "tax_id_validation": nil,
   "supplier_evidence": {
     "zip": "",
