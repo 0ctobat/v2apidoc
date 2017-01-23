@@ -172,7 +172,7 @@
 
 ```shell
 # Definition
-POST https://www.octobat.com/api/credit_notes
+POST https://apiv2.octobat.com/credit_notes
 
 # Example request
 $ curl https://apiv2.octobat.com/credit_notes \
@@ -233,7 +233,7 @@ $ curl https://apiv2.octobat.com/credit_notes \
 
 ```ruby
 # Definition
-POST https://www.octobat.com/api/credit_notes
+POST https://apiv2.octobat.com/credit_notes
 
 # Example request
 >> require "octobat"
@@ -332,7 +332,7 @@ Returns the full credit note object if the creation succeeded. Returns an error 
 ## Update a credit note
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/credit_notes/{CREDIT_NOTE_ID}
+PATCH https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}
 
 # Example request
 $ curl https://apiv2.octobat.com/credit_notes/oc_cn_1462279788aw2y99365ac5 \
@@ -572,7 +572,7 @@ Returns the full credit note object if the update succeeded. Returns an error if
 ## Send by email
 ```shell
 # Definition
-POST https://www.octobat.com/api/credit_notes/{CREDIT_NOTE_ID}/send
+POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/send
 
 # Example request
 
@@ -796,7 +796,7 @@ $ curl https://apiv2.octobat.com/credit_notes \
 
 ```ruby
 # Definition
-GET https://www.octobat.com/api/credit_notes
+GET https://apiv2.octobat.com/credit_notes
 
 # Example request
 >> require "octobat"

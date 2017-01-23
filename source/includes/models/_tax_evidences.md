@@ -124,12 +124,12 @@ Permit tax automation.
 
 ```
 # Definition
-POST https://api.octobat.com/tax_evidences
+POST https://apiv2.octobat.com/tax_evidences
 ```
 
 ```shell
 # Example Request
-$ curl https://api.octobat.com/tax_evidences \
+$ curl https://apiv2.octobat.com/tax_evidences \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer="oc_cu_14760321296p4b6e6f113e" \
    -d product_type="eservice" \
@@ -270,12 +270,12 @@ Returns the tax evidence object if the creation succeeds. Returns an error if pa
 
 ```
 # Definition
-POST https://api.octobat.com/tax_evidence_requests
+POST https://apiv2.octobat.com/tax_evidence_requests
 ```
 
 ```shell
 # Example Request
-$ curl https://api.octobat.com/tax_evidence_requests \
+$ curl https://apiv2.octobat.com/tax_evidence_requests \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer_billing_address_country="FR" \
    -d ip_address=8.8.8.8
