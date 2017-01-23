@@ -3390,13 +3390,13 @@ POST https://api.octobat.com/tax_evidence_requests
   <span class="s2">"tax_zone"</span>: <span class="s2">"EU"</span>,
   <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
   <span class="s2">"applied_rate"</span>: 20.0,
-  <span class="s2">"tax_details"</span>: <span class="o">{</span>
-    <span class="s2">"rate"</span>: <span class="s2">"21.0"</span>,
+  <span class="s2">"tax_details"</span>: <span class="o">[{</span>
+    <span class="s2">"rate"</span>: <span class="s2">"20.0"</span>,
     <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
     <span class="s2">"name"</span>: <span class="s2">"FR"</span>,
     <span class="s2">"type"</span>: <span class="s2">"country"</span>,
     <span class="s2">"reduced"</span>: <span class="nb">false</span>
-  <span class="o">}</span>,
+  <span class="o">}]</span>,
   <span class="s2">"tax_id_validation"</span>: null,
   <span class="s2">"supplier_evidence"</span>: <span class="o">{</span>
     <span class="s2">"zip"</span>: <span class="s2">"94080"</span>,
@@ -3453,9 +3453,13 @@ POST https://api.octobat.com/tax_evidence_requests
   <span class="s2">"tax_zone"</span><span class="p">:</span> <span class="s2">"EU"</span><span class="p">,</span>
   <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
   <span class="s2">"applied_rate"</span><span class="p">:</span> <span class="mi">20</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span>
-  <span class="s2">"tax_details"</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">""</span>
-  <span class="p">],</span>
+  <span class="s2">"tax_details"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">"rate"</span><span class="p">:</span> <span class="s2">"20.0"</span><span class="p">,</span>
+    <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"country"</span><span class="p">,</span>
+    <span class="s2">"reduced"</span><span class="p">:</span> <span class="kp">false</span>
+  <span class="p">}],</span>
   <span class="s2">"tax_id_validation"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"supplier_evidence"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
