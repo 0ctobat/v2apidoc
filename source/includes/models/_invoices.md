@@ -1471,11 +1471,11 @@ Returns a list of invoices.
       <td><p>Ending before an invoice id.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[gte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>invoice_date[gte]</strong><br/><span class="details">optional</span></td>
       <td><p>Greater than or equal to a date.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[lte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>invoice_date[lte]</strong><br/><span class="details">optional</span></td>
       <td><p>Lower than or equal to a date.</p></td>
     </tr>
   </tbody>

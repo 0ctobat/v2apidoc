@@ -16,6 +16,7 @@ Either attached to a document or a transaction.
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type": "eservice",
   "sale_mode": "B2C",
+  "discountable": true,
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -82,6 +83,10 @@ Either attached to a document or a transaction.
     <tr>
       <td class="attribute"><strong>sale_mode</strong><br/><span class="details">string</span></td>
       <td><p>Depending on your client if it is a consumer or a business.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>discountable</strong><br/><span class="details">boolean</span></td>
+      <td><p>Is it discountable or not?</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>description</strong><br/><span class="details">string</span></td>
@@ -170,6 +175,7 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items \
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type"=>"eservice",
   "sale_mode"=>"B2C",
+  "discountable"=>true,
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -218,8 +224,9 @@ invoice.items.create(
   "invoice": "oc_in_14619363114yke51e2ce5f",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-  "product_type"=>"eservice",
-  "sale_mode"=>"B2C",
+  "product_type":"eservice",
+  "sale_mode":"B2C",
+  "discountable":true,
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -229,7 +236,7 @@ invoice.items.create(
   "tax_amount": 4378,
   "gross_amount": 24278,
   "declare_in_region"=>"IT",
-  "tax"=>"VAT",
+  "tax":"VAT",
   "sources": [],
   "item_exchange": {
     "exchange_rate": 0.8864,
@@ -311,6 +318,7 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_14619363114yke51e2ce5f/items/oc_
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type"=>"eservice",
   "sale_mode"=>"B2C",
+  "discountable"=>true,
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -365,6 +373,7 @@ invoice.items.retrieve("oc_it_1461938887kzsf607ad4cf")
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type"=>"eservice",
   "sale_mode"=>"B2C",
+  "discountable":true,
   "description": "Entreprise Plan",
   "unit_extratax_amount": 19900,
   "currency": "USD",
@@ -423,6 +432,7 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_1462181488gsc8cf8fafbd/items/oc_
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
   "product_type"=>"eservice",
   "sale_mode"=>"B2C",
+  "discountable"=>true,
   "description": "Entreprise Plan",
   "unit_extratax_amount": 1000,
   "currency": "EUR",
@@ -465,14 +475,15 @@ item.save
 #<Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a> JSON: {
   "id": "oc_it_14621841535d5d3284b1a2",
   "object": "item",
-  "status"=>"draft",
+  "status":"draft",
   "confirmed_on": nil,
   "transaction": nil,
   "invoice": "oc_in_1462181488gsc8cf8fafbd",
   "credit_note": nil,
   "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-  "product_type"=>"eservice",
-  "sale_mode"=>"B2C",
+  "product_type":"eservice",
+  "sale_mode":"B2C",
+  "discountable":true,
   "description": "Entreprise Plan",
   "unit_extratax_amount": 1000,
   "currency": "EUR",
@@ -481,8 +492,8 @@ item.save
   "tax_rate": 22.0,
   "tax_amount": 1100,
   "gross_amount": 6100,
-  "declare_in_region"=>"IT",
-  "tax"=>"VAT",
+  "declare_in_region":"IT",
+  "tax":"VAT",
   "sources": [],
   "item_exchange": null,
   "item_workspace_currency_exchange": null
@@ -549,6 +560,7 @@ $ curl https://apiv2.octobat.com/transactions/oc_txn_1459936947icq9005f4668/item
       "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
       "product_type": "eservice",
       "sale_mode": "B2C",
+      "discountable":true,
       "description": "Entreprise Plan",
       "unit_extratax_amount": 19900,
       "currency": "USD",
@@ -613,6 +625,7 @@ transaction.items.all
       "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
       "product_type": "eservice",
       "sale_mode": "B2C",
+      "discountable":true,
       "description": "Entreprise Plan",
       "unit_extratax_amount": 19900,
       "currency": "USD",

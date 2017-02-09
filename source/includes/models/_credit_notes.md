@@ -914,11 +914,11 @@ Returns a list of credit notes.
       <td><p>Ending before an credit note id.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[gte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>credit_note_date[gte]</strong><br/><span class="details">optional</span></td>
       <td><p>Greater than or equal to a date.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[lte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>credit_note_date[lte]</strong><br/><span class="details">optional</span></td>
       <td><p>Lower than or equal to a date.</p></td>
     </tr>
   </tbody>
