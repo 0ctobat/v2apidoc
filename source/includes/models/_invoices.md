@@ -178,7 +178,7 @@
 
 ```shell
 # Definition
-POST https://www.octobat.com/api/invoices
+POST https://apiv2.octobat.com/invoices
 
 # Example request
 $ curl https://apiv2.octobat.com/invoices \
@@ -239,7 +239,7 @@ $ curl https://apiv2.octobat.com/invoices \
 
 ```ruby
 # Definition
-POST https://www.octobat.com/api/invoices
+POST https://apiv2.octobat.com/invoices
 
 # Example request
 >> require "octobat"
@@ -340,7 +340,7 @@ Returns the full invoice object if the creation succeeded. Returns an error if p
 ## Update a draft invoice
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}
+PATCH https://apiv2.octobat.com/invoices/{INVOICE_ID}
 
 # Example request
 $ curl https://apiv2.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
@@ -520,7 +520,7 @@ Returns the full invoice object if the update succeeded. Returns an error if the
 ## Send by email
 ```shell
 # Definition
-POST https://www.octobat.com/api/invoices/{INVOICE_ID}/send
+POST https://apiv2.octobat.com/invoices/{INVOICE_ID}/send
 
 # Example request
 
@@ -643,7 +643,7 @@ Returns the full invoice object if the sending succeeded. Returns an error if th
 ## Confirm a draft invoice
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/confirm
+PATCH https://apiv2.octobat.com/invoices/{INVOICE_ID}/confirm
 
 # Example request
 curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
@@ -825,7 +825,7 @@ Returns the full invoice object if the update succeeded. Returns an error if upd
 ## Cancel a confirmed invoice
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/cancel
+PATCH https://apiv2.octobat.com/invoices/{INVOICE_ID}/cancel
 
 # Example request
 curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel \
@@ -1010,7 +1010,7 @@ Returns the full invoice object if the update succeeded. Returns an error if upd
 ## Cancel and replace a confirmed invoice
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}/cancel_and_replace
+PATCH https://apiv2.octobat.com/invoices/{INVOICE_ID}/cancel_and_replace
 
 # Example request
 curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_replace \
@@ -1197,7 +1197,7 @@ Returns the full 'draft' new invoice object if the cancel and replace succeeded.
 ## Delete a draft invoice
 ```shell
 # Definition
-PATCH https://www.octobat.com/api/invoices/{INVOICE_ID}
+PATCH https://apiv2.octobat.com/invoices/{INVOICE_ID}
 
 # Example request
 curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
@@ -1350,7 +1350,7 @@ $ curl https://apiv2.octobat.com/invoices \
 
 ```ruby
 # Definition
-GET https://www.octobat.com/api/invoices
+GET https://apiv2.octobat.com/invoices
 
 # Example request
 >> require "octobat"
