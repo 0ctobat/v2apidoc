@@ -2242,11 +2242,11 @@ GET https://apiv2.octobat.com/invoices/
       <td><p>Ending before an invoice id.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[gte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>invoice_date[gte]</strong><br/><span class="details">optional</span></td>
       <td><p>Greater than or equal to a date.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[lte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>invoice_date[lte]</strong><br/><span class="details">optional</span></td>
       <td><p>Lower than or equal to a date.</p></td>
     </tr>
   </tbody>
@@ -3109,11 +3109,11 @@ GET https://apiv2.octobat.com/credit_notes/
       <td><p>Ending before an credit note id.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[gte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>credit_note_date[gte]</strong><br/><span class="details">optional</span></td>
       <td><p>Greater than or equal to a date.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>date[lte]</strong><br/><span class="details">optional</span></td>
+      <td class="attribute"><strong>credit_note_date[lte]</strong><br/><span class="details">optional</span></td>
       <td><p>Lower than or equal to a date.</p></td>
     </tr>
   </tbody>
@@ -3564,6 +3564,7 @@ POST https://apiv2.octobat.com/tax_evidence_requests
   </span><span class="s2">"tax_evidence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oc_tev_1460565379am3be8f5ef71"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"product_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eservice"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sale_mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B2C"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"discountable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Entreprise Plan"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"unit_extratax_amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">19900</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USD"</span><span class="p">,</span><span class="w">
@@ -3628,6 +3629,10 @@ POST https://apiv2.octobat.com/tax_evidence_requests
     <tr>
       <td class="attribute"><strong>sale_mode</strong><br/><span class="details">string</span></td>
       <td><p>Depending on your client if it is a consumer or a business.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>discountable</strong><br/><span class="details">boolean</span></td>
+      <td><p>Is it discountable or not?</p></td>
     </tr>
     <tr>
       <td class="attribute"><strong>description</strong><br/><span class="details">string</span></td>
@@ -3708,6 +3713,7 @@ POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
   <span class="s2">"tax_evidence"</span>: <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span>,
   <span class="s2">"product_type"</span><span class="o">=</span>&gt;<span class="s2">"eservice"</span>,
   <span class="s2">"sale_mode"</span><span class="o">=</span>&gt;<span class="s2">"B2C"</span>,
+  <span class="s2">"discountable"</span><span class="o">=</span>&gt;true,
   <span class="s2">"description"</span>: <span class="s2">"Entreprise Plan"</span>,
   <span class="s2">"unit_extratax_amount"</span>: 19900,
   <span class="s2">"currency"</span>: <span class="s2">"USD"</span>,
@@ -3753,8 +3759,9 @@ POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
   <span class="s2">"invoice"</span><span class="p">:</span> <span class="s2">"oc_in_14619363114yke51e2ce5f"</span><span class="p">,</span>
   <span class="s2">"credit_note"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"tax_evidence"</span><span class="p">:</span> <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span><span class="p">,</span>
-  <span class="s2">"product_type"</span><span class="o">=&gt;</span><span class="s2">"eservice"</span><span class="p">,</span>
-  <span class="s2">"sale_mode"</span><span class="o">=&gt;</span><span class="s2">"B2C"</span><span class="p">,</span>
+  <span class="s2">"product_type"</span><span class="ss">:"eservice"</span><span class="p">,</span>
+  <span class="s2">"sale_mode"</span><span class="ss">:"B2C"</span><span class="p">,</span>
+  <span class="s2">"discountable"</span><span class="ss">:true</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Entreprise Plan"</span><span class="p">,</span>
   <span class="s2">"unit_extratax_amount"</span><span class="p">:</span> <span class="mi">19900</span><span class="p">,</span>
   <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -3764,7 +3771,7 @@ POST https://apiv2.octobat.com/credit_notes/{CREDIT_NOTE_ID}/items
   <span class="s2">"tax_amount"</span><span class="p">:</span> <span class="mi">4378</span><span class="p">,</span>
   <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">24278</span><span class="p">,</span>
   <span class="s2">"declare_in_region"</span><span class="o">=&gt;</span><span class="s2">"IT"</span><span class="p">,</span>
-  <span class="s2">"tax"</span><span class="o">=&gt;</span><span class="s2">"VAT"</span><span class="p">,</span>
+  <span class="s2">"tax"</span><span class="ss">:"VAT"</span><span class="p">,</span>
   <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">"exchange_rate"</span><span class="p">:</span> <span class="mi">0</span><span class="o">.</span><span class="mi">8864</span><span class="p">,</span>
@@ -3837,6 +3844,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
   <span class="s2">"tax_evidence"</span>: <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span>,
   <span class="s2">"product_type"</span><span class="o">=</span>&gt;<span class="s2">"eservice"</span>,
   <span class="s2">"sale_mode"</span><span class="o">=</span>&gt;<span class="s2">"B2C"</span>,
+  <span class="s2">"discountable"</span><span class="o">=</span>&gt;true,
   <span class="s2">"description"</span>: <span class="s2">"Entreprise Plan"</span>,
   <span class="s2">"unit_extratax_amount"</span>: 19900,
   <span class="s2">"currency"</span>: <span class="s2">"USD"</span>,
@@ -3888,6 +3896,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
   <span class="s2">"tax_evidence"</span><span class="p">:</span> <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span><span class="p">,</span>
   <span class="s2">"product_type"</span><span class="o">=&gt;</span><span class="s2">"eservice"</span><span class="p">,</span>
   <span class="s2">"sale_mode"</span><span class="o">=&gt;</span><span class="s2">"B2C"</span><span class="p">,</span>
+  <span class="s2">"discountable"</span><span class="ss">:true</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Entreprise Plan"</span><span class="p">,</span>
   <span class="s2">"unit_extratax_amount"</span><span class="p">:</span> <span class="mi">19900</span><span class="p">,</span>
   <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
@@ -3937,6 +3946,7 @@ PATCH https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE
   <span class="s2">"tax_evidence"</span>: <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span>,
   <span class="s2">"product_type"</span><span class="o">=</span>&gt;<span class="s2">"eservice"</span>,
   <span class="s2">"sale_mode"</span><span class="o">=</span>&gt;<span class="s2">"B2C"</span>,
+  <span class="s2">"discountable"</span><span class="o">=</span>&gt;true,
   <span class="s2">"description"</span>: <span class="s2">"Entreprise Plan"</span>,
   <span class="s2">"unit_extratax_amount"</span>: 1000,
   <span class="s2">"currency"</span>: <span class="s2">"EUR"</span>,
@@ -3976,14 +3986,15 @@ PATCH https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE
 <span class="c1">#&lt;Octobat::Item id=oc_it_1460568443g3wu6b48fc3e 0x00000a&gt; JSON: {</span>
   <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"oc_it_14621841535d5d3284b1a2"</span><span class="p">,</span>
   <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"item"</span><span class="p">,</span>
-  <span class="s2">"status"</span><span class="o">=&gt;</span><span class="s2">"draft"</span><span class="p">,</span>
+  <span class="s2">"status"</span><span class="ss">:"draft"</span><span class="p">,</span>
   <span class="s2">"confirmed_on"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"transaction"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"invoice"</span><span class="p">:</span> <span class="s2">"oc_in_1462181488gsc8cf8fafbd"</span><span class="p">,</span>
   <span class="s2">"credit_note"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
   <span class="s2">"tax_evidence"</span><span class="p">:</span> <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span><span class="p">,</span>
-  <span class="s2">"product_type"</span><span class="o">=&gt;</span><span class="s2">"eservice"</span><span class="p">,</span>
-  <span class="s2">"sale_mode"</span><span class="o">=&gt;</span><span class="s2">"B2C"</span><span class="p">,</span>
+  <span class="s2">"product_type"</span><span class="ss">:"eservice"</span><span class="p">,</span>
+  <span class="s2">"sale_mode"</span><span class="ss">:"B2C"</span><span class="p">,</span>
+  <span class="s2">"discountable"</span><span class="ss">:true</span><span class="p">,</span>
   <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Entreprise Plan"</span><span class="p">,</span>
   <span class="s2">"unit_extratax_amount"</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
   <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"EUR"</span><span class="p">,</span>
@@ -3992,8 +4003,8 @@ PATCH https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE
   <span class="s2">"tax_rate"</span><span class="p">:</span> <span class="mi">22</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span>
   <span class="s2">"tax_amount"</span><span class="p">:</span> <span class="mi">1100</span><span class="p">,</span>
   <span class="s2">"gross_amount"</span><span class="p">:</span> <span class="mi">6100</span><span class="p">,</span>
-  <span class="s2">"declare_in_region"</span><span class="o">=&gt;</span><span class="s2">"IT"</span><span class="p">,</span>
-  <span class="s2">"tax"</span><span class="o">=&gt;</span><span class="s2">"VAT"</span><span class="p">,</span>
+  <span class="s2">"declare_in_region"</span><span class="ss">:"IT"</span><span class="p">,</span>
+  <span class="s2">"tax"</span><span class="ss">:"VAT"</span><span class="p">,</span>
   <span class="s2">"sources"</span><span class="p">:</span> <span class="p">[],</span>
   <span class="s2">"item_exchange"</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
   <span class="s2">"item_workspace_currency_exchange"</span><span class="p">:</span> <span class="n">null</span>
@@ -4051,6 +4062,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
       <span class="s2">"tax_evidence"</span>: <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span>,
       <span class="s2">"product_type"</span>: <span class="s2">"eservice"</span>,
       <span class="s2">"sale_mode"</span>: <span class="s2">"B2C"</span>,
+      <span class="s2">"discountable"</span>:true,
       <span class="s2">"description"</span>: <span class="s2">"Entreprise Plan"</span>,
       <span class="s2">"unit_extratax_amount"</span>: 19900,
       <span class="s2">"currency"</span>: <span class="s2">"USD"</span>,
@@ -4112,6 +4124,7 @@ GET https://apiv2.octobat.com/credit_notes/<span class="o">{</span>CREDIT_NOTE_I
       <span class="s2">"tax_evidence"</span><span class="p">:</span> <span class="s2">"oc_tev_1460565379am3be8f5ef71"</span><span class="p">,</span>
       <span class="s2">"product_type"</span><span class="p">:</span> <span class="s2">"eservice"</span><span class="p">,</span>
       <span class="s2">"sale_mode"</span><span class="p">:</span> <span class="s2">"B2C"</span><span class="p">,</span>
+      <span class="s2">"discountable"</span><span class="ss">:true</span><span class="p">,</span>
       <span class="s2">"description"</span><span class="p">:</span> <span class="s2">"Entreprise Plan"</span><span class="p">,</span>
       <span class="s2">"unit_extratax_amount"</span><span class="p">:</span> <span class="mi">19900</span><span class="p">,</span>
       <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span><span class="p">,</span>
