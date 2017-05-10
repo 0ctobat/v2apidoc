@@ -693,7 +693,7 @@ Returns the full credit note object if the sending succeeded. Returns an error i
 
 
 ## Record a refund
-You can record a refund linked to a credit note creating a transaction with the credit note ID. Go to <a href="http://localhost:4567/#create-a-transaction">Record a refund</a>.
+You can record a refund linked to a credit note creating a transaction with the credit note ID. Go to <a href="http://v2apidoc.octobat.com/#create-a-transaction">Record a refund</a>.
 
 
 
