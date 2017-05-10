@@ -1244,7 +1244,7 @@ Returns an object with a deleted parameter on success. If the invoice ID does no
 
 
 ## Record a payment
-You can record a payment linked to an invoice creating a transaction with the invoice ID. Go to <a href="http://localhost:4567/#create-a-transaction">Record a payment</a>.
+You can record a payment linked to an invoice creating a transaction with the invoice ID. Go to <a href="http://v2apidoc.octobat.com/#create-a-transaction">Record a payment</a>.
 
 
 
