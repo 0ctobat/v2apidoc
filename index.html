@@ -882,6 +882,15 @@ GET https://apiv2.octobat.com/customers/
 <span class="p">}</span>
 </code></pre>
 <p>Returns a list of your customers.</p>
+<h3 id='arguments'>Arguments</h3>
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>source</strong><br/><span class="details">optional</span></td>
+      <td><p>Stripe Customer ID</p></td>
+    </tr>
+  </tbody>
+</table>
 <h3 id='returns'>Returns</h3>
 <p>A hash with a data property that contains an array of customers. Each entry in the array is a separate customer object. If no customers are available, the resulting array will be empty. This request should never raise an error.</p>
 
