@@ -650,5 +650,15 @@ Octobat::Customer.all
 
 Returns a list of your customers.
 
+### Arguments
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>source</strong><br/><span class="details">optional</span></td>
+      <td><p>Stripe Customer ID</p></td>
+    </tr>
+  </tbody>
+</table>
+
 ### Returns
 A hash with a data property that contains an array of customers. Each entry in the array is a separate customer object. If no customers are available, the resulting array will be empty. This request should never raise an error.

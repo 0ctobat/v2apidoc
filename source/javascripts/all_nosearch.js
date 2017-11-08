@@ -3,6 +3,8 @@
 //= stub ./app/search.js
 //= stub ./lib/lunr.js
 
+
+
 $(window).scroll(function() {
   var height = $(window).scrollTop();
 

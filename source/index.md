@@ -12,19 +12,19 @@ includes:
 
   - models/_invoices.md
   - models/_credit_notes.md
-  
+
   - models/_tax_evidences.md
   - models/_items.md
-  
+
   - models/_transactions.md
-  
+
   - models/_payment_recipients.md
   - models/_payment_sources.md
 
   - models/_invoice_numbering_sequences.md
   - models/_credit_note_numbering_sequences.md
 
-  
+
 
 
 search: false
