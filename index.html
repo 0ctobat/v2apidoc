@@ -3375,6 +3375,186 @@ POST https://apiv2.octobat.com/tax_evidences
 </table>
 <h3 id='returns'>Returns</h3>
 <p>Returns the tax evidence object if the creation succeeds. Returns an error if parameters are invalid.</p>
+<h2 id='request-a-tax-evidence'>Request a tax evidence</h2><pre class="highlight plaintext"><code># Definition
+POST https://apiv2.octobat.com/tax_evidence_requests
+</code></pre><pre class="highlight shell"><code><span class="c"># Example Request</span>
+<span class="gp">$ </span>curl https://apiv2.octobat.com/tax_evidence_requests <span class="se">\</span>
+   -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: <span class="se">\</span>
+   -d <span class="nv">customer_billing_address_country</span><span class="o">=</span><span class="s2">"FR"</span> <span class="se">\</span>
+   -d <span class="nv">ip_address</span><span class="o">=</span>8.8.8.8
+   -d <span class="nv">payment_source_type</span><span class="o">=</span>card
+   -d <span class="nv">payment_source_prefix</span><span class="o">=</span>497209
+   -d <span class="nv">payment_source_country</span><span class="o">=</span>FR
+   -d <span class="nv">transaction_date</span><span class="o">=</span> <span class="s2">"2016-10-09"</span>
+
+<span class="c"># Example response</span>
+<span class="o">{</span>
+  <span class="s2">"id"</span>: <span class="s2">"oc_tev_1476028202copc58f93027"</span>,
+  <span class="s2">"object"</span>: <span class="s2">"tax_evidence"</span>,
+  <span class="s2">"livemode"</span>: <span class="nb">false</span>,
+  <span class="s2">"sale_mode"</span>: <span class="s2">"B2C"</span>,
+  <span class="s2">"product_type"</span>: <span class="s2">"eservice"</span>,
+  <span class="s2">"tax_enabled"</span>: <span class="nb">false</span>,
+  <span class="s2">"tax"</span>: 1,
+  <span class="s2">"tax_zone"</span>: <span class="s2">"EU"</span>,
+  <span class="s2">"declare_in_region"</span>: <span class="s2">"FR"</span>,
+  <span class="s2">"applied_rate"</span>: 20.0,
+  <span class="s2">"tax_details"</span>: <span class="o">[{</span>
+    <span class="s2">"rate"</span>: <span class="s2">"20.0"</span>,
+    <span class="s2">"tax"</span>: <span class="s2">"VAT"</span>,
+    <span class="s2">"name"</span>: <span class="s2">"FR"</span>,
+    <span class="s2">"type"</span>: <span class="s2">"country"</span>,
+    <span class="s2">"reduced"</span>: <span class="nb">false</span>
+  <span class="o">}]</span>,
+  <span class="s2">"tax_id_validation"</span>: null,
+  <span class="s2">"supplier_evidence"</span>: <span class="o">{</span>
+    <span class="s2">"zip"</span>: <span class="s2">"94080"</span>,
+    <span class="s2">"state"</span>: <span class="s2">"California"</span>,
+    <span class="s2">"country"</span>: <span class="s2">"US"</span>
+  <span class="o">}</span>,
+  <span class="s2">"supplier_localization"</span>: <span class="o">{</span>
+    <span class="s2">"zip"</span>: <span class="s2">"94080"</span>,
+    <span class="s2">"state"</span>: <span class="s2">"California"</span>,
+    <span class="s2">"country"</span>: <span class="s2">"US"</span>
+  <span class="o">}</span>,
+  <span class="s2">"customer_evidence"</span>: <span class="o">{</span>
+    <span class="s2">"tax_id"</span>: null,
+    <span class="s2">"billing"</span>: <span class="o">{</span>
+      <span class="s2">"zip"</span>: null,
+      <span class="s2">"state"</span>: null,
+      <span class="s2">"country"</span>: <span class="s2">"FR"</span>
+    <span class="o">}</span>,
+    <span class="s2">"ip"</span>: <span class="o">{</span>
+      <span class="s2">"address"</span>: <span class="s2">"8.8.8.8"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"US"</span>
+    <span class="o">}</span>,
+    <span class="s2">"payment_source"</span>: <span class="o">{</span>
+      <span class="s2">"type"</span>: <span class="s2">"card"</span>,
+      <span class="s2">"prefix"</span>: <span class="s2">"497209"</span>,
+      <span class="s2">"country"</span>: <span class="s2">"FR"</span>
+    <span class="o">}</span>
+  <span class="o">}</span>,
+  <span class="s2">"customer_localization"</span>: <span class="o">{</span>
+    <span class="s2">"country"</span>: <span class="s2">"FR"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre><pre class="highlight ruby"><code><span class="c1"># Example request</span>
+<span class="o">&gt;&gt;</span> <span class="nb">require</span> <span class="s2">"octobat"</span>
+<span class="no">Octobat</span><span class="p">.</span><span class="nf">api_key</span> <span class="o">=</span> <span class="s2">"oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"</span>
+
+<span class="no">Octobat</span><span class="o">::</span><span class="no">TaxEvidenceRequest</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
+  <span class="ss">customer_billing_address_country: </span><span class="s2">"FR"</span><span class="p">,</span>
+  <span class="ss">ip_address: </span><span class="s2">"8.8.8.8"</span><span class="p">,</span>
+  <span class="ss">payment_source_prefix: </span><span class="s2">"card"</span><span class="p">,</span>
+  <span class="ss">payment_source_prefix: </span><span class="s2">"497209"</span><span class="p">,</span>
+  <span class="ss">payment_source_country: </span><span class="s2">"FR"</span>
+<span class="p">)</span>
+
+<span class="c1"># Example response</span>
+<span class="c1">#&lt;Octobat::TaxEvidence id=oc_tev_1476028202copc58f93027 0x00000a&gt; JSON: {</span>
+  <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"oc_tev_1476028202copc58f93027"</span><span class="p">,</span>
+  <span class="s2">"object"</span><span class="p">:</span> <span class="s2">"tax_evidence"</span><span class="p">,</span>
+  <span class="s2">"livemode"</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span>
+  <span class="s2">"sale_mode"</span><span class="p">:</span> <span class="s2">"B2C"</span><span class="p">,</span>
+  <span class="s2">"product_type"</span><span class="p">:</span> <span class="s2">"eservice"</span><span class="p">,</span>
+  <span class="s2">"tax_enabled"</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+  <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+  <span class="s2">"tax_zone"</span><span class="p">:</span> <span class="s2">"EU"</span><span class="p">,</span>
+  <span class="s2">"declare_in_region"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
+  <span class="s2">"applied_rate"</span><span class="p">:</span> <span class="mi">20</span><span class="o">.</span><span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"tax_details"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">"rate"</span><span class="p">:</span> <span class="s2">"20.0"</span><span class="p">,</span>
+    <span class="s2">"tax"</span><span class="p">:</span> <span class="s2">"VAT"</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"FR"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"country"</span><span class="p">,</span>
+    <span class="s2">"reduced"</span><span class="p">:</span> <span class="kp">false</span>
+  <span class="p">}],</span>
+  <span class="s2">"tax_id_validation"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+  <span class="s2">"supplier_evidence"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"state"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"FR"</span>
+  <span class="p">},</span>
+  <span class="s2">"supplier_localization"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"state"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"FR"</span>
+  <span class="p">},</span>
+  <span class="s2">"customer_evidence"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"tax_id"</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span>
+    <span class="s2">"billing"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"zip"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+      <span class="s2">"state"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"FR"</span>
+    <span class="p">},</span>
+    <span class="s2">"ip"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"address"</span><span class="p">:</span> <span class="s2">"8.8.8.8"</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"FR"</span>
+    <span class="p">},</span>
+    <span class="s2">"payment_source"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"card"</span><span class="p">,</span>
+      <span class="s2">"prefix"</span><span class="p">:</span> <span class="s2">"497209"</span><span class="p">,</span>
+      <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"FR"</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">"customer_localization"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"country"</span><span class="p">:</span> <span class="s2">"FR"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre><h3 id='use-cases'>Use cases</h3>
+<p>If you want to compute an automatic tax calculation to display the tax rates for a given transaction before it is actually performed, or if the customer doesn&rsquo;t exist yet in Octobat, you can request a tax evidence from Octobat giving the useful evidence parameters such as customer&rsquo;s billing address, IP address, tax number, or payment source prefix/country.</p>
+<h3 id='arguments'>Arguments</h3>
+<table>
+  <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>customer_billing_address_zip</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The customer&rsquo;s billing address zipcode.</p></td>
+    </tr>
+    <tr class="first-row">
+      <td class="attribute"><strong>customer_billing_address_state</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The customer&rsquo;s billing address state.</p></td>
+    </tr>
+    <tr class="first-row">
+      <td class="attribute"><strong>customer_billing_address_country</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The customer&rsquo;s billing address country.</p></td>
+    </tr>
+    <tr class="first-row">
+      <td class="attribute"><strong>customer_tax_number</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The customer&rsquo;s tax number (VAT id in EU).</p></td>
+    </tr>
+    <tr class="first-row">
+      <td class="attribute"><strong>customer_business_type</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>Possible values: <code>B2B</code> or <code>B2C</code>. Use it to hardcode the automatic business type detection</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>product_type</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The product type is either <code>eservice</code>, <code>ebook</code> or <code>standard</code>. Defaults to the settings default product type.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>ip_address</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The IP address used by the customer when making the purchase. Can be formatted as an IPv4 or IPv6.</p></td>
+    </tr>
+    
+    <tr>
+      <td class="attribute"><strong>payment_source_type</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The payment source type used to perform the transaction. Possible values: <code>card</code> or <code>bank account</code> or <code>other</code>.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>payment_source_prefix</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>The credit card first 6 digits or IBAN/Bank account prefix. Used as an evidence to detect the payment source country</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>payment_source_country</strong><br/><span class="badge-warning">optional</span></td>
+      <td><p>Fill it if you know where this payment source is from.</p></td>
+    </tr>
+    <tr>
+      <td class="attribute"><strong>transaction_date</strong><br/><span class="details">optional</span></td>
+      <td><p>Date.</p></td>
+    </tr>
+  </tbody>
+</table>
+<h3 id='returns'>Returns</h3>
+<p>Returns the tax evidence object if the creation succeeds. Returns an error if parameters are invalid.</p>
 <h2 id='request-a-tax-evidence-for-a-supplier'>Request a tax evidence for a supplier</h2><pre class="highlight plaintext"><code># Definition
 POST https://apiv2.octobat.com/tax_evidence_requests/for_supplier
 </code></pre><pre class="highlight shell"><code><span class="c"># Example Request</span>
