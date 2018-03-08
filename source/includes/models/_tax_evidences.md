@@ -266,11 +266,11 @@ Returns the tax evidence object if the creation succeeds. Returns an error if pa
 
 
 
-## Request a tax evidence
+## Request a tax evidence for a supplier
 
 ```
 # Definition
-POST https://apiv2.octobat.com/tax_evidence_requests
+POST https://apiv2.octobat.com/tax_evidence_requests/for_supplier
 ```
 
 ```shell
@@ -278,6 +278,7 @@ POST https://apiv2.octobat.com/tax_evidence_requests
 $ curl https://apiv2.octobat.com/tax_evidence_requests \
    -u oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt: \
    -d customer_billing_address_country="FR" \
+   -d supplier_billing_address_country="FR" \
    -d ip_address=8.8.8.8
    -d payment_source_type=card
    -d payment_source_prefix=497209
@@ -305,14 +306,14 @@ $ curl https://apiv2.octobat.com/tax_evidence_requests \
   }],
   "tax_id_validation": null,
   "supplier_evidence": {
-    "zip": "94080",
-    "state": "California",
-    "country": "US"
+    "zip": "",
+    "state": "",
+    "country": "FR"
   },
   "supplier_localization": {
-    "zip": "94080",
-    "state": "California",
-    "country": "US"
+    "zip": "",
+    "state": "",
+    "country": "FR"
   },
   "customer_evidence": {
     "tax_id": null,
@@ -344,6 +345,7 @@ Octobat.api_key = "oc_test_skey_tkHCYYOUVrYyY5rBFZxNzgtt"
 
 Octobat::TaxEvidenceRequest.create(
   customer_billing_address_country: "FR",
+  supplier_billing_address_country: "FR",
   ip_address: "8.8.8.8",
   payment_source_prefix: "card",
   payment_source_prefix: "497209",
@@ -404,11 +406,15 @@ Octobat::TaxEvidenceRequest.create(
 ```
 
 ### Use cases
-If you want to compute an automatic tax calculation to display the tax rates for a given transaction before it is actually performed, or if the customer doesn't exist yet in Octobat, you can request a tax evidence from Octobat giving the useful evidence parameters such as customer's billing address, IP address, tax number, or payment source prefix/country.
+If you want to compute an automatic tax calculation for a specific supplier's location, to display the tax rates for a given transaction before it is actually performed, or if the customer doesn't exist yet in Octobat. You can request a tax evidence from Octobat giving the useful evidence parameters such as customer's billing address, IP address, tax number, or payment source prefix/country, and of course, the supplier's billing address.
 
 ### Arguments
 <table>
   <tbody>
+    <tr class="first-row">
+      <td class="attribute"><strong>supplier_billing_address_country</strong><br/><span class="badge-warning">required</span></td>
+      <td><p>The supplier's billing address country.</p></td>
+    </tr>
     <tr class="first-row">
       <td class="attribute"><strong>customer_billing_address_zip</strong><br/><span class="badge-warning">optional</span></td>
       <td><p>The customer's billing address zipcode.</p></td>
