@@ -12,12 +12,17 @@
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69"],
-  "pdf_file_url": null,
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a.pdf",
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "paid",
   "status": "confirmed",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":699,
+  "unpaid_amount_cents":0,
   "email_sent": false,
   "last_sent_at": null,
   "notes": "",
@@ -43,40 +48,11 @@
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "replaced_by":null,
   "sources": [],
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "confirmed",
-        "confirmed_on": "2016-04-26",
-        "transaction": null,
-        "transaction": null,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": null,
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "product_type": "eservice",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "IT",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": null,
-        "item_workspace_currency_exchange": null
-      },
-      {...},
-      {...}
-    ]
-  }
+  "metadata": {},
+  "document_currency_exchange":null,
+  "items_count":1
 }
 ```
 
@@ -168,8 +144,8 @@
       <td><p>References to the integration's objects this invoice has been created from.</p></td>
     </tr>
     <tr>
-      <td class="attribute"><strong>items</strong><br/><span class="details">list</span></td>
-      <td><p>Invoice items.</p></td>
+      <td class="attribute"><strong>metadata</strong><br/><span class="details">json</span></td>
+      <td><p>Metadata for this invoice object.</p></td>
     </tr>
   </tbody>
 </table>
@@ -206,6 +182,11 @@ $ curl https://apiv2.octobat.com/invoices \
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "draft",
+  "total_extratax_amount":0,
+  "total_tax_amount":0,
+  "total_gross_amount":0,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":0,
   "email_sent": false,
   "last_sent_at": null,
   "notes": "",
@@ -230,9 +211,12 @@ $ curl https://apiv2.octobat.com/invoices \
   "supplier_address_country": "France",
   "supplier_tax_number": null,
   "legal_fields": {},
-  "cancel_and_replace_invoice": null
+  "cancel_and_replace_invoice": null,
+  "replaced_by": null,
   "sources": [],
-  "items": {"object"=>"list", "data"=>[]}
+  "metadata": {},
+  "document_currency_exchange":null,
+  "items_count": 0
 }
 ```
 
@@ -268,6 +252,11 @@ Octobat::Invoice.create(
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "draft",
+  "total_extratax_amount":0,
+  "total_tax_amount":0,
+  "total_gross_amount":0,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":0,
   "email_sent": false,
   "last_sent_at": nil,
   "notes": "",
@@ -293,8 +282,11 @@ Octobat::Invoice.create(
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "replaced_by": nil,
   "sources": [],
-  "items": {"object"=>"list", "data"=>[]}
+  "metadata": {},
+  "document_currency_exchange": nil,
+  "items_count": 0
 }
 ```
 
@@ -365,6 +357,11 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "draft",
+  "total_extratax_amount":0,
+  "total_tax_amount":0,
+  "total_gross_amount":0,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":0,
   "email_sent": false,
   "last_sent_at": null,
   "notes": "",
@@ -390,8 +387,11 @@ $ curl https://apiv2.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a \
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "replaced_by": null,
   "sources": [],
-  "items": {"object"=>"list", "data"=>[]}
+  "metadata": {},
+  "document_currency_exchange": null,
+  "items_count":0
 }
 ```
 
@@ -430,6 +430,11 @@ invoice.save
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "draft",
+  "total_extratax_amount":0,
+  "total_tax_amount":0,
+  "total_gross_amount":0,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":0,
   "email_sent": false,
   "last_sent_at": nil,
   "notes": "",
@@ -455,8 +460,11 @@ invoice.save
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "replaced_by": nil,
   "sources": [],
-  "items": {"object"=>"list", "data"=>[]}
+  "metadata": {},
+  "document_currency_exchange": nil,
+  "items_count":0
 }
 ```
 
@@ -551,12 +559,17 @@ invoice.send
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": "https://www.octobat.com/invoices/oc_in_14234251141rdhb20d40fe.pdf",
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_14234251141rdhb20d40fe.pdf",
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "confirmed",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":699,
   "email_sent": true,
   "last_sent_at": "2016-08-17T16:01:37Z",
   "notes": "",
@@ -581,40 +594,12 @@ invoice.send
   "supplier_address_country": "France",
   "supplier_tax_number": nil,
   "legal_fields": {},
-  "cancel_and_replace_invoice": nil,
+  "cancel_and_replace_invoice": nil
+  "replaced_by": nil
   "sources": [],
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "confirmed",
-        "confirmed_on": "2016-08-12",
-        "transaction": nil,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": nil,
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "product_type": "eservice",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "FR",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": nil,
-        "item_workspace_currency_exchange": nil
-      },
-      {...},
-      {...}
-    ]
-  }
+  "metadata": {},
+  "document_currency_exchange": nil,
+  "items_count":1
 }
 ```
 
@@ -659,12 +644,17 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": null,
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a.pdf",
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "confirmed",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":699,
   "email_sent": false,
   "last_sent_at": null,
   "notes": "",
@@ -690,39 +680,11 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/confirm \
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "replaced_by": null,
   "sources": [],
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "confirmed",
-        "confirmed_on": "2016-04-26",
-        "transaction": null,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": null,
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "product_type": "eservice",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "FR",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": null,
-        "item_workspace_currency_exchange": null
-      },
-      {...},
-      {...}
-    ]
-  }
+  "metadata": {},
+  "document_currency_exchange": null,
+  "items_count":1
 }
 ```
 
@@ -748,12 +710,17 @@ invoice.confirm()
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": nil,
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a.pdf",
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "confirmed",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":699,
   "email_sent": false,
   "last_sent_at": nil,
   "notes": "",
@@ -779,39 +746,11 @@ invoice.confirm()
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "replaced_by": nil,
   "sources": [],
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "confirmed",
-        "confirmed_on": "2016-04-26",
-        "transaction": nil,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": nil,
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "product_type": "eservice",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "FR",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": nil,
-        "item_workspace_currency_exchange": nil
-      },
-      {...},
-      {...}
-    ]
-  }
+  "metadata": {},
+  "document_currency_exchange": nil,
+  "items_count":1  
 }
 ```
 
@@ -841,12 +780,17 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel \
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": null,
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a.pdf",
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "cancelled",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":699,
   "email_sent": false,
   "last_sent_at": null,
   "notes": "",
@@ -872,39 +816,11 @@ curl https://www.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a/cancel \
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": null,
+  "replaced_by": nil,
   "sources": [],
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "cancelled",
-        "confirmed_on": "2016-04-26",
-        "transaction": null,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": null,
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "product_type": "eservice",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "FR",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": null,
-        "item_workspace_currency_exchange": null
-      },
-      {...},
-      {...}
-    ]
-  }
+  "metadata": {},
+  "document_currency_exchange": null,
+  "items_count":1
 }
 ```
 
@@ -930,12 +846,17 @@ invoice.cancel()
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": nil,
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a.pdf",
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "unpaid",
-  "status": "cancelled",
+  "status": "draft",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":699,
   "email_sent": false,
   "last_sent_at": nil,
   "notes": "",
@@ -961,39 +882,11 @@ invoice.cancel()
   "supplier_tax_number": nil,
   "legal_fields": {},
   "cancel_and_replace_invoice": nil,
+  "replaced_by": nil,
   "sources": [],
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "cancelled",
-        "confirmed_on": "2016-04-26",
-        "transaction": nil,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": nil,
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "product_type": "eservice",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "FR",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": nil,
-        "item_workspace_currency_exchange": nil
-      },
-      {...},
-      {...}
-    ]
-  }
+  "metadata": {},
+  "document_currency_exchange": nil,
+  "items_count":1
 }
 ```
 
@@ -1026,12 +919,17 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": null,
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a.pdf"
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "unpaid",
-  "status": "draft",
+  "status": "cancelled",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":699,
   "email_sent": false,
   "last_sent_at": null,
   "notes": "",
@@ -1057,40 +955,11 @@ curl https://www.octobat.com/invoices/oc_in_1476088610jx98e4b8b8d3/cancel_and_re
   "supplier_tax_number": null,
   "legal_fields": {},
   "cancel_and_replace_invoice": "oc_in_1476088610jx98e4b8b8d3",
+  "replaced_by": null,
   "sources": [],
-  "items": {
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "draft",
-        "confirmed_on": null,
-        "customer": "oc_cu_1459413729au6o6a9ae061",
-        "transaction": null,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": null,
-        "product_type": "standard",
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "FR",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": null,
-        "item_workspace_currency_exchange": null
-      },
-      {...},
-      {...}
-    ]
-  }
+  "metadata": {},
+  "document_currency_exchange": null,
+  "items_count":1
 }
 ```
 
@@ -1116,12 +985,17 @@ invoice.cancel_and_replace()
   "invoice_numbering_sequence": "oc_ns_146192091741t5175c8c47",
   "document_template": "oc_dt_14611418085kha558d6ddf",
   "payment_recipients": ["oc_pr_14603917916fhf5eb09a69", "oc_pr_1461595230igdu5ce59471"],
-  "pdf_file_url": nil,
+  "pdf_file_url": "https://repo.octobat.com/invoices/oc_in_1461320056h2qq350fdc3a.pdf"
   "invoice_number": "SP2016-200",
   "invoice_date": "2016-04-26",
   "description": "Subscription",
   "payment_status": "unpaid",
   "status": "draft",
+  "total_extratax_amount":699,
+  "total_tax_amount":0,
+  "total_gross_amount":699,
+  "paid_amount_cents":0,
+  "unpaid_amount_cents":699,
   "email_sent": false,
   "last_sent_at": nil,
   "notes": "",
@@ -1148,40 +1022,10 @@ invoice.cancel_and_replace()
   "legal_fields": {},
   "sources": [],
   "cancel_and_replace_invoice": "oc_in_1476088610jx98e4b8b8d3",
-  "items": {
-    "object":"list",
-    "object":"list",
-    "data": [
-      {
-        "id": "oc_it_146133143279h39ba598f5",
-        "object": "item",
-        "status": "draft",
-        "confirmed_on": nil,
-        "customer": "oc_cu_1459413729au6o6a9ae061",
-        "transaction": nil,
-        "invoice": "oc_in_1461320056h2qq350fdc3a",
-        "credit_note": nil,
-        "product_type": "standard",
-        "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-        "sale_mode": "B2C",
-        "description": "Entreprise Plan",
-        "unit_extratax_amount": 19900,
-        "currency": "EUR",
-        "quantity": 1,
-        "extratax_amount": 19900,
-        "tax_rate": 22.0,
-        "tax_amount": 4378,
-        "gross_amount": 24278,
-        "declare_in_region": "FR",
-        "tax": "VAT",
-        "sources": [],
-        "item_exchange": nil,
-        "item_workspace_currency_exchange": nil
-      },
-      {...},
-      {...}
-    ]
-  }
+  "replaced_by": nil,
+  "metadata": {},
+  "document_currency_exchange": nil,
+  "items_count":1
 }
 ```
 
@@ -1282,6 +1126,11 @@ $ curl https://apiv2.octobat.com/invoices \
       "description": "Subscription",
       "payment_status": "unpaid",
       "status": "draft",
+      "total_extratax_amount":0,
+      "total_tax_amount":0,
+      "total_gross_amount":0,
+      "paid_amount_cents":0,
+      "unpaid_amount_cents":0,
       "email_sent": false,
       "last_sent_at": null,
       "notes": "",
@@ -1308,38 +1157,10 @@ $ curl https://apiv2.octobat.com/invoices \
       "legal_fields": {},
       "sources": [],
       "cancel_and_replace_invoice": null,
-      "items": {
-        "object":"list",
-        "data": [
-          {
-            "id": "oc_it_146133143279h39ba598f5",
-            "object": "item",
-            "status": "draft",
-            "confirmed_on": null,
-            "transaction": null,
-            "invoice": "oc_in_1461320056h2qq350fdc3a",
-            "credit_note": null,
-            "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-            "product_type": "eservice",
-            "sale_mode": "B2C",
-            "description": "Entreprise Plan",
-            "unit_extratax_amount": 19900,
-            "currency": "EUR",
-            "quantity": 1,
-            "extratax_amount": 19900,
-            "tax_rate": 22.0,
-            "tax_amount": 4378,
-            "gross_amount": 24278,
-            "declare_in_region": "FR",
-            "tax": "VAT",
-            "sources": [],
-            "item_exchange": null,
-            "item_workspace_currency_exchange": null
-          },
-          {...},
-          {...}
-        ]
-      }
+      "replaced_by": null,
+      "metadata": {},
+      "document_currency_exchange": null,
+      "items_count":1
     },
     {...},
     {...}
@@ -1383,6 +1204,11 @@ Octobat::Invoice.all(
       "description": "Subscription",
       "payment_status": "unpaid",
       "status": "draft",
+      "total_extratax_amount":0,
+      "total_tax_amount":0,
+      "total_gross_amount":0,
+      "paid_amount_cents":0,
+      "unpaid_amount_cents":0,
       "email_sent": false,
       "last_sent_at": nil,
       "notes": "",
@@ -1407,40 +1233,12 @@ Octobat::Invoice.all(
       "supplier_address_country": "France",
       "supplier_tax_number": nil,
       "legal_fields": {},
-      "cancel_and_replace_invoice": nil,
       "sources": [],
-      "items": {
-        "object":"list",
-        "data": [
-          {
-            "id": "oc_it_146133143279h39ba598f5",
-            "object": "item",
-            "status": "draft",
-            "confirmed_on": nil,
-            "transaction": nil,
-            "invoice": "oc_in_1461320056h2qq350fdc3a",
-            "credit_note": nil,
-            "tax_evidence": "oc_tev_1460565379am3be8f5ef71",
-            "product_type": "eservice",
-            "sale_mode": "B2C",
-            "description": "Entreprise Plan",
-            "unit_extratax_amount": 19900,
-            "currency": "EUR",
-            "quantity": 1,
-            "extratax_amount": 19900,
-            "tax_rate": 22.0,
-            "tax_amount": 4378,
-            "gross_amount": 24278,
-            "declare_in_region": "FR",
-            "tax": "VAT",
-            "sources": [],
-            "item_exchange": nil,
-            "item_workspace_currency_exchange": nil
-          },
-          {...},
-          {...}
-        ]
-      }
+      "cancel_and_replace_invoice": nil,
+      "replaced_by": nil,
+      "metadata": {},
+      "document_currency_exchange": nil,
+      "items_count":1
     },
     {...},
     {...}
